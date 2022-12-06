@@ -1,4 +1,4 @@
-import {ChatBubbleIcon, VideoIcon} from '@radix-ui/react-icons'
+import {ChatBubbleIcon, VideoIcon, PlayIcon} from '@radix-ui/react-icons'
 import {styled} from '@stitches/react'
 import {HTMLContainer, TLBounds, Utils} from '@tldraw/core'
 import Vec from '@tldraw/vec'
@@ -15,6 +15,7 @@ import {
   transformSingleRectangle,
 } from '~state/shapes/shared'
 import {TDMeta, TDShapeType, TDVideoAsset, TransformInfo, VideoShape} from '~types'
+import {stopPropagation} from "~components/stopPropagation";
 
 type T = VideoShape
 type E = HTMLDivElement
@@ -62,6 +63,8 @@ export class VideoUtil extends TDShapeUtil<T, E> {
       }
 
       const [linkColor, setlinkColor] = React.useState("#000000")
+
+      const [isPlaying, _setIsPlaying] = React.useState(false)
 
       const rContainer = React.useRef<HTMLDivElement>(null)
 
@@ -116,10 +119,20 @@ export class VideoUtil extends TDShapeUtil<T, E> {
 
       function Icon() {
         if (!shape.body) {
-          return <VideoIcon style={{width: 50, height: 50}}></VideoIcon>
+          return <VideoIcon style={{width: 50, height: 50}}/>
         } else {
-          return <ChatBubbleIcon style={{width: 50, height: 50}}></ChatBubbleIcon>
+          return <ChatBubbleIcon style={{width: 50, height: 50}}/>
         }
+      }
+
+      const setIsPlaying = () => {
+        _setIsPlaying(true)
+      }
+
+      const playVideo = (e: any) => {
+        const videoId = e.target.id.split("_").pop()
+        const video = document.getElementById('EB-Video_' + videoId) as HTMLVideoElement | null;
+        video?.play()
       }
 
       return (
@@ -151,16 +164,22 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   fontSize: 32,
                   fontWeight: 800,
                   position: 'relative',
-                  pointerEvents: 'none',
                   userSelect: 'none',
                 }}
               >
-                <img
-                  id="video-img"
-                  src={shape.thumbnail}
-                  style={{height: 'auto', width: '100%', display: 'block'}}
-                ></img>
-                <div
+                {/*TODO: remove mocked video src after testing*/}
+                <video style={{width: '800px'}} id={"EB-Video_" + shape.id} controls
+                       src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSIARZUWwf7BP9de8.JKM5%7E8-'}
+                       onPlay={setIsPlaying}
+                />
+                {!isPlaying ? <PlayButtonOverlay>
+                  <PlayButton id={"EB-PlayButton-Wrapper_" + shape.id} onClick={playVideo}
+                              onPointerDown={stopPropagation}>
+                    <PlayIcon id={"EB-PlayButton_" + shape.id} style={{color: 'white'}}/>
+                  </PlayButton>
+                </PlayButtonOverlay> : null
+                }
+                {!isPlaying ? <div
                   style={{
                     position: 'absolute',
                     bottom: 0,
@@ -173,8 +192,8 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                     backgroundColor: '#E20000',
                   }}
                 >
-                  <Icon></Icon>
-                </div>
+                  <Icon/>
+                </div> : null}
               </div>
             </div>
             <div
@@ -213,15 +232,16 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   userSelect: 'none',
                 }}
                 dangerouslySetInnerHTML={{__html: shape.body}}
-              ></div>
+              />
             </div>
             <div id="card-footer" style={{
               width: '100%',
               height: '2em'
             }}>
-              <EdubreakLink id='edubreak-link' style={{color: `${linkColor}`}} onClick={openEdubreakLink} onMouseEnter={() => {
-                setlinkColor('#6187ef')
-              }} onMouseLeave={() => {
+              <EdubreakLink id='edubreak-link' style={{color: `${linkColor}`}} onClick={openEdubreakLink}
+                            onMouseEnter={() => {
+                              setlinkColor('#6187ef')
+                            }} onMouseLeave={() => {
                 setlinkColor('#000000')
               }} onPointerDown={handlePointerDown}
               >
@@ -339,4 +359,39 @@ const EdubreakLink = styled('button', {
   cursor: 'pointer',
   overflow: 'hidden',
   outline: 'none'
+})
+
+const PlayButtonOverlay = styled('div', {
+  /* Position */
+  left: 0,
+  position: 'absolute',
+  top: 0,
+
+  /* Take full size */
+  height: '100%',
+  width: '100%',
+
+  /* Center the content */
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+  backgroundColor: 'transparent',
+
+})
+
+const PlayButton = styled('div', {
+  border: '0.25rem solid #fff',
+  borderRadius: '9999px',
+  height: '3rem',
+  width: '3rem',
+  cursor: 'pointer',
+
+  /* Center the content */
+  alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'center',
+
+  '&:hover': {
+    color: '$hover',
+  }
 })
