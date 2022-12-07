@@ -86,6 +86,8 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
   const rPreviousCount = React.useRef(-1)
   const rShapesIdsToRender = React.useRef(new Set<string>())
   const rShapesToRender = React.useRef(new Set<TLShape>())
+  const rVideoToRender = React.useRef('')
+  const [renderVideo, setRenderVideo] = React.useState(false)
 
   const { selectedIds, camera } = pageState
 
@@ -165,9 +167,35 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
 
   const tree: IShapeTreeNode<T, M>[] = []
 
+  React.useEffect(() => {
+    if (renderVideo) {
+      // dispatch event for render video in VideoShape
+      const renderVideoEvent = new CustomEvent('onRenderVideo', {detail: rVideoToRender.current})
+      window.dispatchEvent(renderVideoEvent);
+    } else {
+      // dispatch event for not render video in VideoShape
+      const notRenderVideoEvent = new CustomEvent('onNotRenderVideo', {detail: rVideoToRender.current})
+      window.dispatchEvent(notRenderVideoEvent);
+    }
+  }, [renderVideo])
+
   shapesToRender.forEach((shape) => {
     if (shape === undefined) {
       throw Error('Rendered shapes included a missing shape')
+    }
+
+    // TODO: hier alle fälle nochmal überdenken (im viewport/zoom>0.7) -> 4 Fälle abdecken (Zustandsdiagramm)
+    if (shape.type == 'video' && shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
+      if (pageState.camera.zoom > 0.7 ) {
+        if (!renderVideo) {
+          setRenderVideo(true)
+          rVideoToRender.current = shape.id
+        }
+      } else {
+        if (renderVideo) {
+          setRenderVideo(false)
+        }
+      }
     }
 
     addToShapeTree(

@@ -64,7 +64,7 @@ export class VideoUtil extends TDShapeUtil<T, E> {
 
       const [linkColor, setlinkColor] = React.useState("#000000")
 
-      const [isPlaying, _setIsPlaying] = React.useState(false)
+      const [renderVideo, setRenderVideo] = React.useState(false)
 
       const rContainer = React.useRef<HTMLDivElement>(null)
 
@@ -125,14 +125,19 @@ export class VideoUtil extends TDShapeUtil<T, E> {
         }
       }
 
-      const setIsPlaying = () => {
-        _setIsPlaying(true)
+      React.useEffect(() => {
+        window.addEventListener('onRenderVideo', onRenderVideo)
+        window.addEventListener('onNotRenderVideo', onNotRenderVideo)
+      }, [])
+
+      const onRenderVideo = (e: any) => {
+        if (shape.id == e.detail) {
+          setRenderVideo(true)
+        }
       }
 
-      const playVideo = (e: any) => {
-        const videoId = e.target.id.split("_").pop()
-        const video = document.getElementById('EB-Video_' + videoId) as HTMLVideoElement | null;
-        video?.play()
+      const onNotRenderVideo = (e: any) => {
+        setRenderVideo(false)
       }
 
       return (
@@ -167,33 +172,34 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   userSelect: 'none',
                 }}
               >
-                {/*TODO: remove mocked video src after testing*/}
-                <video style={{width: '800px'}} id={"EB-Video_" + shape.id} controls
-                       src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSIARZUWwf7BP9de8.JKM5%7E8-'}
-                       onPlay={setIsPlaying}
-                />
-                {!isPlaying ? <PlayButtonOverlay>
-                  <PlayButton id={"EB-PlayButton-Wrapper_" + shape.id} onClick={playVideo}
-                              onPointerDown={stopPropagation}>
-                    <PlayIcon id={"EB-PlayButton_" + shape.id} style={{color: 'white'}}/>
-                  </PlayButton>
-                </PlayButtonOverlay> : null
+                {!renderVideo ?
+                  <>
+                    <img
+                    id="video-img"
+                    src={shape.thumbnail}
+                    style={{height: 'auto', width: '100%', display: 'block'}}/>
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                        display: 'flex',
+                        color: 'white',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: '0.25em',
+                        backgroundColor: '#E20000',
+                      }}
+                    >
+                      <Icon/>
+                    </div>
+                  </>
+                  :
+                  /*TODO: remove mocked video src after testing*/
+                  <video style={{width: '800px'}} id={"EB-Video_" + shape.id} controls
+                         src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSIARZUWwf7BPrGbPHX19jpE-'}
+                  />
                 }
-                {!isPlaying ? <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    right: 0,
-                    display: 'flex',
-                    color: 'white',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    padding: '0.25em',
-                    backgroundColor: '#E20000',
-                  }}
-                >
-                  <Icon/>
-                </div> : null}
               </div>
             </div>
             <div
@@ -359,39 +365,4 @@ const EdubreakLink = styled('button', {
   cursor: 'pointer',
   overflow: 'hidden',
   outline: 'none'
-})
-
-const PlayButtonOverlay = styled('div', {
-  /* Position */
-  left: 0,
-  position: 'absolute',
-  top: 0,
-
-  /* Take full size */
-  height: '100%',
-  width: '100%',
-
-  /* Center the content */
-  alignItems: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-  backgroundColor: 'transparent',
-
-})
-
-const PlayButton = styled('div', {
-  border: '0.25rem solid #fff',
-  borderRadius: '9999px',
-  height: '3rem',
-  width: '3rem',
-  cursor: 'pointer',
-
-  /* Center the content */
-  alignItems: 'center',
-  display: 'flex',
-  justifyContent: 'center',
-
-  '&:hover': {
-    color: '$hover',
-  }
 })
