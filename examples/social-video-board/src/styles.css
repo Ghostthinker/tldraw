@@ -32,6 +32,15 @@ body {
   box-shadow: 0 0 2px 1px lightgrey;
 }
 
+.header-title {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin-left: 12px;
+  font-size: 2em;
+  color: #444444;
+}
+
 .logo {
   zoom: 0.3;
 }

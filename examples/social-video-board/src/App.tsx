@@ -49,14 +49,14 @@ export default function App() {
           element={
             <div>
               <div className="header">
-                <img className="logo" src={"./edubreak-logo.webp"} alt={"edubreak logo"}/>
+                <div className="header-title">Meine Boards</div>
                 <button className="newPage" onClick={showTitleInput}><Pencil2Icon
                   style={{width: 35, height: 35, color: "#555555"}}/></button>
               </div>
               <ul className="links">
                 {pages.map((page: any, i: any) =>
                   page === '' ? (
-                    <p>No Boards active at the moment!</p>
+                    <p>Keine aktiven Boards verfügbar!</p>
                   ) : (
                     <li key={i}>
                       <Link to={page.path}>{page.title}</Link>
