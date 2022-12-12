@@ -178,6 +178,7 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   <>
                     <img
                     id="video-img"
+                    draggable={false}
                     src={shape.thumbnail}
                     style={{height: 'auto', width: '100%', display: 'block'}}/>
                     <div
