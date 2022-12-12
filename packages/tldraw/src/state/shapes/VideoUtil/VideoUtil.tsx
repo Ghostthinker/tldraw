@@ -131,13 +131,15 @@ export class VideoUtil extends TDShapeUtil<T, E> {
       }, [])
 
       const onRenderVideo = (e: any) => {
-        if (shape.id == e.detail) {
+        if (shape.id === e.detail) {
           setRenderVideo(true)
         }
       }
 
       const onNotRenderVideo = (e: any) => {
-        setRenderVideo(false)
+        if (shape.id === e.detail) {
+          setRenderVideo(false)
+        }
       }
 
       return (
@@ -197,7 +199,7 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   :
                   /*TODO: remove mocked video src after testing*/
                   <video style={{width: '800px'}} id={"EB-Video_" + shape.id} controls
-                         src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSIARZUWwf7BPrGbPHX19jpE-'}
+                         src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSMVW3wv132y5C2x5XXN36Zk-'}
                   />
                 }
               </div>

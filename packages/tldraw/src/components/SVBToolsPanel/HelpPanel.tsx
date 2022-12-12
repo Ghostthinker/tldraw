@@ -41,56 +41,13 @@ export function HelpPanel() {
       </PopoverAnchor>
       <Popover.Content dir="ltr" align="end" side="top" alignOffset={10} sideOffset={8} asChild>
         <StyledContent style={{ visibility: isKeyboardShortcutsOpen ? 'hidden' : 'visible' }}>
-          <LanguageMenuDropdown />
           <KeyboardShortcutDialog onOpenChange={setIsKeyboardShortcutsOpen} />
-          <Divider />
-          <Links />
         </StyledContent>
       </Popover.Content>
     </Popover.Root>
   )
 }
 
-const LanguageMenuDropdown = () => {
-  return (
-    <DropdownMenu.Root dir="ltr">
-      <DropdownMenu.Trigger asChild>
-        <RowButton variant="wide" hasArrow>
-          <FormattedMessage id="language" />
-        </RowButton>
-      </DropdownMenu.Trigger>
-      <LanguageMenu />
-    </DropdownMenu.Root>
-  )
-}
-
-const linksData = [
-  { id: 'github', icon: GitHubLogoIcon, url: 'https://github.com/tldraw/tldraw' },
-  { id: 'twitter', icon: TwitterLogoIcon, url: 'https://twitter.com/tldraw' },
-  { id: 'discord', icon: DiscordIcon, url: 'https://discord.gg/SBBEVCA4PG' },
-  {
-    id: 'become.a.sponsor',
-    icon: HeartFilledIcon,
-    url: 'https://github.com/sponsors/steveruizok',
-  },
-]
-
-const Links = () => {
-  return (
-    <>
-      {linksData.map((item) => (
-        <a key={item.id} href={item.url} target="_blank" rel="nofollow">
-          <RowButton id={`TD-Link-${item.id}`} variant="wide">
-            <FormattedMessage id={item.id} />
-            <SmallIcon>
-              <item.icon />
-            </SmallIcon>
-          </RowButton>
-        </a>
-      ))}
-    </>
-  )
-}
 
 const HelpButton = styled('button', {
   width: 32,

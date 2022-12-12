@@ -184,16 +184,20 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
       throw Error('Rendered shapes included a missing shape')
     }
 
-    // TODO: hier alle fälle nochmal überdenken (im viewport/zoom>0.7) -> 4 Fälle abdecken (Zustandsdiagramm)
-    if (shape.type == 'video' && shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
-      if (pageState.camera.zoom > 0.7 ) {
-        if (!renderVideo) {
-          setRenderVideo(true)
-          rVideoToRender.current = shape.id
-        }
-      } else {
-        if (renderVideo) {
-          setRenderVideo(false)
+    // 12.12.2022 - 13:56 - MK: aktuell kann man hier nur durch reinzoomen EIN Video anzeigen lassen.
+    // Hier gibt es verschiedene Use Cases, z.B. mehrere Videos im Viewport, ein Video wandert in den Viewport etc.
+    if (shape.type == 'video') {
+      if (shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
+        if (pageState.camera.zoom > 0.7 ) {
+          if (!renderVideo) {
+            setRenderVideo(true)
+            rVideoToRender.current = shape.id
+          }
+        } else {
+          if (renderVideo) {
+            setRenderVideo(false)
+            rVideoToRender.current = shape.id
+          }
         }
       }
     }
