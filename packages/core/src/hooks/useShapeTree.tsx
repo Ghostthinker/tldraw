@@ -86,7 +86,7 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
   const rPreviousCount = React.useRef(-1)
   const rShapesIdsToRender = React.useRef(new Set<string>())
   const rShapesToRender = React.useRef(new Set<TLShape>())
-  const rVideoToRender = React.useRef('')
+  const rVideoToRender = React.useRef(new Array<string>())
   const [renderVideo, setRenderVideo] = React.useState(false)
 
   const { selectedIds, camera } = pageState
@@ -168,15 +168,17 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
   const tree: IShapeTreeNode<T, M>[] = []
 
   React.useEffect(() => {
-    if (renderVideo) {
-      // dispatch event for render video in VideoShape
-      const renderVideoEvent = new CustomEvent('onRenderVideo', {detail: rVideoToRender.current})
-      window.dispatchEvent(renderVideoEvent);
-    } else {
-      // dispatch event for not render video in VideoShape
-      const notRenderVideoEvent = new CustomEvent('onNotRenderVideo', {detail: rVideoToRender.current})
-      window.dispatchEvent(notRenderVideoEvent);
-    }
+    rVideoToRender.current.forEach((shapeId) => {
+      if (renderVideo) {
+        // dispatch event for render video in VideoShape
+        const renderVideoEvent = new CustomEvent('onRenderVideo', {detail: shapeId})
+        window.dispatchEvent(renderVideoEvent);
+      } else {
+        // dispatch event for not render video in VideoShape
+        const notRenderVideoEvent = new CustomEvent('onNotRenderVideo', {detail: shapeId})
+        window.dispatchEvent(notRenderVideoEvent);
+      }
+    })
   }, [renderVideo])
 
   shapesToRender.forEach((shape) => {
@@ -188,16 +190,23 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
     // Hier gibt es verschiedene Use Cases, z.B. mehrere Videos im Viewport, ein Video wandert in den Viewport etc.
     if (shape.type == 'video') {
       if (shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
+        if (!rVideoToRender.current.includes(shape.id)) {
+          rVideoToRender.current.push(shape.id)
+        }
         if (pageState.camera.zoom > 0.7 ) {
           if (!renderVideo) {
             setRenderVideo(true)
-            rVideoToRender.current = shape.id
           }
         } else {
           if (renderVideo) {
             setRenderVideo(false)
-            rVideoToRender.current = shape.id
+            rVideoToRender.current.filter((item) => item !== shape.id)
           }
+        }
+      } else {
+        if (rVideoToRender.current.includes(shape.id)) {
+          console.log(shape.id + ' not in viewport');
+          rVideoToRender.current.filter((item) => item !== shape.id)
         }
       }
     }
