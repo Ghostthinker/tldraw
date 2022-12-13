@@ -23,24 +23,34 @@ export function ViewzoneMenu({onSelect, shapes}: ViewzoneMenuProps) {
   }
 
   return (
-    <Panel side="left" id="TD-Viewzone-Panel">
-      <StyledListContainer>
-        <IconButton style={{
-          zoom: 1.5,
-          width: 'auto',
-          height: 'auto',
-          marginBottom: '10px'
-        }} onClick={onSelect}><ArrowLeftIcon/></IconButton>
-        <Divider/>
-        {viewzones.map((viewzone: TDShape, index: number) => (
-          <StyledListElementContainer id={viewzone.id} key={viewzone.id} onClick={switchToViewzone}>
-            <div>Viewzone {index + 1}</div>
-          </StyledListElementContainer>
-        ))}
-      </StyledListContainer>
-    </Panel>
+    <SVBViewzoneTopPanel>
+      <Panel side="left" id="TD-Viewzone-Panel" style={{display: 'block', position: 'relative'}}>
+        <StyledIconButton onClick={onSelect}><ArrowLeftIcon/></StyledIconButton>
+        <StyledListContainer>
+          {viewzones.map((viewzone: TDShape, index: number) => (
+            <StyledListElementContainer id={viewzone.id} key={viewzone.id} onClick={switchToViewzone}>
+              <div>Viewzone {index + 1}</div>
+            </StyledListElementContainer>
+          ))}
+        </StyledListContainer>
+      </Panel>
+    </SVBViewzoneTopPanel>
   )
 }
+
+const SVBViewzoneTopPanel = styled('div', {
+  width: '100%',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  display: 'flex',
+  flexDirection: 'row',
+  pointerEvents: 'none',
+  '& > *': {
+    pointerEvents: 'all',
+  },
+})
 
 const StyledListContainer = styled('ul', {
   width: '100%',
@@ -55,6 +65,18 @@ const StyledListContainer = styled('ul', {
   paddingInlineStart: '15px',
   paddingInlineEnd: '15px'
 })
+
+const StyledIconButton = styled(IconButton, {
+  zoom: 1.5,
+  width: 'auto',
+  height: 'auto',
+  marginBottom: '10px',
+  padding: '6px',
+  '&:hover': {
+    backgroundColor: '$hover',
+  }
+})
+
 const StyledListElementContainer = styled('li', {
   fontSize: '1em',
   paddingBottom: '15px',

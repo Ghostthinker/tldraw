@@ -6,7 +6,6 @@ import { FormattedMessage, useIntl } from 'react-intl'
 import { FilenameDialog } from '~components/Primitives/AlertDialog'
 import { Divider } from '~components/Primitives/Divider'
 import {
-  DMCheckboxItem,
   DMContent,
   DMItem,
   DMSubMenu,
@@ -116,10 +115,6 @@ export const Menu = React.memo(function Menu({ readOnly }: MenuProps) {
     app.openAsset()
   }, [app])
 
-  const showViewzones = React.useCallback(() => {
-    app.setSetting('isViewzoneMode', (v) => !v)
-  }, [app])
-
   const handleZoomTo100 = React.useCallback(() => {
     app.zoomTo(1)
   }, [app])
@@ -182,13 +177,6 @@ export const Menu = React.memo(function Menu({ readOnly }: MenuProps) {
                   </DMItem>
                 </>
               )}
-              <DMCheckboxItem
-                onCheckedChange={showViewzones}
-                id="TD-Zoom-Viewzones"
-                checked={settings.isViewzoneMode}
-              >
-                <FormattedMessage id="show.viewzones" />
-              </DMCheckboxItem>
             </DMSubMenu>
           )}
           <DMSubMenu label={`${intl.formatMessage({ id: 'menu.edit' })}...`} id="TD-MenuItem-Edit">

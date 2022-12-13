@@ -1,22 +1,19 @@
 import * as React from 'react'
-import { Utils, SVGContainer } from '@tldraw/core'
-import {DashStyle, TDShapeType, TDMeta, ViewZoneShape, ColorStyle, SizeStyle, MoveType} from '~types'
-import { GHOSTED_OPACITY, LABEL_POINT } from '~constants'
-import { TDShapeUtil } from '../TDShapeUtil'
+import {SVGContainer, Utils} from '@tldraw/core'
+import {AlignStyle, ColorStyle, DashStyle, FontStyle, SizeStyle, TDMeta, TDShapeType, ViewZoneShape} from '~types'
+import {GHOSTED_OPACITY, LABEL_OFFSET} from '~constants'
+import {TDShapeUtil} from '../TDShapeUtil'
 import {
-  getShapeStyle,
-  getBoundsRectangle,
+  defaultTextStyle,
+  getBoundsRectangle, getShapeStyle,
+  getStickyFontStyle,
   transformRectangle,
-  getFontStyle,
   transformSingleRectangle,
 } from '~state/shapes/shared'
-import { TextLabel } from '../shared/TextLabel'
-import { getRectangleIndicatorPathTDSnapshot } from './viewzoneHelpers'
-import { DrawRectangle } from './components/DrawRectangle'
-import { BindingIndicator } from './components/BindingIndicator'
-import { styled } from '~styles'
-import {TldrawApp} from "~state";
-import * as Commands from "~state/commands";
+import {TextLabel} from '../shared/TextLabel'
+import {DrawRectangle} from './components/DrawRectangle'
+import {BindingIndicator} from './components/BindingIndicator'
+import {styled} from '~styles'
 import {useTldrawApp} from "~hooks";
 
 type T = ViewZoneShape
@@ -42,15 +39,8 @@ export class ViewZoneUtil extends TDShapeUtil<T, E> {
         point: [0, 0],
         size: [1, 1],
         rotation: 0,
-        style: {
-          color: ColorStyle.Black,
-          size: SizeStyle.Small,
-          isFilled: true,
-          dash: DashStyle.Draw,
-          scale: 1
-        },
-        label: '',
-        labelPoint: [0.5, 0.5],
+        style: defaultTextStyle,
+        label: 'Viewzone',
       },
       props
     )
@@ -72,13 +62,8 @@ export class ViewZoneUtil extends TDShapeUtil<T, E> {
       },
       ref
     ) => {
-      const { id, size, style, label = '', labelPoint = LABEL_POINT } = shape
-      const font = getFontStyle(style)
-      const styles = {
-        fill: "#e3e5e7",
-        stroke: "#0000ffff",
-        strokeWidth: 0
-      }
+      const { id, size, label = '', labelOffset = LABEL_OFFSET } = shape
+      const font = getStickyFontStyle(shape.style)
       const Component = DrawRectangle
       const handleLabelChange = React.useCallback(
         (label: string) => onShapeChange?.({ id, label }),
@@ -100,15 +85,23 @@ export class ViewZoneUtil extends TDShapeUtil<T, E> {
             onBlur={onShapeBlur}
             font={font}
             text={label}
-            color={styles.stroke}
-            offsetX={(labelPoint[0] - 0.5) * bounds.width}
-            offsetY={(labelPoint[1] - 0.5) * bounds.height}
+            color={ColorStyle.Black}
+            offsetX={0}
+            offsetY={bounds.height * (-0.5) - labelOffset[1]}
           />
           <SVGContainer id={shape.id + '_svg'} className={'viewzone'} opacity={isGhost ? GHOSTED_OPACITY : 1}>
-            {isBinding && <BindingIndicator strokeWidth={styles.strokeWidth} size={size}/>}
+            {isBinding && <BindingIndicator strokeWidth={0} size={size}/>}
               <Component
                 id={id}
-                style={style}
+                style={{
+                  color: meta.isDarkMode ? ColorStyle.Gray : ColorStyle.LightGray,
+                  size: SizeStyle.Medium,
+                  dash: DashStyle.Solid,
+                  font: FontStyle.Sans,
+                  textAlign: AlignStyle.Start,
+                  isFilled: false,
+                  scale: 1
+                }}
                 size={size}
                 isSelected={isSelected}
                 isDarkMode={meta.isDarkMode}
@@ -120,14 +113,10 @@ export class ViewZoneUtil extends TDShapeUtil<T, E> {
   )
 
   Indicator = TDShapeUtil.Indicator<T>(({ shape }) => {
-    const { id, style, size } = shape
+    const { style, size } = shape
 
     const styles = getShapeStyle(style, false)
     const sw = styles.strokeWidth
-
-    if (style.dash === DashStyle.Draw) {
-      return <path d={getRectangleIndicatorPathTDSnapshot(id, style, size)} />
-    }
 
     return (
       <rect

@@ -424,7 +424,7 @@ export interface ViewZoneShape extends TDBaseShape {
   type: TDShapeType.ViewZone
   size: number[]
   label?: string
-  labelPoint?: number[]
+  labelOffset?: number[]
 }
 
 // A union of all shapes

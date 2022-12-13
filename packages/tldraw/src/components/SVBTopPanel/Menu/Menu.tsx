@@ -150,13 +150,6 @@ export const Menu = React.memo(function Menu({ readOnly }: MenuProps) {
                   </DMItem>
                 </>
               )}
-              <DMCheckboxItem
-                onCheckedChange={showViewzones}
-                id="TD-Zoom-Viewzones"
-                checked={settings.isViewzoneMode}
-              >
-                <FormattedMessage id="show.viewzones" />
-              </DMCheckboxItem>
             </DMSubMenu>
           )}
           <DMSubMenu label={`${intl.formatMessage({ id: 'menu.edit' })}...`} id="TD-MenuItem-Edit">
@@ -273,6 +266,14 @@ export const Menu = React.memo(function Menu({ readOnly }: MenuProps) {
             >
               <FormattedMessage id="zoom.to.selection" />
             </DMItem>
+            <Divider />
+            <DMCheckboxItem
+              onCheckedChange={showViewzones}
+              id="TD-Viewzone-Mode"
+              checked={settings.isViewzoneMode}
+            >
+              <FormattedMessage id="show.viewzones" />
+            </DMCheckboxItem>
           </DMSubMenu>
           <Divider />
           <PreferencesMenu />
