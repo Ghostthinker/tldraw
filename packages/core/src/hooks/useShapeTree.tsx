@@ -86,7 +86,7 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
   const rPreviousCount = React.useRef(-1)
   const rShapesIdsToRender = React.useRef(new Set<string>())
   const rShapesToRender = React.useRef(new Set<TLShape>())
-  const rVideoToRender = React.useRef(new Array<string>())
+  const rVideosToRender = React.useRef(new Array<string>())
   const [renderVideo, setRenderVideo] = React.useState(false)
 
   const { selectedIds, camera } = pageState
@@ -168,7 +168,7 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
   const tree: IShapeTreeNode<T, M>[] = []
 
   React.useEffect(() => {
-    rVideoToRender.current.forEach((shapeId) => {
+    rVideosToRender.current.forEach((shapeId) => {
       if (renderVideo) {
         // dispatch event for render video in VideoShape
         const renderVideoEvent = new CustomEvent('onRenderVideo', {detail: shapeId})
@@ -190,23 +190,21 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
     // Hier gibt es verschiedene Use Cases, z.B. mehrere Videos im Viewport, ein Video wandert in den Viewport etc.
     if (shape.type == 'video') {
       if (shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
-        if (!rVideoToRender.current.includes(shape.id)) {
-          rVideoToRender.current.push(shape.id)
-        }
-        if (pageState.camera.zoom > 0.7 ) {
-          if (!renderVideo) {
-            setRenderVideo(true)
-          }
-        } else {
-          if (renderVideo) {
-            setRenderVideo(false)
-            rVideoToRender.current.filter((item) => item !== shape.id)
-          }
+        if (!rVideosToRender.current.includes(shape.id)) {
+          rVideosToRender.current.push(shape.id)
         }
       } else {
-        if (rVideoToRender.current.includes(shape.id)) {
-          console.log(shape.id + ' not in viewport');
-          rVideoToRender.current.filter((item) => item !== shape.id)
+        if (rVideosToRender.current.includes(shape.id)) {
+          rVideosToRender.current = rVideosToRender.current.filter((item) => item !== shape.id)
+        }
+      }
+      if (pageState.camera.zoom > 0.7 ) {
+        if (!renderVideo) {
+          setRenderVideo(true)
+        }
+      } else {
+        if (renderVideo) {
+          setRenderVideo(false)
         }
       }
     }

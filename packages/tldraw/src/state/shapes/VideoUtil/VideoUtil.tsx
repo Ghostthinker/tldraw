@@ -200,7 +200,7 @@ export class VideoUtil extends TDShapeUtil<T, E> {
                   :
                   /*TODO: remove mocked video src after testing*/
                   <video style={{width: '800px'}} id={"EB-Video_" + shape.id} controls
-                         src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSMVW3wv132y5C2x5XXN36Zk-'}
+                         src={'https://evoli-dev.ghostthinker.de/streaming/stream.php?token=hLAh%7Eo0qqOEKA11g.nutylF0LaTLICVelqjQTkcQWJ5%7EL.ol7plby%7EV4wFVv4P48qg64IUV7ELo5SF5bOLb7FaycJ%7EfK%7EagrkIPVgxrdXcNydgS8af8eSL0YVD9Mk34JhxGkt7anENg-'}
                   />
                 }
               </div>
