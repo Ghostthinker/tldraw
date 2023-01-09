@@ -188,26 +188,27 @@ export function useShapeTree<T extends TLShape, M extends Record<string, unknown
 
     // 12.12.2022 - 13:56 - MK: aktuell kann man hier nur durch reinzoomen EIN Video anzeigen lassen.
     // Hier gibt es verschiedene Use Cases, z.B. mehrere Videos im Viewport, ein Video wandert in den Viewport etc.
-    if (shape.type == 'video') {
-      if (shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
-        if (!rVideosToRender.current.includes(shape.id)) {
-          rVideosToRender.current.push(shape.id)
-        }
-      } else {
-        if (rVideosToRender.current.includes(shape.id)) {
-          rVideosToRender.current = rVideosToRender.current.filter((item) => item !== shape.id)
-        }
-      }
-      if (pageState.camera.zoom > 0.7 ) {
-        if (!renderVideo) {
-          setRenderVideo(true)
-        }
-      } else {
-        if (renderVideo) {
-          setRenderVideo(false)
-        }
-      }
-    }
+    // TODO: Wegen Performance Problemen rausgenommen, später fixen
+    // if (shape.type == 'video') {
+    //   if (shapeIsInViewport(shapeUtils[shape.type as T['type']].getBounds(shape as any), viewport)) {
+    //     if (!rVideosToRender.current.includes(shape.id)) {
+    //       rVideosToRender.current.push(shape.id)
+    //     }
+    //   } else {
+    //     if (rVideosToRender.current.includes(shape.id)) {
+    //       rVideosToRender.current = rVideosToRender.current.filter((item) => item !== shape.id)
+    //     }
+    //   }
+    //   if (pageState.camera.zoom > 0.7 ) {
+    //     if (!renderVideo) {
+    //       setRenderVideo(true)
+    //     }
+    //   } else {
+    //     if (renderVideo) {
+    //       setRenderVideo(false)
+    //     }
+    //   }
+    // }
 
     addToShapeTree(
       shape,

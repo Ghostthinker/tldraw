@@ -11,10 +11,15 @@ export default function App() {
     path: '',
     title: ''
   }]);
+  const [isBoard, setIsBoard] = React.useState(false);
   React.useEffect(() => {
-    EdubreakService.getBoards().then((boards) => {
-      setPages(boards)
-    })
+    if (EdubreakService.getBoardIDfromURL() !== null) {
+      setIsBoard(true)
+    } else {
+      EdubreakService.getBoards().then((boards) => {
+        setPages(boards)
+      })
+    }
   }, [])
   const [showInput, setShowInput] = React.useState(false)
   const [title, setTitle] = React.useState('');
@@ -43,40 +48,43 @@ export default function App() {
 
   return (
     <main>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <div className="header">
-                <div className="header-title">Meine Boards</div>
-                <button className="newPage" onClick={showTitleInput}><Pencil2Icon
-                  style={{width: 35, height: 35, color: "#555555"}}/></button>
+      {!isBoard ?
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <div className="header">
+                  <div className="header-title">Meine Boards</div>
+                  <button className="newPage" onClick={showTitleInput}><Pencil2Icon
+                    style={{width: 35, height: 35, color: "#555555"}}/></button>
+                </div>
+                <ul className="links">
+                  {pages.map((page: any, i: any) =>
+                    page === '' ? (
+                      <p>Keine aktiven Boards verfügbar!</p>
+                    ) : (
+                      <li key={i}>
+                        <Link to={page.path}>{page.title}</Link>
+                      </li>
+                    )
+                  )}
+                  {showInput ? <div className="titleInput">
+                    <input autoFocus onKeyDown={_handleKeyDown} type="text" onChange={setTitleFromInput}/>
+                    <button onClick={createPage}>OK</button>
+                  </div> : null}
+                </ul>
               </div>
-              <ul className="links">
-                {pages.map((page: any, i: any) =>
-                  page === '' ? (
-                    <p>Keine aktiven Boards verfügbar!</p>
-                  ) : (
-                    <li key={i}>
-                      <Link to={page.path}>{page.title}</Link>
-                    </li>
-                  )
-                )}
-                {showInput ? <div className="titleInput">
-                  <input autoFocus onKeyDown={_handleKeyDown} type="text" onChange={setTitleFromInput}/>
-                  <button onClick={createPage}>OK</button>
-                </div> : null}
-              </ul>
-            </div>
-          }
-        />
-        {pages.map((page: any) =>
-          page === '---' ? null : (
-            <Route key={page.path} path={page.path} element={<SVBBoard/>}/>
-          )
-        )}
-      </Routes>
+            }
+          />
+          {pages.map((page: any) =>
+            page === '---' ? null : (
+              <Route key={page.path} path={page.path} element={<SVBBoard/>}/>
+            )
+          )}
+        </Routes> :
+        <SVBBoard/>
+      }
     </main>
   )
 }

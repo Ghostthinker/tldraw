@@ -73,7 +73,18 @@ const EdubreakService = {
     } catch (e) {
       console.warn('### EdubreakService: error while getting boards from server ###', e);
     }
-  }
+  },
+
+  getBoardIDfromURL: function () {
+    const url = window.location.href;
+    const idRegex = /[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}/gm;
+    // @ts-ignore
+    if (url.match(idRegex) !== null) {
+      return url.match(idRegex)![0];
+    } else {
+      return null
+    }
+  },
 };
 
 export default EdubreakService;
