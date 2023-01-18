@@ -106,7 +106,7 @@ const EdubreakService = {
 
   getEdubreakIds: function (edubreakPath: string) {
     // gets nid and og_id from pasted node edubreak link
-    const regexp = /[\w.,@?^=%&:\/~+#-]*course-([0-9]*)[\w@?^=%&\/~+#-]*\/([0-9]+)/g;
+    const regexp = /[\w.,@?^=%&:\/~+#-]*(course|group)-([0-9]*)[\w@?^=%&\/~+#-]*\/([0-9]+)/g;
     const regMatches = edubreakPath.matchAll(regexp);
     const matches = [];
     for (const regMatch of regMatches) {
@@ -134,8 +134,8 @@ const EdubreakService = {
       domain: domain,
       path: path,
       type: this.getNodeType(path),
-      og_id: edubreakIds[0][1],
-      nid: edubreakIds[0][2]
+      og_id: edubreakIds[0][2],
+      nid: edubreakIds[0][3]
     }
   },
 
