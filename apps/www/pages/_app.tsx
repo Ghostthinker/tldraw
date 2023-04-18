@@ -1,10 +1,9 @@
+import '@fontsource/recursive'
 import Head from 'next/head'
 import type React from 'react'
+import { MaintenanceMode } from '~components/MaintenanceMode'
 import '~styles/globals.css'
-import { init } from '~utils/sentry'
 import useGtag from '~utils/useGtag'
-
-init()
 
 const APP_NAME = 'tldraw'
 const APP_DESCRIPTION = 'A tiny little drawing app.'
@@ -52,7 +51,9 @@ function MyApp({ Component, pageProps }: any) {
 
         <title>tldraw</title>
       </Head>
-      <Component {...pageProps} />
+      <MaintenanceMode>
+        <Component {...pageProps} />
+      </MaintenanceMode>
     </>
   )
 }

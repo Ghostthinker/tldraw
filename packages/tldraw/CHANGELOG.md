@@ -1,5 +1,168 @@
 # Changelog
 
+## 1.29.2
+
+### Patch Changes
+
+- Include clipboard fixes.
+- Updated dependencies
+  - @tldraw/core@1.23.2
+  - @tldraw/intersect@1.9.2
+  - @tldraw/vec@1.9.2
+
+## 1.29.1
+
+### Patch Changes
+
+- Fix clipboard stealing focus.
+- Updated dependencies
+  - @tldraw/core@1.23.1
+  - @tldraw/intersect@1.9.1
+  - @tldraw/vec@1.9.1
+
+## 1.29.0
+
+### Minor Changes
+
+- - Fixes copy as PNG
+  - Fixes a bug with copy and paste
+  - Fixes a bug on iPad while using pencil
+  - Fixes a bug with the style menus
+  - Fixes a bug with image export
+  - Updates translations
+
+### Patch Changes
+
+- Updated dependencies
+  - @tldraw/core@1.23.0
+
+## 1.28.0
+
+### Minor Changes
+
+- - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates German translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+
+### Patch Changes
+
+- Updated dependencies
+  - @tldraw/core@1.22.0
+  - @tldraw/intersect@1.9.0
+  - @tldraw/vec@1.9.0
+
+## 1.27.1
+
+### Patch Changes
+
+- - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates German translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+- 12c0b2ac: - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+- Updated dependencies
+- Updated dependencies [12c0b2ac]
+  - @tldraw/core@1.21.1
+  - @tldraw/intersect@1.8.1
+  - @tldraw/vec@1.8.1
+
+## 1.27.0
+
+### Minor Changes
+
+- - Adds missing Arabic translations for dialogs. @abedshamia
+  - Updates core-example. @brydenfogelman
+  - Updates Polish translations. @adan2013
+  - Adds missing Aria-Labels. @KDSBrowne
+  - Improves Japanese translation. @yashkumarbarot
+  - Fixes height and width in app.viewport. @hiroshisuga
+  - Improves labels on StlyeMenu @proke03
+  - Adds missing tooltips to undo / redo buttons. @proke03
+
+### Patch Changes
+
+- Updated dependencies
+  - @tldraw/core@1.21.0
+
+## 1.26.4
+
+### Patch Changes
+
+- Add external fonts, new translations, duplicate page fix.
+- Updated dependencies
+  - @tldraw/core@1.20.3
+
+## 1.26.3
+
+### Patch Changes
+
+- Fix text placement.
+- Updated dependencies
+  - @tldraw/core@1.20.2
+
+## 1.26.2
+
+### Patch Changes
+
+- Fix types in core.
+- Updated dependencies
+  - @tldraw/core@1.20.1
+
+## 1.26.1
+
+### Patch Changes
+
+- Fixes blurring text inputs in multiplayer.
+
+## 1.26.0
+
+### Minor Changes
+
+- Add metadata property to user.
+
+### Patch Changes
+
+- Updated dependencies
+  - @tldraw/core@1.20.0
+
+## 1.25.0
+
+### Minor Changes
+
+- - Adds `components` prop to Tldraw component (for custom Cursor, etc) @jamesbvaughan
+  - Adds Thai language @watchakorn-18k
+  - Fix event bug on `onRightPointCanvas`
+  - Fix bug with bad data in document with up-to-date version number
+  - Fix bug with arrow bindings
+  - Improves freehand line performance
+  - Improves performance of shape tree
+  - Improved .tldr file size (strip white space)
+
+### Patch Changes
+
+- Updated dependencies
+  - @tldraw/core@1.19.0
+  - @tldraw/intersect@1.8.0
+  - @tldraw/vec@1.8.0
+
 ## 1.24.5
 
 ### Patch Changes

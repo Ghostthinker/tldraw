@@ -1,3 +1,8 @@
+import '@fontsource/caveat-brush'
+import '@fontsource/crimson-pro'
+import '@fontsource/recursive'
+import '@fontsource/source-code-pro'
+import '@fontsource/source-sans-pro'
 import { CursorComponent, Renderer } from '@tldraw/core'
 import * as React from 'react'
 import { ErrorBoundary as _Errorboundary } from 'react-error-boundary'
@@ -18,7 +23,6 @@ import {
   DialogState,
   TldrawContext,
   useKeyboardShortcuts,
-  useStylesheet,
   useTldrawApp,
   useTranslation,
 } from '~hooks'
@@ -637,7 +641,6 @@ const OneOff = React.memo(function OneOff({
   focusableRef: React.RefObject<HTMLDivElement>
 }) {
   useKeyboardShortcuts(focusableRef)
-  useStylesheet()
 
   React.useEffect(() => {
     if (autofocus) {
@@ -659,6 +662,8 @@ const StyledLayout = styled('div', {
   overflow: 'hidden',
   boxSizing: 'border-box',
   outline: 'none',
+  userSelect: 'none',
+  WebkitUserSelect: 'none',
 
   '& .tl-container': {
     position: 'absolute',

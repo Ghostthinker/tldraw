@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useFileSystemHandlers, useTldrawApp } from '~hooks'
-import { AlignStyle, TDShapeType } from '~types'
+import { AlignStyle, TDExportType, TDShapeType } from '~types'
 
 export function useKeyboardShortcuts(ref: React.RefObject<HTMLDivElement>) {
   const app = useTldrawApp()
@@ -10,7 +10,6 @@ export function useKeyboardShortcuts(ref: React.RefObject<HTMLDivElement>) {
     (ignoreMenus = false) => {
       const elm = ref.current
       if (ignoreMenus && (app.isMenuOpen || app.settings.keepStyleMenuOpen)) return true
-      elm?.focus()
       return elm && (document.activeElement === elm || elm.contains(document.activeElement))
     },
     [ref]
@@ -227,6 +226,58 @@ export function useKeyboardShortcuts(ref: React.RefObject<HTMLDivElement>) {
     undefined,
     [app]
   )
+
+  useHotkeys(
+    'ctrl+alt+1,⌘+alt+1',
+    (e) => {
+      if (!canHandleEvent()) return
+
+      app.exportImage(TDExportType.SVG, { scale: 2, quality: 1 })
+    },
+    undefined,
+    [app]
+  )
+  useHotkeys(
+    'ctrl+alt+2,⌘+alt+2',
+    (e) => {
+      if (!canHandleEvent()) return
+
+      app.exportImage(TDExportType.PNG, { scale: 2, quality: 1 })
+    },
+    undefined,
+    [app]
+  )
+  useHotkeys(
+    'ctrl+alt+3,⌘+alt+3',
+    (e) => {
+      if (!canHandleEvent()) return
+
+      app.exportImage(TDExportType.JPG, { scale: 2, quality: 1 })
+    },
+    undefined,
+    [app]
+  )
+  useHotkeys(
+    'ctrl+alt+4,⌘+alt+4',
+    (e) => {
+      if (!canHandleEvent()) return
+
+      app.exportImage(TDExportType.WEBP, { scale: 2, quality: 1 })
+    },
+    undefined,
+    [app]
+  )
+  useHotkeys(
+    'ctrl+alt+5,⌘+alt+5',
+    (e) => {
+      if (!canHandleEvent()) return
+
+      app.exportJson()
+    },
+    undefined,
+    [app]
+  )
+
   useHotkeys(
     'ctrl+o,⌘+o',
     (e) => {

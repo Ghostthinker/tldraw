@@ -1,5 +1,108 @@
 ## 1.2.4
 
+## 1.28.4
+
+### Patch Changes
+
+- Include clipboard fixes.
+
+## 1.28.3
+
+### Patch Changes
+
+- Fix clipboard stealing focus.
+
+## 1.28.0
+
+### Minor Changes
+
+- - Fixes copy as PNG
+  - Fixes a bug with copy and paste
+  - Fixes a bug on iPad while using pencil
+  - Fixes a bug with the style menus
+  - Fixes a bug with image export
+  - Updates translations
+
+## 1.27.0
+
+### Minor Changes
+
+- - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates German translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+
+## 1.26.1
+
+### Patch Changes
+
+- - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates German translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+- 12c0b2ac: - Adds Galacian language translation
+  - Adds Farsi (Persian) language translation
+  - Updates Norwegian translation
+  - Updates Japanese translation
+  - Updates Spanish translation
+  - Improves aria-labels
+  - Fixes a bug with multiplayer menu
+  - Fixes a bug with image exports
+
+## 1.26.0
+
+### Minor Changes
+
+- - Adds missing Arabic translations for dialogs. @abedshamia
+  - Updates core-example. @brydenfogelman
+  - Updates Polish translations. @adan2013
+  - Adds missing Aria-Labels. @KDSBrowne
+  - Improves Japanese translation. @yashkumarbarot
+  - Fixes height and width in app.viewport. @hiroshisuga
+  - Improves labels on StlyeMenu @proke03
+  - Adds missing tooltips to undo / redo buttons. @proke03
+
+## 1.25.2
+
+### Patch Changes
+
+- Fix types in core.
+
+## 1.25.1
+
+### Patch Changes
+
+- Fixes blurring text inputs in multiplayer.
+
+## 1.25.0
+
+### Minor Changes
+
+- Add metadata property to user.
+
+## 1.24.0
+
+### Minor Changes
+
+- - Adds `components` prop to Tldraw component (for custom Cursor, etc) @jamesbvaughan
+  - Adds Thai language @watchakorn-18k
+  - Fix event bug on `onRightPointCanvas`
+  - Fix bug with bad data in document with up-to-date version number
+  - Fix bug with arrow bindings
+  - Improves freehand line performance
+  - Improves performance of shape tree
+  - Improved .tldr file size (strip white space)
+
 ## 1.23.5
 
 ### Patch Changes

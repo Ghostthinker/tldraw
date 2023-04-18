@@ -34,7 +34,6 @@ export async function saveToFileSystem(
     name: document.name || 'New Document',
     fileHandle: fileHandle ?? null,
     document,
-    assets: {},
   }
 
   // Serialize to JSON
@@ -94,6 +93,13 @@ export async function openFromFileSystem(): Promise<null | {
 
   // Parse
   const file: TDFile = JSON.parse(json)
+  if ('tldrawFileFormatVersion' in file) {
+    alert(
+      // todo: update this message when we do the actual migration
+      'This file was created in a newer version of tldraw. Please visit beta.tldraw.com to open it.'
+    )
+    return null
+  }
 
   const fileHandle = blob.handle ?? null
 

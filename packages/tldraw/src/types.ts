@@ -134,7 +134,6 @@ export interface TDFile {
   name: string
   fileHandle: FileSystemFileHandle | null
   document: TDDocument
-  assets: Record<string, unknown>
 }
 
 // The shape of the Tldraw document

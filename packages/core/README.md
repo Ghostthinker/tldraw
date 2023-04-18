@@ -15,10 +15,12 @@ You can use this package to build projects like [tldraw](https://tldraw.com), wh
 Use your package manager of choice to install `@tldraw/core` and its peer dependencies.
 
 ```bash
-yarn add @tldraw/core
+yarn add @tldraw/core && yarn build
 # or
-npm i @tldraw/core
+npm i @tldraw/core && npm run build
 ```
+
+> Note: You'll need to run the `build` script before running `dev`.
 
 ## Examples
 
@@ -88,20 +90,22 @@ To avoid unnecessary renders, be sure to pass "stable" values as props to the `R
 | `shapeUtils` | [`TLShapeUtils`](#tlshapeutils) | The shape utilities used to render the shapes.              |
 | `assets`     | [`TLAssets`](#tlassets)         | (optional) A table of assets used by shapes in the project. |
 
-In addition to these required props, the Renderer accents many other **optional** props.
+In addition to these required props, the Renderer accepts many other **optional** props.
 
-| Property             | Type                          | Description                                                       |
-| -------------------- | ----------------------------- | ----------------------------------------------------------------- |
-| `containerRef`       | `React.MutableRefObject`      | A React ref for the container, where CSS variables will be added. |
-| `theme`              | `object`                      | An object with overrides for the Renderer's default colors.       |
-| `hideBounds`         | `boolean`                     | Do not show the bounding box for selected shapes.                 |
-| `hideHandles`        | `boolean`                     | Do not show handles for shapes with handles.                      |
-| `hideBindingHandles` | `boolean`                     | Do not show binding controls for selected shapes with bindings.   |
-| `hideResizeHandles`  | `boolean`                     | Do not show resize handles for selected shapes.                   |
-| `hideRotateHandles`  | `boolean`                     | Do not show rotate handles for selected shapes.                   |
-| `snapLines`          | [`TLSnapLine`](#tlsnapline)[] | An array of "snap" lines.                                         |
-| `users`              | `object`                      | A table of [`TLUser`](#tluser)s.                                  |
-| `userId`             | `object`                      | The current user's [`TLUser`](#tluser) id.                        |
+| Property             | Type                          | Description                                                           |
+| -------------------- | ----------------------------- | --------------------------------------------------------------------- |
+| `containerRef`       | `React.MutableRefObject`      | A React ref for the container, where CSS variables will be added.     |
+| `theme`              | `object`                      | An object with overrides for the Renderer's default colors.           |
+| `components`         | `object`                      | An object with overrides for the Renderer's default React components. |
+| `hideBounds`         | `boolean`                     | Do not show the bounding box for selected shapes.                     |
+| `hideHandles`        | `boolean`                     | Do not show handles for shapes with handles.                          |
+| `hideBindingHandles` | `boolean`                     | Do not show binding controls for selected shapes with bindings.       |
+| `hideResizeHandles`  | `boolean`                     | Do not show resize handles for selected shapes.                       |
+| `hideRotateHandles`  | `boolean`                     | Do not show rotate handles for selected shapes.                       |
+| `hideCursors`        | `boolean`                     | Do not show multiplayer cursors.                                      |
+| `snapLines`          | [`TLSnapLine`](#tlsnapline)[] | An array of "snap" lines.                                             |
+| `users`              | `object`                      | A table of [`TLUser`](#tluser)s.                                      |
+| `userId`             | `object`                      | The current user's [`TLUser`](#tluser) id.                            |
 
 The theme object accepts valid CSS colors for the following properties:
 
@@ -113,6 +117,12 @@ The theme object accepts valid CSS colors for the following properties:
 | `brushStroke`  | The stroke color of the brush selection box          |
 | `selectFill`   | The fill color of the selection bounds               |
 | `selectStroke` | The stroke color of the selection bounds and handles |
+
+The components object accepts React components for the following properties:
+
+| Property | Description                       |
+| -------- | --------------------------------- |
+| `Cursor` | Multiplayer cursors on the canvas |
 
 The Renderer also accepts many (optional) event callbacks.
 
@@ -337,7 +347,7 @@ export const BoxComponent = TLShapeUtil.Component<BoxShape, SVGSVGElement>(
 )
 ```
 
-Your component can return HTML elements or SVG elements. If your shape is returning only SVG elements, wrap it in an `SVGContainer`. If your shape returns HTML elements, wrap it in an `HTMLContainer`. Not that you must set `pointerEvents` manually on the shapes you wish to receive pointer events.
+Your component can return HTML elements or SVG elements. If your shape is returning only SVG elements, wrap it in an `SVGContainer`. If your shape returns HTML elements, wrap it in an `HTMLContainer`. Note that you must set `pointerEvents` manually on the shapes you wish to receive pointer events.
 
 The component will receive the following props:
 

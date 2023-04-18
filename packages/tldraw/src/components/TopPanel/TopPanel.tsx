@@ -1,6 +1,7 @@
 import * as React from 'react'
+import { useIntl } from 'react-intl'
 import { Panel } from '~components/Primitives/Panel'
-import { ToolButton } from '~components/Primitives/ToolButton'
+import { ToolButton, ToolButtonWithTooltip } from '~components/Primitives/ToolButton'
 import { UndoIcon } from '~components/Primitives/icons'
 import { useTldrawApp } from '~hooks'
 import { styled } from '~styles'
@@ -26,6 +27,7 @@ export function _TopPanel({
   showZoom,
 }: TopPanelProps) {
   const app = useTldrawApp()
+  const intl = useIntl()
 
   return (
     <StyledTopPanel>
@@ -42,12 +44,24 @@ export function _TopPanel({
             <ReadOnlyLabel>Read Only</ReadOnlyLabel>
           ) : (
             <>
-              <ToolButton>
-                <UndoIcon onClick={app.undo} />
-              </ToolButton>
-              <ToolButton>
-                <UndoIcon onClick={app.redo} flipHorizontal />
-              </ToolButton>
+              <ToolButtonWithTooltip
+                kbd={'#Z'}
+                label={intl.formatMessage({ id: 'undo' })}
+                onClick={app.undo}
+                id="TD-TopPanel-Undo"
+                aria-label={intl.formatMessage({ id: 'undo' })}
+              >
+                <UndoIcon />
+              </ToolButtonWithTooltip>
+              <ToolButtonWithTooltip
+                kbd={'#⇧Z'}
+                label={intl.formatMessage({ id: 'redo' })}
+                onClick={app.redo}
+                id="TD-TopPanel-Redo"
+                aria-label={intl.formatMessage({ id: 'redo' })}
+              >
+                <UndoIcon flipHorizontal />
+              </ToolButtonWithTooltip>
             </>
           )}
           {showZoom && <ZoomMenu />}
@@ -87,6 +101,7 @@ const ReadOnlyLabel = styled('div', {
   paddingLeft: '$4',
   paddingRight: '$1',
   userSelect: 'none',
+  WebkitUserSelect: 'none',
 })
 
 export const TopPanel = React.memo(_TopPanel)

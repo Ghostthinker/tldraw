@@ -7,7 +7,7 @@ import {
 } from '@radix-ui/react-icons'
 import { ValueNoneIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { Divider } from '~components/Primitives/Divider'
 import { DMCheckboxItem, DMContent, DMRadioItem } from '~components/Primitives/DropdownMenu'
 import { ToolButton } from '~components/Primitives/ToolButton'
@@ -107,6 +107,8 @@ const optionsSelector = (s: TDSnapshot) => {
 export const StyleMenu = React.memo(function ColorMenu() {
   const app = useTldrawApp()
 
+  const intl = useIntl()
+
   const theme = app.useStore(themeSelector)
 
   const keepOpen = app.useStore(keepOpenSelector)
@@ -196,7 +198,7 @@ export const StyleMenu = React.memo(function ColorMenu() {
       modal={false}
     >
       <DropdownMenu.Trigger asChild id="TD-Styles">
-        <ToolButton variant="text">
+        <ToolButton aria-label={intl.formatMessage({ id: 'styles' })} variant="text">
           <FormattedMessage id="styles" />
           <OverlapIcons
             style={{
@@ -214,7 +216,7 @@ export const StyleMenu = React.memo(function ColorMenu() {
           </OverlapIcons>
         </ToolButton>
       </DropdownMenu.Trigger>
-      <DMContent id="language-menu" side="bottom" align="end" sideOffset={4} alignOffset={4}>
+      <DMContent id="TD-StylesMenu" side="bottom" align="end" sideOffset={4} alignOffset={4}>
         <StyledRow variant="tall" id="TD-Styles-Color-Container">
           <span>
             <FormattedMessage id="style.menu.color" />
@@ -231,6 +233,7 @@ export const StyleMenu = React.memo(function ColorMenu() {
                   variant="icon"
                   isActive={displayedStyle.color === style}
                   onClick={() => app.style({ color: style as ColorStyle })}
+                  aria-label={intl.formatMessage({ id: style })}
                 >
                   <CircleIcon
                     size={18}
@@ -264,6 +267,7 @@ export const StyleMenu = React.memo(function ColorMenu() {
                 onSelect={preventEvent}
                 bp={breakpoints}
                 id={`TD-Styles-Dash-${style}`}
+                aria-label={intl.formatMessage({ id: style })}
               >
                 {DASH_ICONS[style as DashStyle]}
               </DMRadioItem>
@@ -281,6 +285,7 @@ export const StyleMenu = React.memo(function ColorMenu() {
                 onSelect={preventEvent}
                 bp={breakpoints}
                 id={`TD-Styles-Dash-${sizeStyle}`}
+                aria-label={intl.formatMessage({ id: sizeStyle })}
               >
                 {SIZE_ICONS[sizeStyle as SizeStyle]}
               </DMRadioItem>
@@ -367,6 +372,7 @@ export const StyledRow = styled('div', {
   padding: '$2 0 $2 $3',
   borderRadius: 4,
   userSelect: 'none',
+  WebkitUserSelect: 'none',
   margin: 0,
   display: 'flex',
   gap: '$3',
