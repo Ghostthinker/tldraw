@@ -41,7 +41,7 @@ const dialItems = [
     label: 'Create screen recording',
     items: [{
       label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick()
+        handleSpeedDialClick(CREATE_SCREEN_RECORDING)
       }
     }]
   },
@@ -49,7 +49,7 @@ const dialItems = [
     label: 'Import media',
     items: [{
       label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick()
+        handleSpeedDialClick(IMPORT_MEDIA)
       }
     }]
   },
@@ -57,7 +57,7 @@ const dialItems = [
     label: 'Share board',
     items: [{
       label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick('share_board')
+        handleSpeedDialClick(SHARE_BOARD)
       }
     }]
   }
