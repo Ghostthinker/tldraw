@@ -9,6 +9,7 @@ import { DeleteButton } from './DeleteButton'
 import { HelpPanel } from './HelpPanel'
 import { PrimaryTools } from './PrimaryTools'
 import { StatusBar } from './StatusBar'
+import SVBSpeedDial from "~components/Primitives/SVBSpeedDial/SVBSpeedDial";
 
 const isDebugModeSelector = (s: TDSnapshot) => s.settings.isDebugMode
 const dockPositionState = (s: TDSnapshot) => s.settings.dockPosition
@@ -36,7 +37,8 @@ export const SVBToolsPanel = React.memo(function SVBToolsPanel({ onBlur }: SVBTo
           </StyledPrimaryTools>
         </StyledCenterWrap>
       </StyledToolsPanelContainer>
-      <HelpPanel />
+      {/*<HelpPanel />*/}
+      <SVBSpeedDial/>
       {isDebugMode && (
         <StyledStatusWrap>
           <StatusBar />

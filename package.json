@@ -24,7 +24,7 @@
     "build:apps": "turbo run build --filter=./apps/**",
     "start": "turbo run dev --filter=@tldraw/tldraw-example... --parallel",
     "start:core": "turbo run dev --filter=@tldraw/core-example-advanced*... --parallel",
-    "start:svb": "turbo run dev --filter=@tldraw/social-video-board --parallel",
+    "start:svb": "turbo run build:svb && turbo run dev --filter=@tldraw/social-video-board --parallel",
     "start:www": "turbo run dev --filter=@tldraw/www... --parallel",
     "start:vscode": "code apps/vscode/extension & turbo run dev --filter=./apps/vscode/*... --parallel",
     "start:extension": "turbo run dev --filter=@tldraw/new-tab-extension... --parallel",
