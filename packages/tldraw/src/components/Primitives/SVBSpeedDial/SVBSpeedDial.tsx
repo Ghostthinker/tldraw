@@ -2,6 +2,7 @@ import {SpeedDial} from 'primereact/speeddial';
 import React from "react";
 import styled from "styled-components";
 import {Tooltip} from "primereact/tooltip";
+import {PrimeIcons} from "primereact/api";
 
 const ADD_FROM_EDUBREAK = 'add_from_edubreak';
 const UPLOAD_CONTENT = 'upload_content';
@@ -12,54 +13,59 @@ const SHARE_BOARD = 'share_board';
 function handleSpeedDialClick(action: string) {
   // TODO: hier button actions einfuegen
   switch (action) {
-    case ADD_FROM_EDUBREAK: console.log('edubreak'); break;
-    case UPLOAD_CONTENT: console.log('upload'); break;
-    case CREATE_SCREEN_RECORDING: console.log('screen recording'); break;
-    case IMPORT_MEDIA: console.log('import'); break;
-    case SHARE_BOARD: console.log('share'); break;
+    case ADD_FROM_EDUBREAK:
+      console.log('edubreak');
+      break;
+    case UPLOAD_CONTENT:
+      console.log('upload');
+      break;
+    case CREATE_SCREEN_RECORDING:
+      console.log('screen recording');
+      break;
+    case IMPORT_MEDIA:
+      console.log('import');
+      break;
+    case SHARE_BOARD:
+      console.log('share');
+      break;
   }
 }
 
 const dialItems = [
   {
     label: 'Add content from edubreak',
-    items: [{
-      label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick(ADD_FROM_EDUBREAK)
-      }
-    }]
+    icon: PrimeIcons.PLUS,
+    command: () => {
+      handleSpeedDialClick(ADD_FROM_EDUBREAK)
+    }
   },
   {
     label: 'Upload content',
-    items: [{
-      label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick(UPLOAD_CONTENT)
-      }
-    }]
+    icon: PrimeIcons.CLOUD_UPLOAD,
+    command: () => {
+      handleSpeedDialClick(UPLOAD_CONTENT)
+    }
   },
   {
     label: 'Create screen recording',
-    items: [{
-      label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick(CREATE_SCREEN_RECORDING)
-      }
-    }]
+    icon: PrimeIcons.VIDEO,
+    command: () => {
+      handleSpeedDialClick(CREATE_SCREEN_RECORDING)
+    }
   },
   {
     label: 'Import media',
-    items: [{
-      label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick(IMPORT_MEDIA)
-      }
-    }]
+    icon: 'pi pi-file-import',
+    command: () => {
+      handleSpeedDialClick(IMPORT_MEDIA)
+    }
   },
   {
     label: 'Share board',
-    items: [{
-      label: 'New', icon: 'pi pi-fw pi-plus', command: () => {
-        handleSpeedDialClick(SHARE_BOARD)
-      }
-    }]
+    icon: PrimeIcons.SHARE_ALT,
+    command: () => {
+      handleSpeedDialClick(SHARE_BOARD)
+    }
   }
 ]
 
@@ -76,6 +82,11 @@ const StyledSpeedDial = styled(SpeedDial)`
   .p-button:hover {
     background-color: rgb(3, 69, 105);
     border: 1px solid rgb(3, 69, 105);
+  }
+
+  .p-speeddial-action {
+    background: transparent;
+    border: 3px solid #023047;
   }
 `;
 

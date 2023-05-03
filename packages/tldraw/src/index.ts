@@ -1,7 +1,9 @@
-//theme
+// theme
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-//core
+// core
 import "primereact/resources/primereact.min.css";
+// PrimeIcons
+import 'primeicons/primeicons.css';
 export * from './Tldraw'
 export * from './types'
 export * from './state/shapes'
