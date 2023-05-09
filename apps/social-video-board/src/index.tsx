@@ -11,7 +11,6 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import SocialVideoBoard from './SocialVideoBoard'
 
-
 // we use secret internal `setDefaultAssetUrls` functions to set these at the
 // top-level so assets don't need to be passed down in every single example.
 const assetUrls = getBundlerAssetUrls()
@@ -24,9 +23,9 @@ type SocialVideoBoard = {
 }
 export const allExamples: SocialVideoBoard[] = [
 	{
-		path: '/',
+		path: '/svb',
 		element: <SocialVideoBoard />,
-	}
+	},
 ]
 
 const router = createBrowserRouter(allExamples)
