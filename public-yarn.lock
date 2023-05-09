@@ -16822,6 +16822,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"social-video-board.tldraw.com@workspace:apps/social-video-board":
+  version: 0.0.0-use.local
+  resolution: "social-video-board.tldraw.com@workspace:apps/social-video-board"
+  dependencies:
+    "@babel/plugin-proposal-decorators": ^7.21.0
+    "@tldraw/assets": "workspace:*"
+    "@tldraw/tldraw": "workspace:*"
+    lazyrepo: 0.0.0-alpha.26
+    react: ^18.2.0
+    react-dom: ^18.2.0
+    react-router-dom: ^6.9.0
+    signia: 0.1.4
+    signia-react: 0.1.4
+    vite: ^4.3.4
+  languageName: unknown
+  linkType: soft
+
 "socks-proxy-agent@npm:5, socks-proxy-agent@npm:^5.0.0":
   version: 5.0.1
   resolution: "socks-proxy-agent@npm:5.0.1"
