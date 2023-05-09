@@ -14,7 +14,7 @@ import { ExitPenMode } from './components/PenModeToggle'
 import { StopFollowing } from './components/StopFollowing'
 import { StylePanel } from './components/StylePanel/StylePanel'
 import { ToastViewport, Toasts } from './components/Toasts'
-import { Toolbar } from './components/Toolbar/Toolbar'
+import { SVBToolbar } from './components/Toolbar/SVBToolbar'
 import { Button } from './components/primitives/Button'
 import { useActions } from './hooks/useActions'
 import { useAppEvents } from './hooks/useAppEvents'
@@ -143,7 +143,7 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 						<div className="tlui-layout__bottom">
 							<div className="tlui-layout__bottom__main">
 								<NavigationZone />
-								<Toolbar />
+								<SVBToolbar />
 								{breakpoint >= 4 && <HelpMenu />}
 							</div>
 							{isDebugMode && <DebugPanel renderDebugMenuItems={renderDebugMenuItems ?? null} />}
