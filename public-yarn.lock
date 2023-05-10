@@ -4411,6 +4411,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@tldraw/edubreak@workspace:packages/edubreak":
+  version: 0.0.0-use.local
+  resolution: "@tldraw/edubreak@workspace:packages/edubreak"
+  dependencies:
+    core-js: ^3.27.2
+    lazyrepo: 0.0.0-alpha.26
+  languageName: unknown
+  linkType: soft
+
 "@tldraw/file-format@workspace:*, @tldraw/file-format@workspace:packages/file-format":
   version: 0.0.0-use.local
   resolution: "@tldraw/file-format@workspace:packages/file-format"
