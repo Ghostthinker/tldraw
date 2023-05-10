@@ -53,6 +53,7 @@ import {
 	TLUserDocument,
 	TLUserId,
 	TLVideoAsset,
+	TLViewzoneShape,
 	Vec2dModel,
 } from '@tldraw/tlschema'
 import { ComputedCache, HistoryEntry } from '@tldraw/tlstore'
@@ -123,6 +124,7 @@ import { TLFrameShapeDef } from './shapeutils/TLFrameUtil/TLFrameUtil'
 import { TLGroupShapeDef } from './shapeutils/TLGroupUtil/TLGroupUtil'
 import { TLResizeMode, TLShapeUtil } from './shapeutils/TLShapeUtil'
 import { TLTextShapeDef } from './shapeutils/TLTextUtil/TLTextUtil'
+import { TLViewzoneShapeDef } from './shapeutils/TLViewzoneUtil/TLViewzoneUtil'
 import { RootState } from './statechart/RootState'
 import { StateNode } from './statechart/StateNode'
 import { TLClipboardModel } from './types/clipboard-types'
@@ -4109,10 +4111,14 @@ export class App extends EventEmitter {
 					if (rootShapeIds.length === 1) {
 						const rootShape = shapes.find((s) => s.id === rootShapeIds[0])!
 						if (
-							TLFrameShapeDef.is(parent) &&
-							TLFrameShapeDef.is(rootShape) &&
-							rootShape.props.w === parent?.props.w &&
-							rootShape.props.h === parent?.props.h
+							(TLFrameShapeDef.is(parent) &&
+								TLFrameShapeDef.is(rootShape) &&
+								rootShape.props.w === parent?.props.w &&
+								rootShape.props.h === parent?.props.h) ||
+							(TLViewzoneShapeDef.is(parent) &&
+								TLViewzoneShapeDef.is(rootShape) &&
+								rootShape.props.w === parent?.props.w &&
+								rootShape.props.h === parent?.props.h)
 						) {
 							isDuplicating = true
 						}
@@ -4315,9 +4321,9 @@ export class App extends EventEmitter {
 			}
 
 			if (rootShapes.length === 1) {
-				const onlyRoot = rootShapes[0] as TLFrameShape
+				const onlyRoot = rootShapes[0] as TLFrameShape | TLViewzoneShape
 				// If the old bounds are in the viewport...
-				if (onlyRoot.type === 'frame') {
+				if (onlyRoot.type === 'frame' || onlyRoot.type === 'viewzone') {
 					while (
 						this.getShapesAtPoint(point).some(
 							(shape) =>

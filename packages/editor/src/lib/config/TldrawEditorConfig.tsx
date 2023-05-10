@@ -44,6 +44,7 @@ import { TLLineShapeDef } from '../app/shapeutils/TLLineUtil/TLLineUtil'
 import { TLNoteShapeDef } from '../app/shapeutils/TLNoteUtil/TLNoteUtil'
 import { TLTextShapeDef } from '../app/shapeutils/TLTextUtil/TLTextUtil'
 import { TLVideoShapeDef } from '../app/shapeutils/TLVideoUtil/TLVideoUtil'
+import { TLViewzoneShapeDef } from '../app/shapeutils/TLViewzoneUtil/TLViewzoneUtil'
 import { StateNodeConstructor } from '../app/statechart/StateNode'
 import { TLShapeDef, TLUnknownShapeDef } from './TLShapeDefinition'
 import { defaultDerivePresenceState } from './defaultDerivePresenceState'
@@ -62,6 +63,7 @@ const CORE_SHAPE_DEFS = () =>
 		TLBookmarkShapeDef,
 		TLEmbedShapeDef,
 		TLFrameShapeDef,
+		TLViewzoneShapeDef,
 	] as const
 
 /** @public */

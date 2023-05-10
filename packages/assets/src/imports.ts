@@ -166,6 +166,7 @@ import iconsToolNote from '../icons/icon/tool-note.svg'
 import iconsToolPencil from '../icons/icon/tool-pencil.svg'
 import iconsToolPointer from '../icons/icon/tool-pointer.svg'
 import iconsToolText from '../icons/icon/tool-text.svg'
+import iconsToolViewzone from '../icons/icon/tool-viewzone.svg'
 import iconsTrash from '../icons/icon/trash.svg'
 import iconsTriangleDown from '../icons/icon/triangle-down.svg'
 import iconsTriangleUp from '../icons/icon/triangle-up.svg'
@@ -360,6 +361,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'tool-embed': formatAssetUrl(iconsToolEmbed, opts),
 			'tool-eraser': formatAssetUrl(iconsToolEraser, opts),
 			'tool-frame': formatAssetUrl(iconsToolFrame, opts),
+			'tool-viewzone': formatAssetUrl(iconsToolViewzone, opts),
 			'tool-hand': formatAssetUrl(iconsToolHand, opts),
 			'tool-highlighter': formatAssetUrl(iconsToolHighlighter, opts),
 			'tool-line': formatAssetUrl(iconsToolLine, opts),

@@ -22,7 +22,6 @@ import { useBreakpoint } from './hooks/useBreakpoint'
 import { useNativeClipboardEvents } from './hooks/useClipboardEvents'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useTranslation } from './hooks/useTranslation/useTranslation'
-import {SVBToolbar} from "./components/Toolbar/SVBToolbar";
 
 /**
  * @public

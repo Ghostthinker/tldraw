@@ -191,6 +191,7 @@ export const DEFAULT_TRANSLATION = {
 	'tool.x-box': 'X box',
 	'tool.asset': 'Asset',
 	'tool.frame': 'Frame',
+	'tool.viewzone': 'Viewzone',
 	'tool.note': 'Note',
 	'tool.embed': 'Embed',
 	'tool.text': 'Text',

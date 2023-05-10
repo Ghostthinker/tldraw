@@ -14,6 +14,7 @@ import { TLLineShape } from '../shapes/TLLineShape'
 import { TLNoteShape } from '../shapes/TLNoteShape'
 import { TLTextShape } from '../shapes/TLTextShape'
 import { TLVideoShape } from '../shapes/TLVideoShape'
+import { TLViewzoneShape } from '../shapes/TLViewzoneShape'
 import { SmooshedUnionObject } from '../util-types'
 import { TLPageId } from './TLPage'
 
@@ -39,6 +40,7 @@ export type TLShape =
 	| TLNoteShape
 	| TLTextShape
 	| TLVideoShape
+	| TLViewzoneShape
 	| TLUnknownShape
 
 /** @public */

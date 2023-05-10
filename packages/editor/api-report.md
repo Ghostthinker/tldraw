@@ -94,6 +94,7 @@ import { TLUserId } from '@tldraw/tlschema';
 import { TLUserPresence } from '@tldraw/tlschema';
 import { TLVideoAsset } from '@tldraw/tlschema';
 import { TLVideoShape } from '@tldraw/tlschema';
+import { TLViewzoneShape } from '@tldraw/tlschema';
 import { Vec2d } from '@tldraw/primitives';
 import { Vec2dModel } from '@tldraw/tlschema';
 import { VecLike } from '@tldraw/primitives';
@@ -2599,6 +2600,39 @@ export class TLVideoUtil extends TLBoxUtil<TLVideoShape> {
     render(shape: TLVideoShape): JSX.Element;
     // (undocumented)
     toSvg(shape: TLVideoShape): SVGGElement;
+    // (undocumented)
+    static type: string;
+}
+
+// @public (undocumented)
+export const TLViewzoneShapeDef: TLShapeDef<TLViewzoneShape, TLViewzoneUtil>;
+
+// @public (undocumented)
+export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
+    // (undocumented)
+    canBind: () => boolean;
+    // (undocumented)
+    canDropShapes: (_shape: TLViewzoneShape, _shapes: TLShape[]) => boolean;
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    canReceiveNewChildrenOfType: (_type: TLShapeType) => boolean;
+    // (undocumented)
+    defaultProps(): TLViewzoneShape['props'];
+    // (undocumented)
+    indicator(shape: TLViewzoneShape): JSX.Element;
+    // (undocumented)
+    onDragShapesOut: (_shape: TLViewzoneShape, shapes: TLShape[]) => void;
+    // (undocumented)
+    onDragShapesOver: (viewzone: TLViewzoneShape, shapes: TLShape[]) => {
+        shouldHint: boolean;
+    };
+    // (undocumented)
+    onResizeEnd: OnResizeEndHandler<TLViewzoneShape>;
+    // (undocumented)
+    render(shape: TLViewzoneShape): JSX.Element;
+    // (undocumented)
+    toSvg(shape: TLViewzoneShape, font: string, colors: TLExportColors): Promise<SVGElement> | SVGElement;
     // (undocumented)
     static type: string;
 }

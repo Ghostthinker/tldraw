@@ -148,6 +148,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'tool-embed': string;
         readonly 'tool-eraser': string;
         readonly 'tool-frame': string;
+        readonly 'tool-viewzone': string;
         readonly 'tool-hand': string;
         readonly 'tool-highlighter': string;
         readonly 'tool-line': string;

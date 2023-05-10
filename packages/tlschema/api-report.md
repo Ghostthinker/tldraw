@@ -1132,7 +1132,7 @@ export type TLScribble = {
 };
 
 // @public
-export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLTextShape | TLUnknownShape | TLVideoShape;
+export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
 
 // @public (undocumented)
 export type TLShapeId = ID<TLBaseShape<any, any>>;
@@ -1337,6 +1337,17 @@ export type TLVideoShapeProps = {
 };
 
 // @public (undocumented)
+export type TLViewzoneShape = TLBaseShape<'viewzone', TLViewzoneShapeProps>;
+
+// @public (undocumented)
+export type TLViewzoneShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    name: string;
+};
+
+// @public (undocumented)
 export const uiColorTypeValidator: T.Validator<"accent" | "black" | "muted-1" | "selection-fill" | "selection-stroke" | "white">;
 
 // @internal (undocumented)
@@ -1384,6 +1395,12 @@ export const videoShapeMigrations: Migrations;
 
 // @public (undocumented)
 export const videoShapeTypeValidator: T.Validator<TLVideoShape>;
+
+// @public (undocumented)
+export const viewzoneShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const viewzoneShapeTypeValidator: T.Validator<TLViewzoneShape>;
 
 // (No @packageDocumentation comment for this package)
 

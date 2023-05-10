@@ -182,6 +182,12 @@ export {
 	type TLVideoShape,
 	type TLVideoShapeProps,
 } from './shapes/TLVideoShape'
+export {
+	viewzoneShapeMigrations,
+	viewzoneShapeTypeValidator,
+	type TLViewzoneShape,
+	type TLViewzoneShapeProps,
+} from './shapes/TLViewzoneShape'
 export { createShapeValidator, type TLBaseShape } from './shapes/shape-validation'
 export {
 	TL_ALIGN_TYPES,

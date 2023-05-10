@@ -63,6 +63,10 @@ export {
 } from './lib/app/shapeutils/TLShapeUtil'
 export { TLTextShapeDef, TLTextUtil } from './lib/app/shapeutils/TLTextUtil/TLTextUtil'
 export { TLVideoShapeDef, TLVideoUtil } from './lib/app/shapeutils/TLVideoUtil/TLVideoUtil'
+export {
+	TLViewzoneShapeDef,
+	TLViewzoneUtil,
+} from './lib/app/shapeutils/TLViewzoneUtil/TLViewzoneUtil'
 export { StateNode, type StateNodeConstructor } from './lib/app/statechart/StateNode'
 export { TLBoxTool, type TLBoxLike } from './lib/app/statechart/TLBoxTool/TLBoxTool'
 export { type ClipboardPayload, type TLClipboardModel } from './lib/app/types/clipboard-types'
