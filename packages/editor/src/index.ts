@@ -24,6 +24,10 @@ export {
 } from './lib/app/shapeutils/TLBookmarkUtil/TLBookmarkUtil'
 export { TLBoxUtil } from './lib/app/shapeutils/TLBoxUtil'
 export { TLDrawShapeDef, TLDrawUtil } from './lib/app/shapeutils/TLDrawUtil/TLDrawUtil'
+export {
+	TLEdubreakVideoShapeDef,
+	TLEdubreakVideoUtil,
+} from './lib/app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
 export { TLEmbedShapeDef, TLEmbedUtil } from './lib/app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 export { TLFrameShapeDef, TLFrameUtil } from './lib/app/shapeutils/TLFrameUtil/TLFrameUtil'
 export { TLGeoShapeDef, TLGeoUtil } from './lib/app/shapeutils/TLGeoUtil/TLGeoUtil'

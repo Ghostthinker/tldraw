@@ -4,6 +4,7 @@ import {
 	TLAssetId,
 	TLAssetShape,
 	TLBookmarkAsset,
+	TLEdubreakVideoShape,
 	TLImageShape,
 	TLShape,
 	TLShapePartial,
@@ -285,7 +286,7 @@ export async function createShapesFromFiles(
 
 				newAssetsForFiles.set(file, asset)
 
-				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape> = {
+				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape> = {
 					id: createShapeId(),
 					type: asset.type,
 					x: pagePoint.x + i,
@@ -328,7 +329,7 @@ export async function createShapesFromFiles(
 
 	const shapeUpdates = await Promise.all(
 		files.map(async (file, i) => {
-			const shape = results[i] as TLShapePartial<TLImageShape | TLVideoShape>
+			const shape = results[i] as TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape>
 			if (!shape) return
 
 			const asset = newAssetsForFiles.get(file)

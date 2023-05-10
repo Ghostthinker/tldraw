@@ -6,13 +6,18 @@ import {
 	bookmarkAssetTypeValidator,
 	TLBookmarkAsset,
 } from '../assets/TLBookmarkAsset'
+import {
+	edubreakVideoAssetMigrations,
+	edubreakVideoAssetTypeValidator,
+	TLEdubreakVideoAsset,
+} from '../assets/TLEdubreakVideoAsset'
 import { imageAssetMigrations, imageAssetTypeValidator, TLImageAsset } from '../assets/TLImageAsset'
 import { TLVideoAsset, videoAssetMigrations, videoAssetTypeValidator } from '../assets/TLVideoAsset'
 import { TLShape } from './TLShape'
 
 // --- DEFINITION ---
 /** @public */
-export type TLAsset = TLImageAsset | TLVideoAsset | TLBookmarkAsset
+export type TLAsset = TLImageAsset | TLVideoAsset | TLEdubreakVideoAsset | TLBookmarkAsset
 
 // --- VALIDATION ---
 /** @public */
@@ -21,6 +26,7 @@ export const assetTypeValidator: T.Validator<TLAsset> = T.model(
 	T.union('type', {
 		image: imageAssetTypeValidator,
 		video: videoAssetTypeValidator,
+		edubreakVideo: edubreakVideoAssetTypeValidator,
 		bookmark: bookmarkAssetTypeValidator,
 	})
 )
@@ -43,6 +49,7 @@ export const assetTypeMigrations = defineMigrations({
 	subTypeMigrations: {
 		image: imageAssetMigrations,
 		video: videoAssetMigrations,
+		edubreakVideo: edubreakVideoAssetMigrations,
 		bookmark: bookmarkAssetMigrations,
 	},
 })

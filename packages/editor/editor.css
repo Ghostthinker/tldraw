@@ -539,7 +539,8 @@ input,
 /* ------------------ Bounds Detail ----------------- */
 
 .tl-image,
-.tl-video {
+.tl-video,
+.tl-edubreak-video {
 	object-fit: cover;
 	background-size: cover;
 	width: 100%;
@@ -548,6 +549,7 @@ input,
 
 .tl-image-container,
 .tl-video-container,
+.tl-edubreak-video-container,
 .tl-embed-container {
 	width: 100%;
 	height: 100%;

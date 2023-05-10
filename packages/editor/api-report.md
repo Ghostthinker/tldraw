@@ -52,6 +52,8 @@ import { TLCursor } from '@tldraw/tlschema';
 import { TLDocument } from '@tldraw/tlschema';
 import { TLDrawShape } from '@tldraw/tlschema';
 import { TLDrawShapeSegment } from '@tldraw/tlschema';
+import { TLEdubreakVideoAsset } from '@tldraw/tlschema';
+import { TLEdubreakVideoShape } from '@tldraw/tlschema';
 import { TLEmbedShape } from '@tldraw/tlschema';
 import { TLFontType } from '@tldraw/tlschema';
 import { TLFrameShape } from '@tldraw/tlschema';
@@ -139,7 +141,7 @@ export class App extends EventEmitter {
         tags?: Record<string, boolean | number | string>;
         extras?: Record<string, unknown>;
     }): void;
-    get assets(): (TLBookmarkAsset | TLImageAsset | TLVideoAsset)[];
+    get assets(): (TLBookmarkAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset)[];
     bail(): this;
     bailToMark(id: string): this;
     batch(fn: () => void): this;
@@ -227,7 +229,7 @@ export class App extends EventEmitter {
         handleId: "end" | "start";
     }[];
     getAssetById(id: TLAssetId): TLAsset | undefined;
-    getAssetBySrc(src: string): TLBookmarkAsset | TLImageAsset | TLVideoAsset | undefined;
+    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset | undefined;
     getBounds(shape: TLShape): Box2d;
     getBoundsById(id: TLShapeId): Box2d | undefined;
     getClipPathById(id: TLShapeId): string | undefined;
@@ -1921,6 +1923,27 @@ export interface TLEditorComponents {
     SvgDefs: null | TLSvgDefsComponent;
     // (undocumented)
     ZoomBrush: null | TLBrushComponent;
+}
+
+// @public (undocumented)
+export const TLEdubreakVideoShapeDef: TLShapeDef<TLEdubreakVideoShape, TLEdubreakVideoUtil>;
+
+// @public (undocumented)
+export class TLEdubreakVideoUtil extends TLBoxUtil<TLEdubreakVideoShape> {
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    defaultProps(): TLEdubreakVideoShape['props'];
+    // (undocumented)
+    indicator(shape: TLEdubreakVideoShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: () => boolean;
+    // (undocumented)
+    render(shape: TLEdubreakVideoShape): JSX.Element;
+    // (undocumented)
+    toSvg(shape: TLEdubreakVideoShape): SVGGElement;
+    // (undocumented)
+    static type: string;
 }
 
 // @public (undocumented)

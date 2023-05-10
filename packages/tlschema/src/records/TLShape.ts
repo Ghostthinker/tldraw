@@ -4,6 +4,7 @@ import { TLBaseShape } from '../shapes/shape-validation'
 import { TLArrowShape } from '../shapes/TLArrowShape'
 import { TLBookmarkShape } from '../shapes/TLBookmarkShape'
 import { TLDrawShape } from '../shapes/TLDrawShape'
+import { TLEdubreakVideoShape } from '../shapes/TLEdubreakVideoShape'
 import { TLEmbedShape } from '../shapes/TLEmbedShape'
 import { TLFrameShape } from '../shapes/TLFrameShape'
 import { TLGeoShape } from '../shapes/TLGeoShape'
@@ -40,6 +41,7 @@ export type TLShape =
 	| TLNoteShape
 	| TLTextShape
 	| TLVideoShape
+	| TLEdubreakVideoShape
 	| TLViewzoneShape
 	| TLUnknownShape
 
