@@ -9,6 +9,7 @@ import {
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Dashboard from './Dashboard'
 import SocialVideoBoard from './SocialVideoBoard'
 
 // we use secret internal `setDefaultAssetUrls` functions to set these at the
@@ -22,6 +23,10 @@ type SocialVideoBoard = {
 	element: JSX.Element
 }
 export const allExamples: SocialVideoBoard[] = [
+	{
+		path: '/',
+		element: <Dashboard />,
+	},
 	{
 		path: '/svb',
 		element: <SocialVideoBoard />,
