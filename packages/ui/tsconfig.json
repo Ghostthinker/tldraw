@@ -12,6 +12,7 @@
 		{ "path": "../editor" },
 		{ "path": "../primitives" },
 		{ "path": "../tlsync-client" },
-		{ "path": "../utils" }
+		{ "path": "../utils" },
+		{ "path": "../edubreak" }
 	]
 }

@@ -35,6 +35,7 @@ import {
 	uniqueId,
 	useApp,
 } from '@tldraw/editor'
+import { parseEdubreakLink, textIsEdubreakLink } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import { compact, isNonNull } from '@tldraw/utils'
 import { compressToBase64, decompressFromBase64 } from 'lz-string'
@@ -829,6 +830,14 @@ const handleHtmlString = async (app: App, html: string, point?: VecLike) => {
 	}
 }
 
+// handle pasted edubreak node link
+const pasteTextAsEdubreakLink = async (app: App, clipboard: any, options: any, point?: VecLike) => {
+	const p = point ?? (app.inputs.shiftKey ? app.inputs.currentPagePoint : app.viewportPageCenter)
+
+	app.mark('paste')
+	// await createEdubreakShapeAtPoint(app, options, p)
+}
+
 const handleTextString = async (app: App, text: string, point?: VecLike) => {
 	const s = text.trim()
 
@@ -842,6 +851,10 @@ const handleTextString = async (app: App, text: string, point?: VecLike) => {
 				pasteTldrawContent(app, json.data, point)
 			} else if (json.type === 'excalidraw/clipboard') {
 				pasteExcalidrawContent(app, json, point)
+			} else if (textIsEdubreakLink(s)) {
+				const edubreakOptions = parseEdubreakLink(s)
+				await pasteTextAsEdubreakLink(app, json, edubreakOptions, point)
+				return
 			} else {
 				pasteText(app, s, point)
 			}

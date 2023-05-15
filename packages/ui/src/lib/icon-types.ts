@@ -143,10 +143,10 @@ export type TLUiIconType =
 	| 'tool-line'
 	| 'tool-media'
 	| 'tool-note'
-	| 'tool-viewzone'
 	| 'tool-pencil'
 	| 'tool-pointer'
 	| 'tool-text'
+	| 'tool-viewzone'
 	| 'trash'
 	| 'triangle-down'
 	| 'triangle-up'
@@ -297,7 +297,6 @@ export const TLUiIconTypes = [
 	'tool-embed',
 	'tool-eraser',
 	'tool-frame',
-	'tool-viewzone',
 	'tool-hand',
 	'tool-highlighter',
 	'tool-line',
@@ -306,6 +305,7 @@ export const TLUiIconTypes = [
 	'tool-pencil',
 	'tool-pointer',
 	'tool-text',
+	'tool-viewzone',
 	'trash',
 	'triangle-down',
 	'triangle-up',

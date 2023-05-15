@@ -2,6 +2,7 @@
 // incorrect output. https://github.com/evanw/esbuild/issues/1737
 
 // eslint-disable-next-line local/no-export-star
+export { getNodeAsJSON } from '@tldraw/edubreak'
 export * from '@tldraw/tlschema'
 export { getHashForString } from '@tldraw/utils'
 export {

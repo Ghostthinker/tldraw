@@ -1,6 +1,7 @@
 import * as Dialog from './lib/components/primitives/Dialog'
 import * as DropdownMenu from './lib/components/primitives/DropdownMenu'
 
+export { parseEdubreakLink, textIsEdubreakLink } from '@tldraw/edubreak'
 export { TldrawUi, TldrawUiContent } from './lib/TldrawUi'
 export {
 	TldrawUiContextProvider,

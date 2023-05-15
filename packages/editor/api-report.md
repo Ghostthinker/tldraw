@@ -16,6 +16,7 @@ import { EASINGS } from '@tldraw/primitives';
 import { EmbedDefinition } from '@tldraw/tlschema';
 import { EventEmitter } from 'eventemitter3';
 import { getHashForString } from '@tldraw/utils';
+import { getNodeAsJSON } from '@tldraw/edubreak';
 import { HistoryEntry } from '@tldraw/tlstore';
 import { ID } from '@tldraw/tlstore';
 import { MatLike } from '@tldraw/primitives';
@@ -769,6 +770,8 @@ export function getMaxIndex(...indices: (string | undefined)[]): string;
 
 // @public
 export function getMediaAssetFromFile(file: File): Promise<TLAsset>;
+
+export { getNodeAsJSON }
 
 // @internal (undocumented)
 export function getPointerInfo(e: PointerEvent | React.PointerEvent, container: HTMLElement): {
@@ -1697,7 +1700,7 @@ export type TLBoxLike = TLBaseShape<string, {
 // @public (undocumented)
 export abstract class TLBoxTool extends StateNode {
     // (undocumented)
-    static children: () => (typeof Idle_11 | typeof Pointing_8)[];
+    static children: () => (typeof Idle_4 | typeof Pointing_3)[];
     // (undocumented)
     static id: string;
     // (undocumented)

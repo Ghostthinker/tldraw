@@ -4,6 +4,57 @@
 
 ```ts
 
+// @public (undocumented)
+export function deleteFromInbox(nid: string): Promise<any>;
+
+// @public (undocumented)
+export function getBoardIDfromURL(): string;
+
+// @public (undocumented)
+export function getEdubreakAccessToken(): any;
+
+// @public (undocumented)
+export function getEdubreakApiUrl(): any;
+
+// @public
+export function getEdubreakEndpointFromType(options: any): Promise<"" | "/content/" | "/videos/">;
+
+// @public (undocumented)
+export function getEdubreakIds(edubreakPath: string): RegExpMatchArray[];
+
+// @public (undocumented)
+export function getNodeAsJSON(options: any): Promise<any>;
+
+// @public (undocumented)
+export function getStateFromEdubreak(): Promise<any>;
+
+// @public (undocumented)
+export enum NodeTypeEnum {
+    // (undocumented)
+    BLOG = "blog",
+    // (undocumented)
+    DOCUMENT = "cmap",
+    // (undocumented)
+    VIDEO = "video",
+    // (undocumented)
+    VIDEOCOMMENT = "videocomment"
+}
+
+// @public (undocumented)
+export function parseEdubreakLink(text: string): {
+    domain: string;
+    path: string;
+    type: NodeTypeEnum | null;
+    og_id: string;
+    nid: string;
+} | null;
+
+// @public (undocumented)
+export function saveStateToEdubreak(state: any): Promise<void>;
+
+// @public (undocumented)
+export function textIsEdubreakLink(text: string): boolean;
+
 // (No @packageDocumentation comment for this package)
 
 ```

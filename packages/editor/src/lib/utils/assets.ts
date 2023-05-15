@@ -1,3 +1,4 @@
+import { getNodeAsJSON } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import {
 	TLAsset,
@@ -15,6 +16,7 @@ import {
 import { compact, getHashForString, isNonNullish } from '@tldraw/utils'
 import uniq from 'lodash.uniq'
 import { App } from '../app/App'
+import { TextHelpers } from '../app/shapeutils/TLTextUtil/TextHelpers'
 import { MAX_ASSET_HEIGHT, MAX_ASSET_WIDTH } from '../constants'
 import { isAnimated } from './is-gif-animated'
 import { findChunk, isPng, parsePhys } from './png'
@@ -411,6 +413,83 @@ export function createEmbedShapeAtPoint(
 		],
 		true
 	)
+}
+
+/** @public */
+export async function createEdubreakShapeAtPoint(app: App, options: any, point: Vec2dModel) {
+	const edubreakContent = await getNodeAsJSON(options)
+	switch (options.type) {
+		case 'blog':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'content',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'cmap':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'content',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'video':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakVideo',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: '',
+							thumbnail: edubreakContent.linkVideoThumbnail,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'videocomment':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakVideo',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							thumbnail: edubreakContent.video_comment_thumbnail_image,
+						},
+					},
+				],
+				true
+			)
+			break
+	}
 }
 
 /**

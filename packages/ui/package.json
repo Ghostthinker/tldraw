@@ -53,6 +53,7 @@
 		"@radix-ui/react-slider": "^1.1.0",
 		"@radix-ui/react-toast": "^1.1.1",
 		"@tldraw/editor": "workspace:*",
+		"@tldraw/edubreak": "workspace:*",
 		"@tldraw/primitives": "workspace:*",
 		"@tldraw/tlschema": "workspace:*",
 		"@tldraw/tlsync-client": "workspace:*",

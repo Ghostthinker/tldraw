@@ -459,10 +459,6 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/tool-frame.svg', import.meta.url).href,
 				opts
 			),
-			'tool-viewzone': formatAssetUrl(
-				new URL('../icons/icon/tool-viewzone.svg', import.meta.url).href,
-				opts
-			),
 			'tool-hand': formatAssetUrl(
 				new URL('../icons/icon/tool-hand.svg', import.meta.url).href,
 				opts
@@ -493,6 +489,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			),
 			'tool-text': formatAssetUrl(
 				new URL('../icons/icon/tool-text.svg', import.meta.url).href,
+				opts
+			),
+			'tool-viewzone': formatAssetUrl(
+				new URL('../icons/icon/tool-viewzone.svg', import.meta.url).href,
 				opts
 			),
 			trash: formatAssetUrl(new URL('../icons/icon/trash.svg', import.meta.url).href, opts),
