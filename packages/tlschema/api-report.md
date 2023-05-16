@@ -124,6 +124,18 @@ export const drawShapeMigrations: Migrations;
 export const drawShapeTypeValidator: T.Validator<TLDrawShape>;
 
 // @public (undocumented)
+export const edubreakContentAssetMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakContentAssetTypeValidator: T.Validator<TLEdubreakContentAsset>;
+
+// @public (undocumented)
+export const edubreakContentShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentShape>;
+
+// @public (undocumented)
 export const edubreakVideoAssetMigrations: Migrations;
 
 // @public (undocumented)
@@ -602,7 +614,7 @@ export type TLArrowTerminal = {
 export type TLArrowTerminalType = SetValue<typeof TL_ARROW_TERMINAL_TYPE>;
 
 // @public (undocumented)
-export type TLAsset = TLBookmarkAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset;
+export type TLAsset = TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset;
 
 // @public (undocumented)
 export const TLAsset: RecordType<TLAsset, "props" | "type">;
@@ -763,6 +775,26 @@ export type TLDrawShapeProps = {
 export type TLDrawShapeSegment = {
     type: SetValue<typeof TL_DRAW_SHAPE_SEGMENT_TYPE>;
     points: Vec2dModel[];
+};
+
+// @public (undocumented)
+export type TLEdubreakContentAsset = TLBaseAsset<'edubreakContent', {
+    title: string;
+    description: string;
+    image: string;
+    src: null | string;
+}>;
+
+// @public (undocumented)
+export type TLEdubreakContentShape = TLBaseShape<'edubreakContent', TLEdubreakContentShapeProps>;
+
+// @public (undocumented)
+export type TLEdubreakContentShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    assetId: null | TLAssetId;
+    url: string;
 };
 
 // @public (undocumented)
@@ -1168,7 +1200,7 @@ export type TLScribble = {
 };
 
 // @public
-export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEdubreakVideoShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
+export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEdubreakContentShape | TLEdubreakVideoShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
 
 // @public (undocumented)
 export type TLShapeId = ID<TLBaseShape<any, any>>;

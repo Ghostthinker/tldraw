@@ -53,6 +53,8 @@ import { TLCursor } from '@tldraw/tlschema';
 import { TLDocument } from '@tldraw/tlschema';
 import { TLDrawShape } from '@tldraw/tlschema';
 import { TLDrawShapeSegment } from '@tldraw/tlschema';
+import { TLEdubreakContentAsset } from '@tldraw/tlschema';
+import { TLEdubreakContentShape } from '@tldraw/tlschema';
 import { TLEdubreakVideoAsset } from '@tldraw/tlschema';
 import { TLEdubreakVideoShape } from '@tldraw/tlschema';
 import { TLEmbedShape } from '@tldraw/tlschema';
@@ -142,7 +144,7 @@ export class App extends EventEmitter {
         tags?: Record<string, boolean | number | string>;
         extras?: Record<string, unknown>;
     }): void;
-    get assets(): (TLBookmarkAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset)[];
+    get assets(): (TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset)[];
     bail(): this;
     bailToMark(id: string): this;
     batch(fn: () => void): this;
@@ -230,7 +232,7 @@ export class App extends EventEmitter {
         handleId: "end" | "start";
     }[];
     getAssetById(id: TLAssetId): TLAsset | undefined;
-    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset | undefined;
+    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset | undefined;
     getBounds(shape: TLShape): Box2d;
     getBoundsById(id: TLShapeId): Box2d | undefined;
     getClipPathById(id: TLShapeId): string | undefined;
@@ -1926,6 +1928,27 @@ export interface TLEditorComponents {
     SvgDefs: null | TLSvgDefsComponent;
     // (undocumented)
     ZoomBrush: null | TLBrushComponent;
+}
+
+// @public (undocumented)
+export const TLEdubreakContentShapeDef: TLShapeDef<TLEdubreakContentShape, TLEdubreakContentUtil>;
+
+// @public (undocumented)
+export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    defaultProps(): TLEdubreakContentShape['props'];
+    // (undocumented)
+    indicator(shape: TLEdubreakContentShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: () => boolean;
+    // (undocumented)
+    render(shape: TLEdubreakContentShape): JSX.Element;
+    // (undocumented)
+    toSvg(shape: TLEdubreakContentShape): SVGGElement;
+    // (undocumented)
+    static type: string;
 }
 
 // @public (undocumented)

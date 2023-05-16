@@ -5,6 +5,7 @@ import {
 	TLAssetId,
 	TLAssetShape,
 	TLBookmarkAsset,
+	TLEdubreakContentShape,
 	TLEdubreakVideoShape,
 	TLImageShape,
 	TLShape,
@@ -283,6 +284,7 @@ export async function createShapesFromFiles(
 				const asset = await app.onCreateAssetFromFile(file)
 
 				if (asset.type === 'bookmark') return
+				if (asset.type === 'edubreakContent') return
 
 				if (!asset) throw Error('Could not create an asset')
 
@@ -331,7 +333,9 @@ export async function createShapesFromFiles(
 
 	const shapeUpdates = await Promise.all(
 		files.map(async (file, i) => {
-			const shape = results[i] as TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape>
+			const shape = results[i] as TLShapePartial<
+				TLImageShape | TLVideoShape | TLEdubreakVideoShape | TLEdubreakContentShape
+			>
 			if (!shape) return
 
 			const asset = newAssetsForFiles.get(file)
@@ -593,7 +597,7 @@ export async function createAssetShapeAtPoint(app: App, svgString: string, point
 	const asset = await app.onCreateAssetFromFile(
 		new File([svgString], 'asset.svg', { type: 'image/svg+xml' })
 	)
-	if (asset.type !== 'bookmark') {
+	if (asset.type !== 'bookmark' && asset.type !== 'edubreakContent') {
 		asset.props.w = width
 		asset.props.h = height
 	}

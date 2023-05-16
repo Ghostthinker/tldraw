@@ -35,6 +35,7 @@ import { Signal } from 'signia'
 import { TLArrowShapeDef } from '../app/shapeutils/TLArrowUtil/TLArrowUtil'
 import { TLBookmarkShapeDef } from '../app/shapeutils/TLBookmarkUtil/TLBookmarkUtil'
 import { TLDrawShapeDef } from '../app/shapeutils/TLDrawUtil/TLDrawUtil'
+import { TLEdubreakContentShapeDef } from '../app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
 import { TLEdubreakVideoShapeDef } from '../app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
 import { TLEmbedShapeDef } from '../app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 import { TLFrameShapeDef } from '../app/shapeutils/TLFrameUtil/TLFrameUtil'
@@ -59,6 +60,7 @@ const CORE_SHAPE_DEFS = () =>
 		TLImageShapeDef,
 		TLVideoShapeDef,
 		TLEdubreakVideoShapeDef,
+		TLEdubreakContentShapeDef,
 		TLGeoShapeDef,
 		TLNoteShapeDef,
 		TLGroupShapeDef,

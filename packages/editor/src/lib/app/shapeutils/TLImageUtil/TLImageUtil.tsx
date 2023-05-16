@@ -86,6 +86,10 @@ export class TLImageUtil extends TLBoxUtil<TLImageShape> {
 			throw Error("Bookmark assets can't be rendered as images")
 		}
 
+		if (asset?.type === 'edubreakContent') {
+			throw Error("EdubreakContent assets can't be rendered as images")
+		}
+
 		const isSelected = useValue(
 			'onlySelectedShape',
 			() => shape.id === this.app.onlySelectedShape?.id,

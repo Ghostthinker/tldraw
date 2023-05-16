@@ -26,6 +26,10 @@ export {
 export { TLBoxUtil } from './lib/app/shapeutils/TLBoxUtil'
 export { TLDrawShapeDef, TLDrawUtil } from './lib/app/shapeutils/TLDrawUtil/TLDrawUtil'
 export {
+	TLEdubreakContentShapeDef,
+	TLEdubreakContentUtil,
+} from './lib/app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
+export {
 	TLEdubreakVideoShapeDef,
 	TLEdubreakVideoUtil,
 } from './lib/app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'

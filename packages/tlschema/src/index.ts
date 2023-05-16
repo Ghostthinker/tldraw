@@ -14,6 +14,11 @@ export {
 	type TLBookmarkAsset,
 } from './assets/TLBookmarkAsset'
 export {
+	edubreakContentAssetMigrations,
+	edubreakContentAssetTypeValidator,
+	type TLEdubreakContentAsset,
+} from './assets/TLEdubreakContentAsset'
+export {
 	edubreakVideoAssetMigrations,
 	edubreakVideoAssetTypeValidator,
 	type TLEdubreakVideoAsset,
@@ -121,6 +126,12 @@ export {
 	type TLDrawShapeProps,
 	type TLDrawShapeSegment,
 } from './shapes/TLDrawShape'
+export {
+	edubreakContentShapeMigrations,
+	edubreakContentShapeTypeValidator,
+	type TLEdubreakContentShape,
+	type TLEdubreakContentShapeProps,
+} from './shapes/TLEdubreakContentShape'
 export {
 	edubreakVideoShapeMigrations,
 	edubreakVideoShapeTypeValidator,
