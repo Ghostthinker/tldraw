@@ -17,7 +17,7 @@ import { ViewzoneHeading } from './components/ViewzoneHeading'
 
 /** @public */
 export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
-	static type = 'frame'
+	static type = 'viewzone'
 
 	override canBind = () => true
 
@@ -29,7 +29,7 @@ export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
 
 	override render(shape: TLViewzoneShape) {
 		const bounds = this.bounds(shape)
-		this.app.sendToBack([shape.id])
+		this.sendViewzoneToBack(shape)
 		return (
 			<>
 				<SVGContainer>
@@ -49,6 +49,14 @@ export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
 				/>
 			</>
 		)
+	}
+
+	sendViewzoneToBack = (shape: TLViewzoneShape) => {
+		const allShapesOnCurrentPage = this.app.getShapesInPage(this.app.currentPageId)
+		const lastCreatedShape = allShapesOnCurrentPage[allShapesOnCurrentPage.length - 1]
+		if (shape === lastCreatedShape) {
+			this.app.sendToBack([shape.id])
+		}
 	}
 
 	override toSvg(

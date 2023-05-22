@@ -2681,6 +2681,8 @@ export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
     // (undocumented)
     render(shape: TLViewzoneShape): JSX.Element;
     // (undocumented)
+    sendViewzoneToBack: (shape: TLViewzoneShape) => void;
+    // (undocumented)
     toSvg(shape: TLViewzoneShape, font: string, colors: TLExportColors): Promise<SVGElement> | SVGElement;
     // (undocumented)
     static type: string;
