@@ -4576,6 +4576,7 @@ __metadata:
   resolution: "@tldraw/tlsync-client@workspace:packages/tlsync-client"
   dependencies:
     "@tldraw/editor": "workspace:*"
+    "@tldraw/edubreak": "workspace:*"
     "@tldraw/tlstore": "workspace:*"
     "@tldraw/utils": "workspace:*"
     "@types/react": "*"

@@ -1,4 +1,5 @@
 import { SyncedStore, TldrawEditorConfig, TLInstanceId, TLUserId, uniqueId } from '@tldraw/editor'
+import { getStateFromEdubreak } from '@tldraw/edubreak'
 import { useEffect, useState } from 'react'
 import '../hardReset'
 import { subscribeToUserData } from '../persistence-constants'
@@ -42,7 +43,12 @@ export function useLocalSyncClient({
 
 		const client = new TLLocalSyncClient(store, {
 			universalPersistenceKey,
-			onLoad() {
+			async onLoad() {
+				const saveDataFromEdubreak = await getStateFromEdubreak()
+				// if there is no data from edubreak, just use a blank initial store
+				if (saveDataFromEdubreak !== undefined) {
+					store.deserialize(saveDataFromEdubreak)
+				}
 				setSyncedStore({ status: 'synced', store })
 			},
 			onLoadError(err) {

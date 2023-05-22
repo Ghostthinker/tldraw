@@ -211,6 +211,7 @@ export async function getStateFromEdubreak() {
 		return data
 	} catch (e) {
 		console.warn('### EdubreakService: there is no server data for this board ###', e)
+		return undefined
 	}
 }
 

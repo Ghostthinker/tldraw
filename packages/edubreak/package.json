@@ -39,7 +39,8 @@
 		"lint": "yarn run -T tsx ../../scripts/lint.ts"
 	},
 	"dependencies": {
-		"core-js": "^3.27.2"
+		"core-js": "^3.27.2",
+		"@tldraw/tlstore": "workspace:*"
 	},
 	"devDependencies": {
 		"lazyrepo": "0.0.0-alpha.26"

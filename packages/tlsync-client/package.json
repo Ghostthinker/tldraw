@@ -68,6 +68,7 @@
 	},
 	"dependencies": {
 		"@tldraw/editor": "workspace:*",
+		"@tldraw/edubreak": "workspace:*",
 		"@tldraw/tlstore": "workspace:*",
 		"@tldraw/utils": "workspace:*",
 		"idb": "^7.1.0"

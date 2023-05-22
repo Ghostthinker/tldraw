@@ -1,8 +1,9 @@
 import { TLInstanceId, TLRecord, TLStore } from '@tldraw/editor'
+import { saveStateToEdubreak } from '@tldraw/edubreak'
 import { RecordsDiff, SerializedSchema, compareSchemas, squashRecordDiffs } from '@tldraw/tlstore'
 import { assert, hasOwnProperty } from '@tldraw/utils'
 import { transact } from 'signia'
-import { showCantReadFromIndexDbAlert, showCantWriteToIndexDbAlert } from './alerts'
+import { showCantReadFromIndexDbAlert } from './alerts'
 import { loadDataFromStore, storeChangesInIndexedDb, storeSnapshotInIndexedDb } from './indexedDb'
 
 /** How should we debounce persists? */
@@ -39,12 +40,15 @@ const msg = (msg: Message) => msg
 /** @public */
 export class BroadcastChannelMock {
 	onmessage?: (e: MessageEvent) => void
+
 	constructor(_name: string) {
 		// noop
 	}
+
 	postMessage(_msg: Message) {
 		// noop
 	}
+
 	close() {
 		// noop
 	}
@@ -64,12 +68,14 @@ export class TLLocalSyncClient {
 	private isDebugging = false
 
 	initTime = Date.now()
+
 	private debug(...args: any[]) {
 		if (this.isDebugging) {
 			// eslint-disable-next-line no-console
 			console.debug(...args)
 		}
 	}
+
 	constructor(
 		public readonly store: TLStore,
 		{
@@ -310,21 +316,27 @@ export class TLLocalSyncClient {
 		this.diffQueue = []
 
 		try {
-			if (this.shouldDoFullDBWrite) {
-				this.shouldDoFullDBWrite = false
-				await storeSnapshotInIndexedDb(
-					this.universalPersistenceKey,
-					this.store.schema,
-					this.store.serialize(),
-					{
-						didCancel: () => this.didDispose,
-					}
-				)
+			if (this.universalPersistenceKey === 'social-video-board') {
+				// TODO - 22.05.2023 - 11:19 - MK: change api calls to diff only logic, so we do not get performance issues in the future
+				await saveStateToEdubreak(this.store.serialize())
 			} else {
-				const diffs = squashRecordDiffs(diffQueue)
-				await storeChangesInIndexedDb(this.universalPersistenceKey, this.store.schema, diffs)
+				if (this.shouldDoFullDBWrite) {
+					this.shouldDoFullDBWrite = false
+
+					await storeSnapshotInIndexedDb(
+						this.universalPersistenceKey,
+						this.store.schema,
+						this.store.serialize(),
+						{
+							didCancel: () => this.didDispose,
+						}
+					)
+				} else {
+					const diffs = squashRecordDiffs(diffQueue)
+					await storeChangesInIndexedDb(this.universalPersistenceKey, this.store.schema, diffs)
+				}
+				this.didLastWriteError = false
 			}
-			this.didLastWriteError = false
 		} catch (e) {
 			// set this.shouldDoFullDBWrite because we clear the diffQueue no matter what,
 			// so if this is just a temporary error, we will still persist all changes
@@ -332,11 +344,12 @@ export class TLLocalSyncClient {
 			this.didLastWriteError = true
 			console.error('failed to store changes in indexed db', e)
 
-			showCantWriteToIndexDbAlert()
-			if (typeof window !== 'undefined') {
-				// adios
-				window.location.reload()
-			}
+			// TODO: 22.05.2023 - 11:43 - MK: put back after handling diff logic in edubreak
+			// showCantWriteToIndexDbAlert()
+			// if (typeof window !== 'undefined') {
+			// 	// adios
+			// 	window.location.reload()
+			// }
 		}
 
 		this.isPersisting = false

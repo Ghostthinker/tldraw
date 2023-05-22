@@ -28,7 +28,7 @@ export const allExamples: SocialVideoBoard[] = [
 		element: <Dashboard />,
 	},
 	{
-		path: '/svb',
+		path: '/svb/:boardId',
 		element: <SocialVideoBoard />,
 	},
 ]
