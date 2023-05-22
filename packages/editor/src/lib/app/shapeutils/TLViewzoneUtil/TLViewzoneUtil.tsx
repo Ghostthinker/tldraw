@@ -29,7 +29,7 @@ export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
 
 	override render(shape: TLViewzoneShape) {
 		const bounds = this.bounds(shape)
-
+		this.app.sendToBack([shape.id])
 		return (
 			<>
 				<SVGContainer>
