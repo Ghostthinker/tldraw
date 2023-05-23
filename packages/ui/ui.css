@@ -2018,3 +2018,65 @@
 .tlui-embed-dialog__enter a {
 	color: var(--color-text-1);
 }
+
+/* --------------------- PrimeReact -------------------- */
+/* SpeedDial */
+
+.speeddial-bottom-right {
+	display: flex;
+	width: min-content;
+	z-index: var(--layer-panels);
+	pointer-events: all;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+.p-button {
+	background-color: var(--svb-color-button);
+	border: 1px solid var(--svb-color-button);
+}
+
+.p-speeddial-action {
+	background: transparent;
+	border: 3px solid var(--svb-color-button);
+}
+
+.speeddial-action-icon {
+	color: var(--svb-color-button);
+	width: 28px;
+	height: 28px;
+}
+
+.eb-icon-out {
+	fill: var(--svb-color-button);
+}
+
+.eb-icon-in {
+	fill: white;
+}
+
+@media (hover: hover) {
+	.p-speeddial-action:hover {
+		background: var(--svb-color-button);
+	}
+
+	.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
+		background-color: var(--svb-color-button-hover);
+		border: 1px solid var(--svb-color-button-hover);
+	}
+
+	.p-speeddial-action:hover .speeddial-action-icon {
+		fill: white;
+	}
+
+	.p-speeddial-action:hover .eb-icon-out {
+		fill: white;
+	}
+
+	.p-speeddial-action:hover .eb-icon-in {
+		fill: #023047;
+	}
+}
+
+
