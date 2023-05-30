@@ -44,6 +44,7 @@ import { TLGroupShapeDef } from '../app/shapeutils/TLGroupUtil/TLGroupUtil'
 import { TLImageShapeDef } from '../app/shapeutils/TLImageUtil/TLImageUtil'
 import { TLLineShapeDef } from '../app/shapeutils/TLLineUtil/TLLineUtil'
 import { TLNoteShapeDef } from '../app/shapeutils/TLNoteUtil/TLNoteUtil'
+import { TLPresentShapeDef } from '../app/shapeutils/TLPresentUtil/TLPresentUtil'
 import { TLTextShapeDef } from '../app/shapeutils/TLTextUtil/TLTextUtil'
 import { TLVideoShapeDef } from '../app/shapeutils/TLVideoUtil/TLVideoUtil'
 import { TLViewzoneShapeDef } from '../app/shapeutils/TLViewzoneUtil/TLViewzoneUtil'
@@ -66,6 +67,7 @@ const CORE_SHAPE_DEFS = () =>
 		TLGroupShapeDef,
 		TLBookmarkShapeDef,
 		TLEmbedShapeDef,
+		TLPresentShapeDef,
 		TLFrameShapeDef,
 		TLViewzoneShapeDef,
 	] as const

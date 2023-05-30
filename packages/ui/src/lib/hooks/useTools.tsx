@@ -183,6 +183,16 @@ export function ToolsProvider({ overrides, children }: ToolsProviderProps) {
 					app.setSelectedTool('viewzone')
 				},
 			},
+			{
+				id: 'present',
+				label: 'tool.present',
+				readonlyOk: true,
+				icon: 'tool-present',
+				kbd: '',
+				onSelect() {
+					app.setSelectedTool('present')
+				},
+			},
 		])
 
 		if (overrides) {

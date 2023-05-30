@@ -289,7 +289,7 @@
 		color: var(--color-text-0);
 	}
 
-	/* 
+	/*
 	.tlui-button:not(:disabled, :focus-visible):hover::after {
 		box-shadow: inset 0 0 0 1px var(--color-muted-1);
 	} */
@@ -2019,7 +2019,46 @@
 	color: var(--color-text-1);
 }
 
-/* --------------------- PrimeReact -------------------- */
+/* --------------------- Social Video Board -------------------- */
+
+/* SVBToolbar */
+
+.svb-toolbar__wrapper {
+	display: grid;
+	bottom: 15vh;
+	position: absolute;
+	left: 0;
+}
+
+.svb-toolbar__tools {
+	background-color: var(--color-low);
+	border-radius: var(--radius-4);
+	z-index: var(--layer-panels);
+	pointer-events: all;
+	background: var(--color-panel);
+	box-shadow: var(--shadow-2);
+}
+
+.svb-toolbar__title {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: inherit;
+    padding: 0 0 5% 5%;
+}
+
+.svb-toolbar__row {
+	display: flex;
+}
+
+.svb-toolbar__row.svb-toolbar__border-bottom {
+    margin-bottom: 7px;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.svb-toolbar__row.svb-toolbar__margin-top {
+    margin-top: 7px;
+}
+
 /* SpeedDial */
 
 .speeddial-bottom-right {
@@ -2038,7 +2077,7 @@
 }
 
 .p-speeddial-action {
-	background: transparent;
+	background: var(--color-background);
 	border: 3px solid var(--svb-color-button);
 }
 

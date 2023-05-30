@@ -14,6 +14,7 @@ import { TLIconShape } from '../shapes/TLIconShape'
 import { TLImageShape } from '../shapes/TLImageShape'
 import { TLLineShape } from '../shapes/TLLineShape'
 import { TLNoteShape } from '../shapes/TLNoteShape'
+import { TLPresentShape } from '../shapes/TLPresentShape'
 import { TLTextShape } from '../shapes/TLTextShape'
 import { TLVideoShape } from '../shapes/TLVideoShape'
 import { TLViewzoneShape } from '../shapes/TLViewzoneShape'
@@ -33,6 +34,7 @@ export type TLShape =
 	| TLBookmarkShape
 	| TLDrawShape
 	| TLEmbedShape
+	| TLPresentShape
 	| TLFrameShape
 	| TLGeoShape
 	| TLGroupShape

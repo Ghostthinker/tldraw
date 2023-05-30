@@ -44,6 +44,7 @@ export {
 	getSplineForLineShape,
 } from './lib/app/shapeutils/TLLineUtil/TLLineUtil'
 export { TLNoteShapeDef, TLNoteUtil } from './lib/app/shapeutils/TLNoteUtil/TLNoteUtil'
+export { TLPresentShapeDef, TLPresentUtil } from './lib/app/shapeutils/TLPresentUtil/TLPresentUtil'
 export {
 	TLShapeUtil,
 	type OnBeforeCreateHandler,

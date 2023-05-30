@@ -165,6 +165,7 @@ import iconsToolMedia from '../icons/icon/tool-media.svg'
 import iconsToolNote from '../icons/icon/tool-note.svg'
 import iconsToolPencil from '../icons/icon/tool-pencil.svg'
 import iconsToolPointer from '../icons/icon/tool-pointer.svg'
+import iconsToolPresent from '../icons/icon/tool-present.svg'
 import iconsToolText from '../icons/icon/tool-text.svg'
 import iconsToolViewzone from '../icons/icon/tool-viewzone.svg'
 import iconsTrash from '../icons/icon/trash.svg'
@@ -368,6 +369,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'tool-note': formatAssetUrl(iconsToolNote, opts),
 			'tool-pencil': formatAssetUrl(iconsToolPencil, opts),
 			'tool-pointer': formatAssetUrl(iconsToolPointer, opts),
+			'tool-present': formatAssetUrl(iconsToolPresent, opts),
 			'tool-text': formatAssetUrl(iconsToolText, opts),
 			'tool-viewzone': formatAssetUrl(iconsToolViewzone, opts),
 			trash: formatAssetUrl(iconsTrash, opts),

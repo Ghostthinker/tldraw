@@ -1,6 +1,7 @@
 import { SpeedDial } from 'primereact/speeddial'
 import { Tooltip } from 'primereact/tooltip'
 import { track } from 'signia-react'
+import { useTranslation } from '../hooks/useTranslation/useTranslation'
 
 export const SVBSpeedDial = track(function SVBSpeedDial() {
 	const ADD_FROM_EDUBREAK = 'add_from_edubreak'
@@ -8,6 +9,8 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 	const CREATE_SCREEN_RECORDING = 'create_screen_recording'
 	const IMPORT_MEDIA = 'import_media'
 	const SHARE_BOARD = 'share_board'
+
+	const msg = useTranslation()
 
 	function handleSpeedDialClick(action: string) {
 		// TODO: hier button actions einfuegen
@@ -32,7 +35,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 
 	const dialItems = [
 		{
-			label: 'Add content from edubreak',
+			label: msg('action-svb.add-from-edubreak'),
 			icon: (
 				<svg
 					className="speeddial-action-icon"
@@ -66,7 +69,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 			},
 		},
 		{
-			label: 'Upload content',
+			label: msg('action-svb.upload-content'),
 			icon: (
 				<svg
 					className="speeddial-action-icon"
@@ -85,7 +88,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 			},
 		},
 		{
-			label: 'Create screen recording',
+			label: msg('action-svb.create-screen-recording'),
 			icon: (
 				<svg
 					className="speeddial-action-icon"
@@ -105,7 +108,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 			},
 		},
 		{
-			label: 'Import media',
+			label: msg('action-svb.import-media'),
 			icon: (
 				<svg
 					className="speeddial-action-icon"
@@ -121,7 +124,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 			},
 		},
 		{
-			label: 'Share board',
+			label: msg('action-svb.share-board'),
 			icon: (
 				<svg
 					className="speeddial-action-icon"

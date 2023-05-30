@@ -76,6 +76,7 @@ import { TLNullableShapeProps } from '@tldraw/tlschema';
 import { TLPage } from '@tldraw/tlschema';
 import { TLPageId } from '@tldraw/tlschema';
 import { TLParentId } from '@tldraw/tlschema';
+import { TLPresentShape } from '@tldraw/tlschema';
 import { TLRecord } from '@tldraw/tlschema';
 import { TLScribble } from '@tldraw/tlschema';
 import { TLShape } from '@tldraw/tlschema';
@@ -1702,7 +1703,7 @@ export type TLBoxLike = TLBaseShape<string, {
 // @public (undocumented)
 export abstract class TLBoxTool extends StateNode {
     // (undocumented)
-    static children: () => (typeof Idle_4 | typeof Pointing_3)[];
+    static children: () => (typeof Idle_11 | typeof Pointing_8)[];
     // (undocumented)
     static id: string;
     // (undocumented)
@@ -2424,6 +2425,35 @@ export type TLPointerEventTarget = {
     target: 'shape';
     shape: TLShape;
 };
+
+// @public (undocumented)
+export const TLPresentShapeDef: TLShapeDef<TLPresentShape, TLPresentUtil>;
+
+// @public (undocumented)
+export class TLPresentUtil extends TLBoxUtil<TLPresentShape> {
+    // (undocumented)
+    canEdit: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    canResize: (shape: TLPresentShape) => boolean;
+    // (undocumented)
+    canUnmount: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    defaultProps(): TLPresentShape['props'];
+    // (undocumented)
+    hideSelectionBoundsBg: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    hideSelectionBoundsFg: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    indicator(shape: TLPresentShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    onResize: OnResizeHandler<TLPresentShape>;
+    // (undocumented)
+    render(shape: TLPresentShape): JSX.Element;
+    // (undocumented)
+    static type: string;
+}
 
 // @public (undocumented)
 export type TLReorderOperation = 'backward' | 'forward' | 'toBack' | 'toFront';

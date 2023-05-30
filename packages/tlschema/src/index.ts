@@ -193,6 +193,17 @@ export {
 	type TLNoteShapeProps,
 } from './shapes/TLNoteShape'
 export {
+	PRESENT_DEFINITIONS,
+	presentShapeMigrations,
+	presentShapeTypeValidator,
+	tlPresentShapePermissionDefaults,
+	type PresentDefinition,
+	type TLPresentShape,
+	type TLPresentShapePermissionName,
+	type TLPresentShapePermissions,
+	type TLPresentShapeProps,
+} from './shapes/TLPresentShape'
+export {
 	textShapeMigrations,
 	textShapeTypeValidator,
 	type TLTextShape,
