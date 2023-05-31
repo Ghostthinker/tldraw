@@ -241,7 +241,7 @@ export const TLInstance = createRecordType<TLInstance>('instance', {
 		},
 		isFocusMode: false,
 		exportBackground: false,
-		isDebugMode: process.env.NODE_ENV === 'development',
+		isDebugMode: false,
 		isToolLocked: false,
 		screenBounds: { x: 0, y: 0, w: 1080, h: 720 },
 		zoomBrush: null,

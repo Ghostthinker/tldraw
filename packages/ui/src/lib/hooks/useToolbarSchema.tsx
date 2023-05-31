@@ -68,7 +68,6 @@ export function ToolbarSchemaProvider({ overrides, children }: ToolbarSchemaProv
 			toolbarItem(tools['arrow-left']),
 			toolbarItem(tools['arrow-up']),
 			toolbarItem(tools['arrow-down']),
-			toolbarItem(tools.frame),
 			toolbarItem(tools.embed),
 			toolbarItem(tools.viewzone),
 			toolbarItem(tools.present),

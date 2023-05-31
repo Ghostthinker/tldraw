@@ -127,6 +127,7 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 									<BackToContent />
 									<StopFollowing />
 								</div>
+								<SVBToolbar />
 							</div>
 							<div className="tlui-layout__top__right">
 								{shareZone && (
@@ -144,7 +145,6 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 						<div className="tlui-layout__bottom">
 							<div className="tlui-layout__bottom__main">
 								<NavigationZone />
-								<SVBToolbar />
 								<SVBSpeedDial />
 								{/*{breakpoint >= 4 && <HelpMenu />}*/}
 							</div>

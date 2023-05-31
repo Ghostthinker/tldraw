@@ -172,11 +172,11 @@ export function MenuSchemaProvider({ overrides, children }: MenuSchemaProviderPr
 					menuGroup(
 						'preferences-actions',
 						menuItem(actions['toggle-snap-mode'], { checked: isSnapMode }),
-						menuItem(actions['toggle-tool-lock'], { checked: isToolLock }),
+						// menuItem(actions['toggle-tool-lock'], { checked: isToolLock }),
 						menuItem(actions['toggle-grid'], { checked: isGridMode }),
 						menuItem(actions['toggle-dark-mode'], { checked: isDarkMode }),
-						menuItem(actions['toggle-focus-mode'], { checked: isFocusMode }),
-						menuItem(actions['toggle-debug-mode'], { checked: isDebugMode })
+						menuItem(actions['toggle-focus-mode'], { checked: isFocusMode })
+						// menuItem(actions['toggle-debug-mode'], { checked: isDebugMode })
 					)
 				),
 				isMobile && menuCustom('LANGUAGE_MENU', { readonlyOk: true })

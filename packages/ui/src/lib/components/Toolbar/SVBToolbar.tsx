@@ -54,14 +54,14 @@ export const SVBToolbar = function SVBToolbar() {
 				// Items below the overflow index will always be in the panel
 				itemsInPanel.push(item)
 			} else {
-				// Items above will be in the dropdown menu unless the item
-				// is active (or was the most recently selected active item)
-				if (item === activeToolbarItem) {
-					// If the dropdown item is active, make it the dropdownFirstItem
-					dropdownFirstItem = item
-				}
-				// Otherwise, add it to the items in dropdown menu
 				if (item.id !== 'viewzone' && item.id !== 'present') {
+					// Items above will be in the dropdown menu unless the item
+					// is active (or was the most recently selected active item)
+					if (item === activeToolbarItem) {
+						// If the dropdown item is active, make it the dropdownFirstItem
+						dropdownFirstItem = item
+					}
+					// Otherwise, add it to the items in dropdown menu
 					itemsInDropdown.push(item)
 				}
 			}

@@ -947,8 +947,8 @@
 }
 
 .tlui-toolbar__tools__button {
-	height: 48px;
-	width: 48px;
+	height: 44px;
+	width: 44px;
 }
 
 .tlui-toolbar__tools__button:nth-of-type(n + 2) {
@@ -960,8 +960,8 @@
 }
 
 .tlui-toolbar__tools__button {
-	height: 48px;
-	width: 48px;
+	height: 44px;
+	width: 44px;
 }
 
 .tlui-layout__mobile .tlui-toolbar__tools__button {
@@ -2025,9 +2025,11 @@
 
 .svb-toolbar__wrapper {
 	display: grid;
-	bottom: 15vh;
-	position: absolute;
 	left: 0;
+	height: fit-content;
+	position: relative;
+	max-height: 100%;
+	margin: 5vh 0 0 var(--space-2);
 }
 
 .svb-toolbar__tools {
@@ -2067,8 +2069,8 @@
 	z-index: var(--layer-panels);
 	pointer-events: all;
 	position: absolute;
-	right: 10px;
-	bottom: 10px;
+	right: var(--space-3);
+	bottom: var(--space-3);
 }
 
 .p-button {
@@ -2083,8 +2085,8 @@
 
 .speeddial-action-icon {
 	color: var(--svb-color-button);
-	width: 28px;
-	height: 28px;
+	width: 24px;
+	height: 24px;
 }
 
 .eb-icon-out {
