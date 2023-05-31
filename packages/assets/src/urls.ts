@@ -487,8 +487,16 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/tool-pointer.svg', import.meta.url).href,
 				opts
 			),
+			'tool-present': formatAssetUrl(
+				new URL('../icons/icon/tool-present.svg', import.meta.url).href,
+				opts
+			),
 			'tool-text': formatAssetUrl(
 				new URL('../icons/icon/tool-text.svg', import.meta.url).href,
+				opts
+			),
+			'tool-viewzone': formatAssetUrl(
+				new URL('../icons/icon/tool-viewzone.svg', import.meta.url).href,
 				opts
 			),
 			trash: formatAssetUrl(new URL('../icons/icon/trash.svg', import.meta.url).href, opts),

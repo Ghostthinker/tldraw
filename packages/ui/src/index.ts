@@ -1,6 +1,13 @@
 import * as Dialog from './lib/components/primitives/Dialog'
 import * as DropdownMenu from './lib/components/primitives/DropdownMenu'
 
+//primereact theme
+import 'primereact/resources/themes/lara-light-indigo/theme.css'
+
+//primereact core
+import 'primereact/resources/primereact.min.css'
+
+export { parseEdubreakLink, textIsEdubreakLink } from '@tldraw/edubreak'
 export { TldrawUi, TldrawUiContent } from './lib/TldrawUi'
 export {
 	TldrawUiContextProvider,

@@ -155,7 +155,9 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'tool-note': string;
         readonly 'tool-pencil': string;
         readonly 'tool-pointer': string;
+        readonly 'tool-present': string;
         readonly 'tool-text': string;
+        readonly 'tool-viewzone': string;
         readonly trash: string;
         readonly 'triangle-down': string;
         readonly 'triangle-up': string;

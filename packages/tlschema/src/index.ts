@@ -14,6 +14,16 @@ export {
 	type TLBookmarkAsset,
 } from './assets/TLBookmarkAsset'
 export {
+	edubreakContentAssetMigrations,
+	edubreakContentAssetTypeValidator,
+	type TLEdubreakContentAsset,
+} from './assets/TLEdubreakContentAsset'
+export {
+	edubreakVideoAssetMigrations,
+	edubreakVideoAssetTypeValidator,
+	type TLEdubreakVideoAsset,
+} from './assets/TLEdubreakVideoAsset'
+export {
 	imageAssetMigrations,
 	imageAssetTypeValidator,
 	type TLImageAsset,
@@ -117,6 +127,18 @@ export {
 	type TLDrawShapeSegment,
 } from './shapes/TLDrawShape'
 export {
+	edubreakContentShapeMigrations,
+	edubreakContentShapeTypeValidator,
+	type TLEdubreakContentShape,
+	type TLEdubreakContentShapeProps,
+} from './shapes/TLEdubreakContentShape'
+export {
+	edubreakVideoShapeMigrations,
+	edubreakVideoShapeTypeValidator,
+	type TLEdubreakVideoShape,
+	type TLEdubreakVideoShapeProps,
+} from './shapes/TLEdubreakVideoShape'
+export {
 	EMBED_DEFINITIONS,
 	embedShapeMigrations,
 	embedShapeTypeValidator,
@@ -171,6 +193,17 @@ export {
 	type TLNoteShapeProps,
 } from './shapes/TLNoteShape'
 export {
+	PRESENT_DEFINITIONS,
+	presentShapeMigrations,
+	presentShapeTypeValidator,
+	tlPresentShapePermissionDefaults,
+	type PresentDefinition,
+	type TLPresentShape,
+	type TLPresentShapePermissionName,
+	type TLPresentShapePermissions,
+	type TLPresentShapeProps,
+} from './shapes/TLPresentShape'
+export {
 	textShapeMigrations,
 	textShapeTypeValidator,
 	type TLTextShape,
@@ -182,6 +215,12 @@ export {
 	type TLVideoShape,
 	type TLVideoShapeProps,
 } from './shapes/TLVideoShape'
+export {
+	viewzoneShapeMigrations,
+	viewzoneShapeTypeValidator,
+	type TLViewzoneShape,
+	type TLViewzoneShapeProps,
+} from './shapes/TLViewzoneShape'
 export { createShapeValidator, type TLBaseShape } from './shapes/shape-validation'
 export {
 	TL_ALIGN_TYPES,

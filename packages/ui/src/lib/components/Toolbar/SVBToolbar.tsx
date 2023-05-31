@@ -1,41 +1,36 @@
 import { preventDefault, useApp } from '@tldraw/editor'
-import classNames from 'classnames'
 import React from 'react'
 import { track, useValue } from 'signia-react'
-import { useBreakpoint } from '../../hooks/useBreakpoint'
+// import { useBreakpoint } from '../../hooks/useBreakpoint'
 import { useReadonly } from '../../hooks/useReadonly'
 import { ToolbarItem, useToolbarSchema } from '../../hooks/useToolbarSchema'
 import { ToolItem } from '../../hooks/useTools'
 import { useTranslation } from '../../hooks/useTranslation/useTranslation'
-import { ActionsMenu } from '../ActionsMenu'
-import { DuplicateButton } from '../DuplicateButton'
-import { MobileStylePanel } from '../MobileStylePanel'
-import { RedoButton } from '../RedoButton'
-import { TrashButton } from '../TrashButton'
-import { UndoButton } from '../UndoButton'
 import { Button } from '../primitives/Button'
 import * as M from '../primitives/DropdownMenu'
 import { kbdStr } from '../primitives/shared'
-import { ToggleToolLockedButton } from './ToggleToolLockedButton'
 
 /** @public */
 export const SVBToolbar = function SVBToolbar() {
 	const app = useApp()
 	const msg = useTranslation()
-	const breakpoint = useBreakpoint()
+	// 30.05.2023 - 09:03 - MK: Add breakpoints back in when styling for mobile
+	// const breakpoint = useBreakpoint()
 
 	const rMostRecentlyActiveDropdownItem = React.useRef<ToolbarItem | undefined>(undefined)
 
 	const isReadOnly = useReadonly()
 	const toolbarItems = useToolbarSchema()
+	const selectToolbarItems = toolbarItems.slice(0, 2)
+	const editToolbarItems = toolbarItems.slice(2, 6)
+	const shapesToolbarItems = toolbarItems.slice(6, 13)
+	const presentToolbarItems = toolbarItems.slice(-2)
 
 	const activeToolId = useValue('current tool id', () => app.currentToolId, [app])
 
-	const isHandTool = activeToolId === 'hand'
 	const geoState = useValue('geo', () => (app.props ? app.props.geo : undefined), [app])
 
 	const showEditingTools = !isReadOnly
-	const showExtraActions = !(isReadOnly || isHandTool)
 
 	const getTitle = (item: ToolItem) =>
 		item.label ? `${msg(item.label)} ${item.kbd ? kbdStr(item.kbd) : ''}` : ''
@@ -49,7 +44,9 @@ export const SVBToolbar = function SVBToolbar() {
 		const itemsInDropdown: ToolbarItem[] = []
 		let dropdownFirstItem: ToolbarItem | undefined
 
-		const overflowIndex = Math.min(8, 5 + breakpoint)
+		const overflowIndex = Math.min(12)
+		// 30.05.2023 - 09:03 - MK: Add breakpoints back in when styling for mobile
+		// const overflowIndex = Math.min(12, 5 + breakpoint)
 
 		for (let i = 4; i < toolbarItems.length; i++) {
 			const item = toolbarItems[i]
@@ -57,14 +54,16 @@ export const SVBToolbar = function SVBToolbar() {
 				// Items below the overflow index will always be in the panel
 				itemsInPanel.push(item)
 			} else {
-				// Items above will be in the dropdown menu unless the item
-				// is active (or was the most recently selected active item)
-				if (item === activeToolbarItem) {
-					// If the dropdown item is active, make it the dropdownFirstItem
-					dropdownFirstItem = item
+				if (item.id !== 'viewzone' && item.id !== 'present') {
+					// Items above will be in the dropdown menu unless the item
+					// is active (or was the most recently selected active item)
+					if (item === activeToolbarItem) {
+						// If the dropdown item is active, make it the dropdownFirstItem
+						dropdownFirstItem = item
+					}
+					// Otherwise, add it to the items in dropdown menu
+					itemsInDropdown.push(item)
 				}
-				// Otherwise, add it to the items in dropdown menu
-				itemsInDropdown.push(item)
 			}
 		}
 
@@ -102,106 +101,146 @@ export const SVBToolbar = function SVBToolbar() {
 		}
 
 		return { itemsInPanel, itemsInDropdown, dropdownFirstItem }
-	}, [toolbarItems, activeToolbarItem, breakpoint])
+		// 30.05.2023 - 09:03 - MK: Add breakpoints back in when styling for mobile
+		// }, [toolbarItems, activeToolbarItem, breakpoint])
+	}, [toolbarItems, activeToolbarItem])
 
 	return (
-		<div className="tlui-toolbar">
-			<div className="tlui-toolbar__inner">
-				<div className="tlui-toolbar__left">
-					{!isReadOnly && (
-						<div
-							className={classNames('tlui-toolbar__extras', {
-								'tlui-toolbar__extras__hidden': !showExtraActions,
-							})}
-						>
-							{breakpoint < 5 && (
-								<div className="tlui-toolbar__extras__controls">
-									<UndoButton />
-									<RedoButton />
-									<TrashButton />
-									<DuplicateButton />
-									<ActionsMenu />
-								</div>
-							)}
-							<ToggleToolLockedButton activeToolId={activeToolId} />
+		<div className="svb-toolbar__wrapper">
+			<div className="svb-toolbar__tools">
+				{/* Select / Hand */}
+				<div className="svb-toolbar__row svb-toolbar__margin-top">
+					<span className="svb-toolbar__title">Tools</span>
+				</div>
+				<div className="svb-toolbar__row svb-toolbar__border-bottom">
+					{selectToolbarItems.map(({ toolItem }) => {
+						return (
+							<ToolbarButton
+								key={toolItem.id}
+								item={toolItem}
+								title={getTitle(toolItem)}
+								isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+							/>
+						)
+					})}
+				</div>
+				{showEditingTools && (
+					<>
+						{/* Text / Note / Draw / Eraser */}
+						<div className="svb-toolbar__row">
+							<span className="svb-toolbar__title">Edit</span>
 						</div>
-					)}
-					<div
-						className={classNames('tlui-toolbar__tools', {
-							'tlui-toolbar__tools__mobile': breakpoint < 5,
-						})}
-					>
-						{/* Select / Hand */}
-						{toolbarItems.slice(0, 2).map(({ toolItem }) => {
-							return (
+						<div className="svb-toolbar__row">
+							{editToolbarItems.slice(0, 2).map(({ toolItem }) => (
 								<ToolbarButton
 									key={toolItem.id}
 									item={toolItem}
 									title={getTitle(toolItem)}
 									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
 								/>
-							)
-						})}
-						{showEditingTools && (
-							<>
-								{/* Draw / Eraser */}
-								<div className="tlui-toolbar__divider" />
-								{toolbarItems.slice(2, 4).map(({ toolItem }) => (
+							))}
+						</div>
+						<div className="svb-toolbar__row svb-toolbar__border-bottom">
+							{editToolbarItems.slice(2, 4).map(({ toolItem }) => (
+								<ToolbarButton
+									key={toolItem.id}
+									item={toolItem}
+									title={getTitle(toolItem)}
+									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+								/>
+							))}
+						</div>
+						{/* Shapes Tools */}
+						<div className="svb-toolbar__row">
+							<span className="svb-toolbar__title">Shapes</span>
+						</div>
+						<div className="svb-toolbar__row">
+							{shapesToolbarItems.slice(0, 2).map(({ toolItem }) => (
+								<ToolbarButton
+									key={toolItem.id}
+									item={toolItem}
+									title={getTitle(toolItem)}
+									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+								/>
+							))}
+						</div>
+						<div className="svb-toolbar__row">
+							{shapesToolbarItems.slice(2, 4).map(({ toolItem }) => (
+								<ToolbarButton
+									key={toolItem.id}
+									item={toolItem}
+									title={getTitle(toolItem)}
+									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+								/>
+							))}
+						</div>
+						<div className="svb-toolbar__row">
+							{shapesToolbarItems.slice(4, 6).map(({ toolItem }) => (
+								<ToolbarButton
+									key={toolItem.id}
+									item={toolItem}
+									title={getTitle(toolItem)}
+									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+								/>
+							))}
+						</div>
+						<div className="svb-toolbar__row svb-toolbar__border-bottom">
+							{shapesToolbarItems.slice(6, 6).map(({ toolItem }) => (
+								<ToolbarButton
+									key={toolItem.id}
+									item={toolItem}
+									title={getTitle(toolItem)}
+									isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
+								/>
+							))}
+							{/* Overflowing Shapes */}
+							{itemsInDropdown.length ? (
+								<>
+									{/* Last selected (or first) item from the overflow */}
+									<ToolbarButton
+										key={dropdownFirstItem.toolItem.id}
+										item={dropdownFirstItem.toolItem}
+										title={getTitle(dropdownFirstItem.toolItem)}
+										isSelected={isActiveToolItem(
+											dropdownFirstItem.toolItem,
+											activeToolId,
+											geoState
+										)}
+									/>
+									{/* The dropdown to select everything else */}
+									<M.Root id="toolbar overflow" modal={false}>
+										<M.Trigger>
+											<Button
+												className="tlui-toolbar__tools__button tlui-toolbar__overflow"
+												icon="chevron-right"
+												data-wd="tools.more"
+												title={msg('tool-panel.more')}
+											/>
+										</M.Trigger>
+										<M.Content side="right" align="center">
+											<OverflowToolsContent toolbarItems={itemsInDropdown} />
+										</M.Content>
+									</M.Root>
+								</>
+							) : null}
+						</div>
+						{/* Present Tools */}
+						<div className="svb-toolbar__row">
+							<span className="svb-toolbar__title">Present</span>
+						</div>
+						<div className="svb-toolbar__row">
+							{presentToolbarItems.map(({ toolItem }) => {
+								return (
 									<ToolbarButton
 										key={toolItem.id}
 										item={toolItem}
 										title={getTitle(toolItem)}
 										isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
 									/>
-								))}
-								{/* Everything Else */}
-								<div className="tlui-toolbar__divider" />
-								{itemsInPanel.map(({ toolItem }) => (
-									<ToolbarButton
-										key={toolItem.id}
-										item={toolItem}
-										title={getTitle(toolItem)}
-										isSelected={isActiveToolItem(toolItem, activeToolId, geoState)}
-									/>
-								))}
-								{/* Overflowing Shapes */}
-								{itemsInDropdown.length ? (
-									<>
-										{/* Last selected (or first) item from the overflow */}
-										<ToolbarButton
-											key={dropdownFirstItem.toolItem.id}
-											item={dropdownFirstItem.toolItem}
-											title={getTitle(dropdownFirstItem.toolItem)}
-											isSelected={isActiveToolItem(
-												dropdownFirstItem.toolItem,
-												activeToolId,
-												geoState
-											)}
-										/>
-										{/* The dropdown to select everything else */}
-										<M.Root id="toolbar overflow" modal={false}>
-											<M.Trigger>
-												<Button
-													className="tlui-toolbar__tools__button tlui-toolbar__overflow"
-													icon="chevron-up"
-													data-wd="tools.more"
-													title={msg('tool-panel.more')}
-												/>
-											</M.Trigger>
-											<M.Content side="top" align="center">
-												<OverflowToolsContent toolbarItems={itemsInDropdown} />
-											</M.Content>
-										</M.Root>
-									</>
-								) : null}
-							</>
-						)}
-					</div>
-				</div>
-				{breakpoint < 5 && !isReadOnly && (
-					<div className="tlui-toolbar__tools">
-						<MobileStylePanel />
-					</div>
+								)
+							})}
+						</div>
+					</>
 				)}
 			</div>
 		</div>

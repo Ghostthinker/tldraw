@@ -1,6 +1,6 @@
 {
 	"extends": "../../config/tsconfig.base.json",
-	"include": ["src"],
+	"include": ["environments", "src"],
 	"exclude": ["node_modules", "dist", "**/*.css", ".tsbuild*", "./scripts/legacy-translations"],
 	"compilerOptions": {
 		"outDir": "./.tsbuild",
@@ -12,6 +12,7 @@
 		{ "path": "../editor" },
 		{ "path": "../primitives" },
 		{ "path": "../tlsync-client" },
-		{ "path": "../utils" }
+		{ "path": "../utils" },
+		{ "path": "../edubreak" }
 	]
 }

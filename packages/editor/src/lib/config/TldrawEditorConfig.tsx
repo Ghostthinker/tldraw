@@ -35,6 +35,8 @@ import { Signal } from 'signia'
 import { TLArrowShapeDef } from '../app/shapeutils/TLArrowUtil/TLArrowUtil'
 import { TLBookmarkShapeDef } from '../app/shapeutils/TLBookmarkUtil/TLBookmarkUtil'
 import { TLDrawShapeDef } from '../app/shapeutils/TLDrawUtil/TLDrawUtil'
+import { TLEdubreakContentShapeDef } from '../app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
+import { TLEdubreakVideoShapeDef } from '../app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
 import { TLEmbedShapeDef } from '../app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 import { TLFrameShapeDef } from '../app/shapeutils/TLFrameUtil/TLFrameUtil'
 import { TLGeoShapeDef } from '../app/shapeutils/TLGeoUtil/TLGeoUtil'
@@ -42,8 +44,10 @@ import { TLGroupShapeDef } from '../app/shapeutils/TLGroupUtil/TLGroupUtil'
 import { TLImageShapeDef } from '../app/shapeutils/TLImageUtil/TLImageUtil'
 import { TLLineShapeDef } from '../app/shapeutils/TLLineUtil/TLLineUtil'
 import { TLNoteShapeDef } from '../app/shapeutils/TLNoteUtil/TLNoteUtil'
+import { TLPresentShapeDef } from '../app/shapeutils/TLPresentUtil/TLPresentUtil'
 import { TLTextShapeDef } from '../app/shapeutils/TLTextUtil/TLTextUtil'
 import { TLVideoShapeDef } from '../app/shapeutils/TLVideoUtil/TLVideoUtil'
+import { TLViewzoneShapeDef } from '../app/shapeutils/TLViewzoneUtil/TLViewzoneUtil'
 import { StateNodeConstructor } from '../app/statechart/StateNode'
 import { TLShapeDef, TLUnknownShapeDef } from './TLShapeDefinition'
 import { defaultDerivePresenceState } from './defaultDerivePresenceState'
@@ -56,12 +60,16 @@ const CORE_SHAPE_DEFS = () =>
 		TLArrowShapeDef,
 		TLImageShapeDef,
 		TLVideoShapeDef,
+		TLEdubreakVideoShapeDef,
+		TLEdubreakContentShapeDef,
 		TLGeoShapeDef,
 		TLNoteShapeDef,
 		TLGroupShapeDef,
 		TLBookmarkShapeDef,
 		TLEmbedShapeDef,
+		TLPresentShapeDef,
 		TLFrameShapeDef,
+		TLViewzoneShapeDef,
 	] as const
 
 /** @public */

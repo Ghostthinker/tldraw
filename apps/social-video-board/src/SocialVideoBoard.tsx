@@ -7,7 +7,7 @@ import '@tldraw/tldraw/ui.css'
 export default function SocialVideoBoard() {
 	return (
 		<div className="tldraw__editor">
-			<Tldraw autoFocus />
+			<Tldraw autoFocus persistenceKey="social-video-board" />
 		</div>
 	)
 }

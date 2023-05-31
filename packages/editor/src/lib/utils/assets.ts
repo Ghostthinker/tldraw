@@ -1,9 +1,12 @@
+import { getNodeAsJSON } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import {
 	TLAsset,
 	TLAssetId,
 	TLAssetShape,
 	TLBookmarkAsset,
+	TLEdubreakContentShape,
+	TLEdubreakVideoShape,
 	TLImageShape,
 	TLShape,
 	TLShapePartial,
@@ -14,6 +17,7 @@ import {
 import { compact, getHashForString, isNonNullish } from '@tldraw/utils'
 import uniq from 'lodash.uniq'
 import { App } from '../app/App'
+import { TextHelpers } from '../app/shapeutils/TLTextUtil/TextHelpers'
 import { MAX_ASSET_HEIGHT, MAX_ASSET_WIDTH } from '../constants'
 import { isAnimated } from './is-gif-animated'
 import { findChunk, isPng, parsePhys } from './png'
@@ -280,12 +284,13 @@ export async function createShapesFromFiles(
 				const asset = await app.onCreateAssetFromFile(file)
 
 				if (asset.type === 'bookmark') return
+				if (asset.type === 'edubreakContent') return
 
 				if (!asset) throw Error('Could not create an asset')
 
 				newAssetsForFiles.set(file, asset)
 
-				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape> = {
+				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape> = {
 					id: createShapeId(),
 					type: asset.type,
 					x: pagePoint.x + i,
@@ -328,7 +333,9 @@ export async function createShapesFromFiles(
 
 	const shapeUpdates = await Promise.all(
 		files.map(async (file, i) => {
-			const shape = results[i] as TLShapePartial<TLImageShape | TLVideoShape>
+			const shape = results[i] as TLShapePartial<
+				TLImageShape | TLVideoShape | TLEdubreakVideoShape | TLEdubreakContentShape
+			>
 			if (!shape) return
 
 			const asset = newAssetsForFiles.get(file)
@@ -410,6 +417,83 @@ export function createEmbedShapeAtPoint(
 		],
 		true
 	)
+}
+
+/** @public */
+export async function createEdubreakShapeAtPoint(app: App, options: any, point: Vec2dModel) {
+	const edubreakContent = await getNodeAsJSON(options)
+	switch (options.type) {
+		case 'blog':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'content',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'cmap':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'content',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'video':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakVideo',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: '',
+							thumbnail: edubreakContent.linkVideoThumbnail,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'videocomment':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakVideo',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							thumbnail: edubreakContent.video_comment_thumbnail_image,
+						},
+					},
+				],
+				true
+			)
+			break
+	}
 }
 
 /**
@@ -513,7 +597,7 @@ export async function createAssetShapeAtPoint(app: App, svgString: string, point
 	const asset = await app.onCreateAssetFromFile(
 		new File([svgString], 'asset.svg', { type: 'image/svg+xml' })
 	)
-	if (asset.type !== 'bookmark') {
+	if (asset.type !== 'bookmark' && asset.type !== 'edubreakContent') {
 		asset.props.w = width
 		asset.props.h = height
 	}

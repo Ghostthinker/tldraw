@@ -2,6 +2,7 @@
 // incorrect output. https://github.com/evanw/esbuild/issues/1737
 
 // eslint-disable-next-line local/no-export-star
+export { getNodeAsJSON } from '@tldraw/edubreak'
 export * from '@tldraw/tlschema'
 export { getHashForString } from '@tldraw/utils'
 export {
@@ -24,6 +25,14 @@ export {
 } from './lib/app/shapeutils/TLBookmarkUtil/TLBookmarkUtil'
 export { TLBoxUtil } from './lib/app/shapeutils/TLBoxUtil'
 export { TLDrawShapeDef, TLDrawUtil } from './lib/app/shapeutils/TLDrawUtil/TLDrawUtil'
+export {
+	TLEdubreakContentShapeDef,
+	TLEdubreakContentUtil,
+} from './lib/app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
+export {
+	TLEdubreakVideoShapeDef,
+	TLEdubreakVideoUtil,
+} from './lib/app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
 export { TLEmbedShapeDef, TLEmbedUtil } from './lib/app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 export { TLFrameShapeDef, TLFrameUtil } from './lib/app/shapeutils/TLFrameUtil/TLFrameUtil'
 export { TLGeoShapeDef, TLGeoUtil } from './lib/app/shapeutils/TLGeoUtil/TLGeoUtil'
@@ -35,6 +44,7 @@ export {
 	getSplineForLineShape,
 } from './lib/app/shapeutils/TLLineUtil/TLLineUtil'
 export { TLNoteShapeDef, TLNoteUtil } from './lib/app/shapeutils/TLNoteUtil/TLNoteUtil'
+export { TLPresentShapeDef, TLPresentUtil } from './lib/app/shapeutils/TLPresentUtil/TLPresentUtil'
 export {
 	TLShapeUtil,
 	type OnBeforeCreateHandler,
@@ -63,6 +73,10 @@ export {
 } from './lib/app/shapeutils/TLShapeUtil'
 export { TLTextShapeDef, TLTextUtil } from './lib/app/shapeutils/TLTextUtil/TLTextUtil'
 export { TLVideoShapeDef, TLVideoUtil } from './lib/app/shapeutils/TLVideoUtil/TLVideoUtil'
+export {
+	TLViewzoneShapeDef,
+	TLViewzoneUtil,
+} from './lib/app/shapeutils/TLViewzoneUtil/TLViewzoneUtil'
 export { StateNode, type StateNodeConstructor } from './lib/app/statechart/StateNode'
 export { TLBoxTool, type TLBoxLike } from './lib/app/statechart/TLBoxTool/TLBoxTool'
 export { type ClipboardPayload, type TLClipboardModel } from './lib/app/types/clipboard-types'

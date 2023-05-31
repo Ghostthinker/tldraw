@@ -124,6 +124,30 @@ export const drawShapeMigrations: Migrations;
 export const drawShapeTypeValidator: T.Validator<TLDrawShape>;
 
 // @public (undocumented)
+export const edubreakContentAssetMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakContentAssetTypeValidator: T.Validator<TLEdubreakContentAsset>;
+
+// @public (undocumented)
+export const edubreakContentShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentShape>;
+
+// @public (undocumented)
+export const edubreakVideoAssetMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakVideoAssetTypeValidator: T.Validator<TLEdubreakVideoAsset>;
+
+// @public (undocumented)
+export const edubreakVideoShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const edubreakVideoShapeTypeValidator: T.Validator<TLEdubreakVideoShape>;
+
+// @public (undocumented)
 export const EMBED_DEFINITIONS: readonly [{
     readonly type: "tldraw";
     readonly title: "tldraw";
@@ -430,6 +454,199 @@ export const pageTypeValidator: T.Validator<TLPage>;
 // @internal (undocumented)
 export const parentIdValidator: T.Validator<TLParentId>;
 
+// @public (undocumented)
+export const PRESENT_DEFINITIONS: readonly [{
+    readonly type: "tldraw";
+    readonly title: "tldraw";
+    readonly hostnames: readonly ["beta.tldraw.com", "lite.tldraw.com", "www.tldraw.com"];
+    readonly minWidth: 300;
+    readonly minHeight: 300;
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "codesandbox";
+    readonly title: "CodeSandbox";
+    readonly hostnames: readonly ["codesandbox.io"];
+    readonly minWidth: 300;
+    readonly minHeight: 300;
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "codepen";
+    readonly title: "Codepen";
+    readonly hostnames: readonly ["codepen.io"];
+    readonly minWidth: 300;
+    readonly minHeight: 300;
+    readonly width: 520;
+    readonly height: 400;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "scratch";
+    readonly title: "Scratch";
+    readonly hostnames: readonly ["scratch.mit.edu"];
+    readonly width: 520;
+    readonly height: 400;
+    readonly doesResize: false;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "youtube";
+    readonly title: "YouTube";
+    readonly hostnames: readonly ["*.youtube.com", "youtube.com", "youtu.be"];
+    readonly width: 800;
+    readonly height: 450;
+    readonly doesResize: true;
+    readonly overridePermissions: {
+        readonly 'allow-presentation': true;
+    };
+    readonly isAspectRatioLocked: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "figma";
+    readonly title: "Figma";
+    readonly hostnames: readonly ["figma.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "google_maps";
+    readonly title: "Google Maps";
+    readonly hostnames: readonly ["google.*"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "google_calendar";
+    readonly title: "Google Calendar";
+    readonly hostnames: readonly ["calendar.google.*"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly minWidth: 460;
+    readonly minHeight: 360;
+    readonly doesResize: true;
+    readonly instructionLink: "https://support.google.com/calendar/answer/41207?hl=en";
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "google_slides";
+    readonly title: "Google Slides";
+    readonly hostnames: readonly ["docs.google.*"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly minWidth: 460;
+    readonly minHeight: 360;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "github_gist";
+    readonly title: "GitHub Gist";
+    readonly hostnames: readonly ["gist.github.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "replit";
+    readonly title: "Replit";
+    readonly hostnames: readonly ["replit.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "felt";
+    readonly title: "Felt";
+    readonly hostnames: readonly ["felt.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "spotify";
+    readonly title: "Spotify";
+    readonly hostnames: readonly ["open.spotify.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly minHeight: 500;
+    readonly overrideOutlineRadius: 12;
+    readonly doesResize: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "vimeo";
+    readonly title: "Vimeo";
+    readonly hostnames: readonly ["vimeo.com", "player.vimeo.com"];
+    readonly width: 640;
+    readonly height: 360;
+    readonly doesResize: true;
+    readonly isAspectRatioLocked: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "excalidraw";
+    readonly title: "Excalidraw";
+    readonly hostnames: readonly ["excalidraw.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly isAspectRatioLocked: true;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}, {
+    readonly type: "observable";
+    readonly title: "Observable";
+    readonly hostnames: readonly ["observablehq.com"];
+    readonly width: 720;
+    readonly height: 500;
+    readonly doesResize: true;
+    readonly isAspectRatioLocked: false;
+    readonly backgroundColor: "#fff";
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+}];
+
+// @public (undocumented)
+export type PresentDefinition = {
+    readonly type: string;
+    readonly title: string;
+    readonly hostnames: readonly string[];
+    readonly minWidth?: number;
+    readonly minHeight?: number;
+    readonly width: number;
+    readonly height: number;
+    readonly doesResize: boolean;
+    readonly isAspectRatioLocked?: boolean;
+    readonly overridePermissions?: TLPresentShapePermissions;
+    readonly instructionLink?: string;
+    readonly backgroundColor?: string;
+    readonly overrideOutlineRadius?: number;
+    readonly toEmbedUrl: (url: string) => string | undefined;
+    readonly fromEmbedUrl: (url: string) => string | undefined;
+};
+
+// @public (undocumented)
+export const presentShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const presentShapeTypeValidator: T.Validator<TLPresentShape>;
+
 // @internal (undocumented)
 export const rootShapeTypeMigrations: Migrations;
 
@@ -590,7 +807,7 @@ export type TLArrowTerminal = {
 export type TLArrowTerminalType = SetValue<typeof TL_ARROW_TERMINAL_TYPE>;
 
 // @public (undocumented)
-export type TLAsset = TLBookmarkAsset | TLImageAsset | TLVideoAsset;
+export type TLAsset = TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset;
 
 // @public (undocumented)
 export const TLAsset: RecordType<TLAsset, "props" | "type">;
@@ -751,6 +968,50 @@ export type TLDrawShapeProps = {
 export type TLDrawShapeSegment = {
     type: SetValue<typeof TL_DRAW_SHAPE_SEGMENT_TYPE>;
     points: Vec2dModel[];
+};
+
+// @public (undocumented)
+export type TLEdubreakContentAsset = TLBaseAsset<'edubreakContent', {
+    title: string;
+    description: string;
+    image: string;
+    src: null | string;
+}>;
+
+// @public (undocumented)
+export type TLEdubreakContentShape = TLBaseShape<'edubreakContent', TLEdubreakContentShapeProps>;
+
+// @public (undocumented)
+export type TLEdubreakContentShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    assetId: null | TLAssetId;
+    url: string;
+};
+
+// @public (undocumented)
+export type TLEdubreakVideoAsset = TLBaseAsset<'edubreakVideo', {
+    w: number;
+    h: number;
+    name: string;
+    isAnimated: boolean;
+    mimeType: null | string;
+    src: null | string;
+}>;
+
+// @public (undocumented)
+export type TLEdubreakVideoShape = TLBaseShape<'edubreakVideo', TLEdubreakVideoShapeProps>;
+
+// @public (undocumented)
+export type TLEdubreakVideoShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    time: number;
+    playing: boolean;
+    url: string;
+    assetId: null | TLAssetId;
 };
 
 // @public (undocumented)
@@ -1120,6 +1381,46 @@ export type TLPageId = ID<TLPage>;
 export type TLParentId = TLPageId | TLShapeId;
 
 // @public (undocumented)
+export type TLPresentShape = TLBaseShape<'present', TLPresentShapeProps>;
+
+// @public
+export const tlPresentShapePermissionDefaults: {
+    readonly 'allow-downloads-without-user-activation': false;
+    readonly 'allow-downloads': false;
+    readonly 'allow-modals': false;
+    readonly 'allow-orientation-lock': false;
+    readonly 'allow-pointer-lock': false;
+    readonly 'allow-popups': true;
+    readonly 'allow-popups-to-escape-sandbox': false;
+    readonly 'allow-presentation': false;
+    readonly 'allow-storage-access-by-user-activation': false;
+    readonly 'allow-top-navigation': false;
+    readonly 'allow-top-navigation-by-user-activation': false;
+    readonly 'allow-scripts': true;
+    readonly 'allow-same-origin': true;
+    readonly 'allow-forms': true;
+};
+
+// @public (undocumented)
+export type TLPresentShapePermissionName = keyof typeof tlPresentShapePermissionDefaults;
+
+// @public (undocumented)
+export type TLPresentShapePermissions = {
+    [K in TLPresentShapePermissionName]?: boolean;
+};
+
+// @public (undocumented)
+export type TLPresentShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    url: string;
+    tmpOldUrl?: string;
+    doesResize: boolean;
+    overridePermissions?: TLPresentShapePermissions;
+};
+
+// @public (undocumented)
 export type TLRecord = TLAsset | TLCamera | TLDocument | TLInstance | TLInstancePageState | TLInstancePresence | TLPage | TLShape | TLUser | TLUserDocument | TLUserPresence;
 
 // @public (undocumented)
@@ -1132,7 +1433,7 @@ export type TLScribble = {
 };
 
 // @public
-export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLTextShape | TLUnknownShape | TLVideoShape;
+export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEdubreakContentShape | TLEdubreakVideoShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLPresentShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
 
 // @public (undocumented)
 export type TLShapeId = ID<TLBaseShape<any, any>>;
@@ -1337,6 +1638,17 @@ export type TLVideoShapeProps = {
 };
 
 // @public (undocumented)
+export type TLViewzoneShape = TLBaseShape<'viewzone', TLViewzoneShapeProps>;
+
+// @public (undocumented)
+export type TLViewzoneShapeProps = {
+    opacity: TLOpacityType;
+    w: number;
+    h: number;
+    name: string;
+};
+
+// @public (undocumented)
 export const uiColorTypeValidator: T.Validator<"accent" | "black" | "muted-1" | "selection-fill" | "selection-stroke" | "white">;
 
 // @internal (undocumented)
@@ -1384,6 +1696,12 @@ export const videoShapeMigrations: Migrations;
 
 // @public (undocumented)
 export const videoShapeTypeValidator: T.Validator<TLVideoShape>;
+
+// @public (undocumented)
+export const viewzoneShapeMigrations: Migrations;
+
+// @public (undocumented)
+export const viewzoneShapeTypeValidator: T.Validator<TLViewzoneShape>;
 
 // (No @packageDocumentation comment for this package)
 

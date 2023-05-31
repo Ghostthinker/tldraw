@@ -10,6 +10,7 @@ import { TLLineTool } from './TLLineTool/TLLineTool'
 import { TLNoteTool } from './TLNoteTool/TLNoteTool'
 import { TLSelectTool } from './TLSelectTool/TLSelectTool'
 import { TLTextTool } from './TLTextTool/TLTextTool'
+import { TLViewzoneTool } from './TLViewzoneTool/TLViewzoneTool'
 import { TLZoomTool } from './TLZoomTool/TLZoomTool'
 
 export class RootState extends StateNode {
@@ -26,6 +27,7 @@ export class RootState extends StateNode {
 		TLGeoTool,
 		TLNoteTool,
 		TLFrameTool,
+		TLViewzoneTool,
 		TLZoomTool,
 	]
 

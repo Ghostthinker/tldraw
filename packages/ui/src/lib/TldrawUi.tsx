@@ -7,10 +7,11 @@ import { TldrawUiContextProvider, TldrawUiContextProviderProps } from './TldrawU
 import { BackToContent } from './components/BackToContent'
 import { DebugPanel } from './components/DebugPanel'
 import { Dialogs } from './components/Dialogs'
-import { HelpMenu } from './components/HelpMenu'
+// import { HelpMenu } from './components/HelpMenu'
 import { MenuZone } from './components/MenuZone'
 import { NavigationZone } from './components/NavigationZone/NavigationZone'
 import { ExitPenMode } from './components/PenModeToggle'
+import { SVBSpeedDial } from './components/SVBSpeedDial'
 import { StopFollowing } from './components/StopFollowing'
 import { StylePanel } from './components/StylePanel/StylePanel'
 import { ToastViewport, Toasts } from './components/Toasts'
@@ -126,6 +127,7 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 									<BackToContent />
 									<StopFollowing />
 								</div>
+								<SVBToolbar />
 							</div>
 							<div className="tlui-layout__top__right">
 								{shareZone && (
@@ -143,8 +145,8 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 						<div className="tlui-layout__bottom">
 							<div className="tlui-layout__bottom__main">
 								<NavigationZone />
-								<SVBToolbar />
-								{breakpoint >= 4 && <HelpMenu />}
+								<SVBSpeedDial />
+								{/*{breakpoint >= 4 && <HelpMenu />}*/}
 							</div>
 							{isDebugMode && <DebugPanel renderDebugMenuItems={renderDebugMenuItems ?? null} />}
 						</div>

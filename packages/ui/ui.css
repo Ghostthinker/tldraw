@@ -289,7 +289,7 @@
 		color: var(--color-text-0);
 	}
 
-	/* 
+	/*
 	.tlui-button:not(:disabled, :focus-visible):hover::after {
 		box-shadow: inset 0 0 0 1px var(--color-muted-1);
 	} */
@@ -947,8 +947,8 @@
 }
 
 .tlui-toolbar__tools__button {
-	height: 48px;
-	width: 48px;
+	height: 44px;
+	width: 44px;
 }
 
 .tlui-toolbar__tools__button:nth-of-type(n + 2) {
@@ -960,8 +960,8 @@
 }
 
 .tlui-toolbar__tools__button {
-	height: 48px;
-	width: 48px;
+	height: 44px;
+	width: 44px;
 }
 
 .tlui-layout__mobile .tlui-toolbar__tools__button {
@@ -2018,3 +2018,106 @@
 .tlui-embed-dialog__enter a {
 	color: var(--color-text-1);
 }
+
+/* --------------------- Social Video Board -------------------- */
+
+/* SVBToolbar */
+
+.svb-toolbar__wrapper {
+	display: grid;
+	left: 0;
+	height: fit-content;
+	position: relative;
+	max-height: 100%;
+	margin: 5vh 0 0 var(--space-2);
+}
+
+.svb-toolbar__tools {
+	background-color: var(--color-low);
+	border-radius: var(--radius-4);
+	z-index: var(--layer-panels);
+	pointer-events: all;
+	background: var(--color-panel);
+	box-shadow: var(--shadow-2);
+}
+
+.svb-toolbar__title {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: inherit;
+    padding: 0 0 5% 5%;
+}
+
+.svb-toolbar__row {
+	display: flex;
+}
+
+.svb-toolbar__row.svb-toolbar__border-bottom {
+    margin-bottom: 7px;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.svb-toolbar__row.svb-toolbar__margin-top {
+    margin-top: 7px;
+}
+
+/* SpeedDial */
+
+.speeddial-bottom-right {
+	display: flex;
+	width: min-content;
+	z-index: var(--layer-panels);
+	pointer-events: all;
+	position: absolute;
+	right: var(--space-3);
+	bottom: var(--space-3);
+}
+
+.p-button {
+	background-color: var(--svb-color-button);
+	border: 1px solid var(--svb-color-button);
+}
+
+.p-speeddial-action {
+	background: var(--color-background);
+	border: 3px solid var(--svb-color-button);
+}
+
+.speeddial-action-icon {
+	color: var(--svb-color-button);
+	width: 24px;
+	height: 24px;
+}
+
+.eb-icon-out {
+	fill: var(--svb-color-button);
+}
+
+.eb-icon-in {
+	fill: white;
+}
+
+@media (hover: hover) {
+	.p-speeddial-action:hover {
+		background: var(--svb-color-button);
+	}
+
+	.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
+		background-color: var(--svb-color-button-hover);
+		border: 1px solid var(--svb-color-button-hover);
+	}
+
+	.p-speeddial-action:hover .speeddial-action-icon {
+		fill: white;
+	}
+
+	.p-speeddial-action:hover .eb-icon-out {
+		fill: white;
+	}
+
+	.p-speeddial-action:hover .eb-icon-in {
+		fill: #023047;
+	}
+}
+
+

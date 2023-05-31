@@ -173,6 +173,26 @@ export function ToolsProvider({ overrides, children }: ToolsProviderProps) {
 					addDialog({ component: EmbedDialog })
 				},
 			},
+			{
+				id: 'viewzone',
+				label: 'tool.viewzone',
+				readonlyOk: true,
+				icon: 'tool-viewzone',
+				kbd: '',
+				onSelect() {
+					app.setSelectedTool('viewzone')
+				},
+			},
+			{
+				id: 'present',
+				label: 'tool.present',
+				readonlyOk: true,
+				icon: 'tool-present',
+				kbd: '',
+				onSelect() {
+					app.setSelectedTool('present')
+				},
+			},
 		])
 
 		if (overrides) {

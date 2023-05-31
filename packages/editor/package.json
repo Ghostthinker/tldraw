@@ -46,6 +46,7 @@
 		"lint": "yarn run -T tsx ../../scripts/lint.ts"
 	},
 	"dependencies": {
+		"@tldraw/edubreak": "workspace:*",
 		"@tldraw/primitives": "workspace:*",
 		"@tldraw/tlschema": "workspace:*",
 		"@tldraw/tlstore": "workspace:*",

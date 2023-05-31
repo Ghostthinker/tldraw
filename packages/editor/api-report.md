@@ -16,6 +16,7 @@ import { EASINGS } from '@tldraw/primitives';
 import { EmbedDefinition } from '@tldraw/tlschema';
 import { EventEmitter } from 'eventemitter3';
 import { getHashForString } from '@tldraw/utils';
+import { getNodeAsJSON } from '@tldraw/edubreak';
 import { HistoryEntry } from '@tldraw/tlstore';
 import { ID } from '@tldraw/tlstore';
 import { MatLike } from '@tldraw/primitives';
@@ -52,6 +53,10 @@ import { TLCursor } from '@tldraw/tlschema';
 import { TLDocument } from '@tldraw/tlschema';
 import { TLDrawShape } from '@tldraw/tlschema';
 import { TLDrawShapeSegment } from '@tldraw/tlschema';
+import { TLEdubreakContentAsset } from '@tldraw/tlschema';
+import { TLEdubreakContentShape } from '@tldraw/tlschema';
+import { TLEdubreakVideoAsset } from '@tldraw/tlschema';
+import { TLEdubreakVideoShape } from '@tldraw/tlschema';
 import { TLEmbedShape } from '@tldraw/tlschema';
 import { TLFontType } from '@tldraw/tlschema';
 import { TLFrameShape } from '@tldraw/tlschema';
@@ -71,6 +76,7 @@ import { TLNullableShapeProps } from '@tldraw/tlschema';
 import { TLPage } from '@tldraw/tlschema';
 import { TLPageId } from '@tldraw/tlschema';
 import { TLParentId } from '@tldraw/tlschema';
+import { TLPresentShape } from '@tldraw/tlschema';
 import { TLRecord } from '@tldraw/tlschema';
 import { TLScribble } from '@tldraw/tlschema';
 import { TLShape } from '@tldraw/tlschema';
@@ -94,6 +100,7 @@ import { TLUserId } from '@tldraw/tlschema';
 import { TLUserPresence } from '@tldraw/tlschema';
 import { TLVideoAsset } from '@tldraw/tlschema';
 import { TLVideoShape } from '@tldraw/tlschema';
+import { TLViewzoneShape } from '@tldraw/tlschema';
 import { Vec2d } from '@tldraw/primitives';
 import { Vec2dModel } from '@tldraw/tlschema';
 import { VecLike } from '@tldraw/primitives';
@@ -138,7 +145,7 @@ export class App extends EventEmitter {
         tags?: Record<string, boolean | number | string>;
         extras?: Record<string, unknown>;
     }): void;
-    get assets(): (TLBookmarkAsset | TLImageAsset | TLVideoAsset)[];
+    get assets(): (TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset)[];
     bail(): this;
     bailToMark(id: string): this;
     batch(fn: () => void): this;
@@ -226,7 +233,7 @@ export class App extends EventEmitter {
         handleId: "end" | "start";
     }[];
     getAssetById(id: TLAssetId): TLAsset | undefined;
-    getAssetBySrc(src: string): TLBookmarkAsset | TLImageAsset | TLVideoAsset | undefined;
+    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset | undefined;
     getBounds(shape: TLShape): Box2d;
     getBoundsById(id: TLShapeId): Box2d | undefined;
     getClipPathById(id: TLShapeId): string | undefined;
@@ -766,6 +773,8 @@ export function getMaxIndex(...indices: (string | undefined)[]): string;
 
 // @public
 export function getMediaAssetFromFile(file: File): Promise<TLAsset>;
+
+export { getNodeAsJSON }
 
 // @internal (undocumented)
 export function getPointerInfo(e: PointerEvent | React.PointerEvent, container: HTMLElement): {
@@ -1694,7 +1703,7 @@ export type TLBoxLike = TLBaseShape<string, {
 // @public (undocumented)
 export abstract class TLBoxTool extends StateNode {
     // (undocumented)
-    static children: () => (typeof Idle_4 | typeof Pointing_3)[];
+    static children: () => (typeof Idle_11 | typeof Pointing_8)[];
     // (undocumented)
     static id: string;
     // (undocumented)
@@ -1920,6 +1929,48 @@ export interface TLEditorComponents {
     SvgDefs: null | TLSvgDefsComponent;
     // (undocumented)
     ZoomBrush: null | TLBrushComponent;
+}
+
+// @public (undocumented)
+export const TLEdubreakContentShapeDef: TLShapeDef<TLEdubreakContentShape, TLEdubreakContentUtil>;
+
+// @public (undocumented)
+export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    defaultProps(): TLEdubreakContentShape['props'];
+    // (undocumented)
+    indicator(shape: TLEdubreakContentShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: () => boolean;
+    // (undocumented)
+    render(shape: TLEdubreakContentShape): JSX.Element;
+    // (undocumented)
+    toSvg(shape: TLEdubreakContentShape): SVGGElement;
+    // (undocumented)
+    static type: string;
+}
+
+// @public (undocumented)
+export const TLEdubreakVideoShapeDef: TLShapeDef<TLEdubreakVideoShape, TLEdubreakVideoUtil>;
+
+// @public (undocumented)
+export class TLEdubreakVideoUtil extends TLBoxUtil<TLEdubreakVideoShape> {
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    defaultProps(): TLEdubreakVideoShape['props'];
+    // (undocumented)
+    indicator(shape: TLEdubreakVideoShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: () => boolean;
+    // (undocumented)
+    render(shape: TLEdubreakVideoShape): JSX.Element;
+    // (undocumented)
+    toSvg(shape: TLEdubreakVideoShape): SVGGElement;
+    // (undocumented)
+    static type: string;
 }
 
 // @public (undocumented)
@@ -2376,6 +2427,35 @@ export type TLPointerEventTarget = {
 };
 
 // @public (undocumented)
+export const TLPresentShapeDef: TLShapeDef<TLPresentShape, TLPresentUtil>;
+
+// @public (undocumented)
+export class TLPresentUtil extends TLBoxUtil<TLPresentShape> {
+    // (undocumented)
+    canEdit: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    canResize: (shape: TLPresentShape) => boolean;
+    // (undocumented)
+    canUnmount: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    defaultProps(): TLPresentShape['props'];
+    // (undocumented)
+    hideSelectionBoundsBg: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    hideSelectionBoundsFg: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    indicator(shape: TLPresentShape): JSX.Element;
+    // (undocumented)
+    isAspectRatioLocked: TLShapeUtilFlag<TLPresentShape>;
+    // (undocumented)
+    onResize: OnResizeHandler<TLPresentShape>;
+    // (undocumented)
+    render(shape: TLPresentShape): JSX.Element;
+    // (undocumented)
+    static type: string;
+}
+
+// @public (undocumented)
 export type TLReorderOperation = 'backward' | 'forward' | 'toBack' | 'toFront';
 
 // @public (undocumented)
@@ -2599,6 +2679,41 @@ export class TLVideoUtil extends TLBoxUtil<TLVideoShape> {
     render(shape: TLVideoShape): JSX.Element;
     // (undocumented)
     toSvg(shape: TLVideoShape): SVGGElement;
+    // (undocumented)
+    static type: string;
+}
+
+// @public (undocumented)
+export const TLViewzoneShapeDef: TLShapeDef<TLViewzoneShape, TLViewzoneUtil>;
+
+// @public (undocumented)
+export class TLViewzoneUtil extends TLBoxUtil<TLViewzoneShape> {
+    // (undocumented)
+    canBind: () => boolean;
+    // (undocumented)
+    canDropShapes: (_shape: TLViewzoneShape, _shapes: TLShape[]) => boolean;
+    // (undocumented)
+    canEdit: () => boolean;
+    // (undocumented)
+    canReceiveNewChildrenOfType: (_type: TLShapeType) => boolean;
+    // (undocumented)
+    defaultProps(): TLViewzoneShape['props'];
+    // (undocumented)
+    indicator(shape: TLViewzoneShape): JSX.Element;
+    // (undocumented)
+    onDragShapesOut: (_shape: TLViewzoneShape, shapes: TLShape[]) => void;
+    // (undocumented)
+    onDragShapesOver: (viewzone: TLViewzoneShape, shapes: TLShape[]) => {
+        shouldHint: boolean;
+    };
+    // (undocumented)
+    onResizeEnd: OnResizeEndHandler<TLViewzoneShape>;
+    // (undocumented)
+    render(shape: TLViewzoneShape): JSX.Element;
+    // (undocumented)
+    sendViewzoneToBack: (shape: TLViewzoneShape) => void;
+    // (undocumented)
+    toSvg(shape: TLViewzoneShape, font: string, colors: TLExportColors): Promise<SVGElement> | SVGElement;
     // (undocumented)
     static type: string;
 }
