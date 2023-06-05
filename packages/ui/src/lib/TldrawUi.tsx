@@ -1,7 +1,7 @@
 import { ToastProvider } from '@radix-ui/react-toast'
 import { useApp } from '@tldraw/editor'
 import classNames from 'classnames'
-import React, { ReactNode } from 'react'
+import React, { ReactChild, ReactNode, useState } from 'react'
 import { useValue } from 'signia-react'
 import { TldrawUiContextProvider, TldrawUiContextProviderProps } from './TldrawUiContextProvider'
 import { BackToContent } from './components/BackToContent'
@@ -11,11 +11,12 @@ import { Dialogs } from './components/Dialogs'
 import { MenuZone } from './components/MenuZone'
 import { NavigationZone } from './components/NavigationZone/NavigationZone'
 import { ExitPenMode } from './components/PenModeToggle'
-import { SVBSpeedDial } from './components/SVBSpeedDial'
+import { ArtefactMenu } from './components/SVBComponents/ArtefactMenu'
+import { SVBSpeedDial } from './components/SVBComponents/SVBSpeedDial'
+import { SVBToolbar } from './components/SVBComponents/SVBToolbar'
 import { StopFollowing } from './components/StopFollowing'
 import { StylePanel } from './components/StylePanel/StylePanel'
 import { ToastViewport, Toasts } from './components/Toasts'
-import { SVBToolbar } from './components/Toolbar/SVBToolbar'
 import { Button } from './components/primitives/Button'
 import { useActions } from './hooks/useActions'
 import { useAppEvents } from './hooks/useAppEvents'
@@ -100,6 +101,15 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 
 	const { 'toggle-focus-mode': toggleFocus } = useActions()
 
+	const [artefactMenus, setArtefactMenus] = useState<ReactChild[]>([])
+
+	const onAddFromEdubreak = () => {
+		setArtefactMenus([
+			...artefactMenus,
+			<ArtefactMenu key={'artefactMenu-' + artefactMenus.length} />,
+		])
+	}
+
 	return (
 		<ToastProvider>
 			<main
@@ -145,7 +155,7 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 						<div className="tlui-layout__bottom">
 							<div className="tlui-layout__bottom__main">
 								<NavigationZone />
-								<SVBSpeedDial />
+								<SVBSpeedDial onAddFromEdubreak={onAddFromEdubreak} />
 								{/*{breakpoint >= 4 && <HelpMenu />}*/}
 							</div>
 							{isDebugMode && <DebugPanel renderDebugMenuItems={renderDebugMenuItems ?? null} />}
@@ -155,6 +165,7 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 				<Toasts />
 				<Dialogs />
 				<ToastViewport />
+				{artefactMenus}
 			</main>
 		</ToastProvider>
 	)

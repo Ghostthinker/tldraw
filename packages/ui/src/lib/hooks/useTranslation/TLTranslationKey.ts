@@ -324,3 +324,6 @@ export type TLTranslationKey =
 	| 'vscode.file-open.backup-saved'
 	| 'vscode.file-open.backup-failed'
 	| 'vscode.file-open.dont-show-again'
+	| 'artefact-menu.header'
+	| 'artefact-menu.only-show-marked-content'
+	| 'artefact-menu.no-artefacts'

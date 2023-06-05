@@ -1,9 +1,14 @@
 import { SpeedDial } from 'primereact/speeddial'
 import { Tooltip } from 'primereact/tooltip'
 import { track } from 'signia-react'
-import { useTranslation } from '../hooks/useTranslation/useTranslation'
+import { useTranslation } from '../../hooks/useTranslation/useTranslation'
 
-export const SVBSpeedDial = track(function SVBSpeedDial() {
+/** @public */
+interface SVBSpeedDialProps {
+	onAddFromEdubreak: () => void
+}
+
+export const SVBSpeedDial = track(function SVBSpeedDial(props: SVBSpeedDialProps) {
 	const ADD_FROM_EDUBREAK = 'add_from_edubreak'
 	const UPLOAD_CONTENT = 'upload_content'
 	const CREATE_SCREEN_RECORDING = 'create_screen_recording'
@@ -16,7 +21,7 @@ export const SVBSpeedDial = track(function SVBSpeedDial() {
 		// TODO: hier button actions einfuegen
 		switch (action) {
 			case ADD_FROM_EDUBREAK:
-				console.log('edubreak')
+				props.onAddFromEdubreak()
 				break
 			case UPLOAD_CONTENT:
 				console.log('upload')
