@@ -335,5 +335,6 @@
 	"file-system.shared-document-file-open-error.title": "Konnte die Datei nicht öffnen",
 	"artefact-menu.header": "edubreak® Inhalte",
 	"artefact-menu.only-show-marked-content": "Zeige nur in edubreak® markierte Inhalte",
-	"artefact-menu.no-artefacts": "Leider gibt es noch keine Inhalte, die verwendet werden könnten"
+	"artefact-menu.no-artefacts": "Leider gibt es noch keine Inhalte, die verwendet werden könnten",
+	"artefact.add": "Hinzufügen"
 }

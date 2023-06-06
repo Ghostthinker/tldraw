@@ -6,6 +6,7 @@ export {
 	getEdubreakApiUrl,
 	getEdubreakEndpointFromType,
 	getEdubreakIds,
+	getInbox,
 	getNodeAsJSON,
 	getStateFromEdubreak,
 	parseEdubreakLink,

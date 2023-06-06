@@ -179,6 +179,7 @@ import iconsUndo from '../icons/icon/undo.svg'
 import iconsUngroup from '../icons/icon/ungroup.svg'
 import iconsUnlockSmall from '../icons/icon/unlock-small.svg'
 import iconsUnlock from '../icons/icon/unlock.svg'
+import iconsVideo from '../icons/icon/video.svg'
 import iconsVisible from '../icons/icon/visible.svg'
 import iconsWarningTriangle from '../icons/icon/warning-triangle.svg'
 import iconsZoomIn from '../icons/icon/zoom-in.svg'
@@ -388,6 +389,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			ungroup: formatAssetUrl(iconsUngroup, opts),
 			'unlock-small': formatAssetUrl(iconsUnlockSmall, opts),
 			unlock: formatAssetUrl(iconsUnlock, opts),
+			video: formatAssetUrl(iconsVideo, opts),
 			visible: formatAssetUrl(iconsVisible, opts),
 			'warning-triangle': formatAssetUrl(iconsWarningTriangle, opts),
 			'zoom-in': formatAssetUrl(iconsZoomIn, opts),

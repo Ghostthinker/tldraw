@@ -169,6 +169,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly ungroup: string;
         readonly 'unlock-small': string;
         readonly unlock: string;
+        readonly video: string;
         readonly visible: string;
         readonly 'warning-triangle': string;
         readonly 'zoom-in': string;

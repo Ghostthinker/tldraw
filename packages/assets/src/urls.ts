@@ -525,6 +525,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				opts
 			),
 			unlock: formatAssetUrl(new URL('../icons/icon/unlock.svg', import.meta.url).href, opts),
+			video: formatAssetUrl(new URL('../icons/icon/video.svg', import.meta.url).href, opts),
 			visible: formatAssetUrl(new URL('../icons/icon/visible.svg', import.meta.url).href, opts),
 			'warning-triangle': formatAssetUrl(
 				new URL('../icons/icon/warning-triangle.svg', import.meta.url).href,

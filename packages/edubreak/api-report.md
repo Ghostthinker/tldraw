@@ -23,6 +23,9 @@ export function getEdubreakEndpointFromType(options: any): Promise<"" | "/conten
 export function getEdubreakIds(edubreakPath: string): RegExpMatchArray[];
 
 // @public (undocumented)
+export function getInbox(): Promise<any>;
+
+// @public (undocumented)
 export function getNodeAsJSON(options: any): Promise<any>;
 
 // @public (undocumented)

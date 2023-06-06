@@ -159,6 +159,7 @@ export type TLUiIconType =
 	| 'ungroup'
 	| 'unlock-small'
 	| 'unlock'
+	| 'video'
 	| 'visible'
 	| 'warning-triangle'
 	| 'zoom-in'
@@ -322,6 +323,7 @@ export const TLUiIconTypes = [
 	'ungroup',
 	'unlock-small',
 	'unlock',
+	'video',
 	'visible',
 	'warning-triangle',
 	'zoom-in',

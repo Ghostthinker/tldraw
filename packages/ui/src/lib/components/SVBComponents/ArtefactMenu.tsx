@@ -1,9 +1,11 @@
-import { memo, useState } from 'react'
+import { memo, ReactChild, useEffect, useState } from 'react'
 // import { useReadonly } from '../../hooks/useReadonly'
+import { getInbox } from '@tldraw/edubreak'
 import { Dialog } from 'primereact/dialog'
 import { InputSwitch } from 'primereact/inputswitch'
 import { useTranslation } from '../../hooks/useTranslation/useTranslation'
 import { Icon } from '../primitives/Icon'
+import { Artefact } from './Artefact'
 
 export const ArtefactMenu = memo(function ArtefactMenu() {
 	const msg = useTranslation()
@@ -11,7 +13,8 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 	const [display, setDisplay] = useState(true)
 	const position = 'top-right'
 	const [onlyMarkedContent, setonlyMarkedContent] = useState(true)
-	const [artefactsList, setArtefactsList] = useState([])
+	// TODO: get real artifacts here
+	const [artefactsList, setArtefactsList] = useState<ReactChild[]>([])
 
 	const onHide = () => {
 		setDisplay(false)
@@ -19,8 +22,36 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 
 	const header = <div className="artefact-menu-header">{msg('artefact-menu.header')}</div>
 
+	useEffect(() => {
+		getInbox().then((inbox) => {
+			const artefactElements = []
+			for (const artefact of inbox) {
+				const formatedDate = new Date(artefact.created).toLocaleString('de-DE', {
+					day: '2-digit',
+					month: '2-digit',
+					year: 'numeric',
+				})
+				const subTitle =
+					artefact.author.name.firstname +
+					' ' +
+					artefact.author.name.lastname +
+					' | ' +
+					formatedDate
+				artefactElements.push(
+					<Artefact
+						key={artefact.id}
+						title={artefact.title}
+						subTitle={subTitle}
+						tags={artefact.tags}
+					/>
+				)
+			}
+			setArtefactsList(artefactElements)
+		})
+	}, [])
+
 	function getArtefacts() {
-		console.log('I got artefacts !!!!!!!!!!!!!!!!')
+		return artefactsList
 	}
 
 	function getArtefactMenuContent() {
@@ -30,6 +61,7 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 					<InputSwitch
 						checked={onlyMarkedContent}
 						onChange={(e) => setonlyMarkedContent(e.value!)}
+						disabled
 					/>
 					<span className="artefact-menu-content-top-text">
 						{msg('artefact-menu.only-show-marked-content')}
