@@ -62,7 +62,6 @@ import iconsChevronUp from '../icons/icon/chevron-up.svg'
 import iconsChevronsNe from '../icons/icon/chevrons-ne.svg'
 import iconsChevronsSw from '../icons/icon/chevrons-sw.svg'
 import iconsClipboardCopy from '../icons/icon/clipboard-copy.svg'
-import iconsCloudUpload from '../icons/icon/cloud-upload.svg'
 import iconsCode from '../icons/icon/code.svg'
 import iconsCollab from '../icons/icon/collab.svg'
 import iconsColor from '../icons/icon/color.svg'
@@ -82,7 +81,6 @@ import iconsDotsVertical from '../icons/icon/dots-vertical.svg'
 import iconsDragHandleDots from '../icons/icon/drag-handle-dots.svg'
 import iconsDuplicate from '../icons/icon/duplicate.svg'
 import iconsEdit from '../icons/icon/edit.svg'
-import iconsEdubreakLogoButton from '../icons/icon/edubreak-logo-button.svg'
 import iconsExternalLink from '../icons/icon/external-link.svg'
 import iconsFile from '../icons/icon/file.svg'
 import iconsFillNone from '../icons/icon/fill-none.svg'
@@ -158,6 +156,7 @@ import iconsTextAlignJustify from '../icons/icon/text-align-justify.svg'
 import iconsTextAlignLeft from '../icons/icon/text-align-left.svg'
 import iconsTextAlignRight from '../icons/icon/text-align-right.svg'
 import iconsThLarge from '../icons/icon/th-large.svg'
+import iconsTimesCircle from '../icons/icon/times-circle.svg'
 import iconsToolArrow from '../icons/icon/tool-arrow.svg'
 import iconsToolEmbed from '../icons/icon/tool-embed.svg'
 import iconsToolEraser from '../icons/icon/tool-eraser.svg'
@@ -272,7 +271,6 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'chevrons-ne': formatAssetUrl(iconsChevronsNe, opts),
 			'chevrons-sw': formatAssetUrl(iconsChevronsSw, opts),
 			'clipboard-copy': formatAssetUrl(iconsClipboardCopy, opts),
-			'cloud-upload': formatAssetUrl(iconsCloudUpload, opts),
 			code: formatAssetUrl(iconsCode, opts),
 			collab: formatAssetUrl(iconsCollab, opts),
 			color: formatAssetUrl(iconsColor, opts),
@@ -292,7 +290,6 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'drag-handle-dots': formatAssetUrl(iconsDragHandleDots, opts),
 			duplicate: formatAssetUrl(iconsDuplicate, opts),
 			edit: formatAssetUrl(iconsEdit, opts),
-			'edubreak-logo-button': formatAssetUrl(iconsEdubreakLogoButton, opts),
 			'external-link': formatAssetUrl(iconsExternalLink, opts),
 			file: formatAssetUrl(iconsFile, opts),
 			'fill-none': formatAssetUrl(iconsFillNone, opts),
@@ -368,6 +365,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'text-align-left': formatAssetUrl(iconsTextAlignLeft, opts),
 			'text-align-right': formatAssetUrl(iconsTextAlignRight, opts),
 			'th-large': formatAssetUrl(iconsThLarge, opts),
+			'times-circle': formatAssetUrl(iconsTimesCircle, opts),
 			'tool-arrow': formatAssetUrl(iconsToolArrow, opts),
 			'tool-embed': formatAssetUrl(iconsToolEmbed, opts),
 			'tool-eraser': formatAssetUrl(iconsToolEraser, opts),

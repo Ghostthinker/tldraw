@@ -42,7 +42,6 @@ export type TLUiIconType =
 	| 'chevrons-ne'
 	| 'chevrons-sw'
 	| 'clipboard-copy'
-	| 'cloud-upload'
 	| 'code'
 	| 'collab'
 	| 'color'
@@ -62,7 +61,6 @@ export type TLUiIconType =
 	| 'drag-handle-dots'
 	| 'duplicate'
 	| 'edit'
-	| 'edubreak-logo-button'
 	| 'external-link'
 	| 'file'
 	| 'fill-none'
@@ -138,6 +136,7 @@ export type TLUiIconType =
 	| 'text-align-left'
 	| 'text-align-right'
 	| 'th-large'
+	| 'times-circle'
 	| 'tool-arrow'
 	| 'tool-embed'
 	| 'tool-eraser'
@@ -206,7 +205,6 @@ export const TLUiIconTypes = [
 	'chevrons-ne',
 	'chevrons-sw',
 	'clipboard-copy',
-	'cloud-upload',
 	'code',
 	'collab',
 	'color',
@@ -226,7 +224,6 @@ export const TLUiIconTypes = [
 	'drag-handle-dots',
 	'duplicate',
 	'edit',
-	'edubreak-logo-button',
 	'external-link',
 	'file',
 	'fill-none',
@@ -302,6 +299,7 @@ export const TLUiIconTypes = [
 	'text-align-left',
 	'text-align-right',
 	'th-large',
+	'times-circle',
 	'tool-arrow',
 	'tool-embed',
 	'tool-eraser',

@@ -11,12 +11,17 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 	const [display, setDisplay] = useState(true)
 	const position = 'top-right'
 	const [onlyMarkedContent, setonlyMarkedContent] = useState(true)
+	const [artefactsList, setArtefactsList] = useState([])
 
 	const onHide = () => {
 		setDisplay(false)
 	}
 
 	const header = <div className="artefact-menu-header">{msg('artefact-menu.header')}</div>
+
+	function getArtefacts() {
+		console.log('I got artefacts !!!!!!!!!!!!!!!!')
+	}
 
 	function getArtefactMenuContent() {
 		return (
@@ -36,8 +41,7 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 					</div>
 				</div>
 				<div className="artefact-menu-content-bottom">
-					{/*TODO: add artefacts to list*/}
-					{msg('artefact-menu.no-artefacts')}
+					{artefactsList.length > 0 ? getArtefacts() : msg('artefact-menu.no-artefacts')}
 				</div>
 			</div>
 		)

@@ -174,10 +174,6 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/clipboard-copy.svg', import.meta.url).href,
 				opts
 			),
-			'cloud-upload': formatAssetUrl(
-				new URL('../icons/icon/cloud-upload.svg', import.meta.url).href,
-				opts
-			),
 			code: formatAssetUrl(new URL('../icons/icon/code.svg', import.meta.url).href, opts),
 			collab: formatAssetUrl(new URL('../icons/icon/collab.svg', import.meta.url).href, opts),
 			color: formatAssetUrl(new URL('../icons/icon/color.svg', import.meta.url).href, opts),
@@ -224,10 +220,6 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			),
 			duplicate: formatAssetUrl(new URL('../icons/icon/duplicate.svg', import.meta.url).href, opts),
 			edit: formatAssetUrl(new URL('../icons/icon/edit.svg', import.meta.url).href, opts),
-			'edubreak-logo-button': formatAssetUrl(
-				new URL('../icons/icon/edubreak-logo-button.svg', import.meta.url).href,
-				opts
-			),
 			'external-link': formatAssetUrl(
 				new URL('../icons/icon/external-link.svg', import.meta.url).href,
 				opts
@@ -456,6 +448,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				opts
 			),
 			'th-large': formatAssetUrl(new URL('../icons/icon/th-large.svg', import.meta.url).href, opts),
+			'times-circle': formatAssetUrl(
+				new URL('../icons/icon/times-circle.svg', import.meta.url).href,
+				opts
+			),
 			'tool-arrow': formatAssetUrl(
 				new URL('../icons/icon/tool-arrow.svg', import.meta.url).href,
 				opts
