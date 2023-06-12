@@ -33,6 +33,7 @@ import iconsAlignCenterLeft from '../icons/icon/align-center-left.svg'
 import iconsAlignCenterRight from '../icons/icon/align-center-right.svg'
 import iconsAlignCenterVertical from '../icons/icon/align-center-vertical.svg'
 import iconsAlignLeft from '../icons/icon/align-left.svg'
+import iconsAlignLeft2 from '../icons/icon/align-left2.svg'
 import iconsAlignRight from '../icons/icon/align-right.svg'
 import iconsAlignTopCenter from '../icons/icon/align-top-center.svg'
 import iconsAlignTopLeft from '../icons/icon/align-top-left.svg'
@@ -66,6 +67,7 @@ import iconsCode from '../icons/icon/code.svg'
 import iconsCollab from '../icons/icon/collab.svg'
 import iconsColor from '../icons/icon/color.svg'
 import iconsComment from '../icons/icon/comment.svg'
+import iconsComments from '../icons/icon/comments.svg'
 import iconsCross2 from '../icons/icon/cross-2.svg'
 import iconsCross from '../icons/icon/cross.svg'
 import iconsDashDashed from '../icons/icon/dash-dashed.svg'
@@ -243,6 +245,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'align-center-right': formatAssetUrl(iconsAlignCenterRight, opts),
 			'align-center-vertical': formatAssetUrl(iconsAlignCenterVertical, opts),
 			'align-left': formatAssetUrl(iconsAlignLeft, opts),
+			'align-left2': formatAssetUrl(iconsAlignLeft2, opts),
 			'align-right': formatAssetUrl(iconsAlignRight, opts),
 			'align-top-center': formatAssetUrl(iconsAlignTopCenter, opts),
 			'align-top-left': formatAssetUrl(iconsAlignTopLeft, opts),
@@ -276,6 +279,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			collab: formatAssetUrl(iconsCollab, opts),
 			color: formatAssetUrl(iconsColor, opts),
 			comment: formatAssetUrl(iconsComment, opts),
+			comments: formatAssetUrl(iconsComments, opts),
 			'cross-2': formatAssetUrl(iconsCross2, opts),
 			cross: formatAssetUrl(iconsCross, opts),
 			'dash-dashed': formatAssetUrl(iconsDashDashed, opts),

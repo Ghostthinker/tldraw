@@ -2193,12 +2193,24 @@
 	scrollbar-width: none;  /* Firefox */
 }
 
+.artefact-menu-content-bottom.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .artefact-menu-content-bottom::-webkit-scrollbar {
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	display: none;
 }
 
 /*Artefact Card*/
+
+.artefact-spinner {
+	align-self: center;
+	height: 10%;
+	width: 10%;
+}
 
 .p-card-body {
 	padding: 0 0.5rem 0.5rem 0.5rem !important;
@@ -2210,6 +2222,8 @@
 
 .artefact-card-wrapper {
 	margin-bottom: 13px;
+	pointer-events: all;
+	cursor: move;
 }
 
 .p-card {

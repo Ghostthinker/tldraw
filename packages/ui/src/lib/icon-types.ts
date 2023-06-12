@@ -13,6 +13,7 @@ export type TLUiIconType =
 	| 'align-center-right'
 	| 'align-center-vertical'
 	| 'align-left'
+	| 'align-left2'
 	| 'align-right'
 	| 'align-top-center'
 	| 'align-top-left'
@@ -46,6 +47,7 @@ export type TLUiIconType =
 	| 'collab'
 	| 'color'
 	| 'comment'
+	| 'comments'
 	| 'cross-2'
 	| 'cross'
 	| 'dash-dashed'
@@ -177,6 +179,7 @@ export const TLUiIconTypes = [
 	'align-center-right',
 	'align-center-vertical',
 	'align-left',
+	'align-left2',
 	'align-right',
 	'align-top-center',
 	'align-top-left',
@@ -210,6 +213,7 @@ export const TLUiIconTypes = [
 	'collab',
 	'color',
 	'comment',
+	'comments',
 	'cross-2',
 	'cross',
 	'dash-dashed',

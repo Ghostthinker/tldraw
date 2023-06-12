@@ -7,6 +7,9 @@ import { TLBaseShape, createShapeValidator } from './shape-validation'
 
 /** @public */
 export type TLEdubreakVideoShapeProps = {
+	title: string
+	body: string
+	thumbnail: string
 	opacity: TLOpacityType
 	w: number
 	h: number
@@ -25,6 +28,9 @@ export const edubreakVideoShapeTypeValidator: T.Validator<TLEdubreakVideoShape> 
 	createShapeValidator(
 		'edubreakVideo',
 		T.object({
+			title: T.string,
+			body: T.string,
+			thumbnail: T.string,
 			opacity: opacityValidator,
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,

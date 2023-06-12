@@ -583,6 +583,9 @@ export function createAssetShapeAtPoint(app: App, svgString: string, point: Vec2
 export function createBookmarkShapeAtPoint(app: App, url: string, point: Vec2dModel): Promise<void>;
 
 // @public (undocumented)
+export function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any): Promise<void>;
+
+// @public (undocumented)
 export function createEmbedShapeAtPoint(app: App, url: string, point: Vec2dModel, props: {
     width?: number;
     height?: number;

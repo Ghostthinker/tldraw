@@ -983,6 +983,8 @@ export type TLEdubreakContentShape = TLBaseShape<'edubreakContent', TLEdubreakCo
 
 // @public (undocumented)
 export type TLEdubreakContentShapeProps = {
+    title: string;
+    body: string;
     opacity: TLOpacityType;
     w: number;
     h: number;
@@ -1005,6 +1007,9 @@ export type TLEdubreakVideoShape = TLBaseShape<'edubreakVideo', TLEdubreakVideoS
 
 // @public (undocumented)
 export type TLEdubreakVideoShapeProps = {
+    title: string;
+    body: string;
+    thumbnail: string;
     opacity: TLOpacityType;
     w: number;
     h: number;

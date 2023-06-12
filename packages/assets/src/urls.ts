@@ -67,6 +67,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/align-left.svg', import.meta.url).href,
 				opts
 			),
+			'align-left2': formatAssetUrl(
+				new URL('../icons/icon/align-left2.svg', import.meta.url).href,
+				opts
+			),
 			'align-right': formatAssetUrl(
 				new URL('../icons/icon/align-right.svg', import.meta.url).href,
 				opts
@@ -178,6 +182,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			collab: formatAssetUrl(new URL('../icons/icon/collab.svg', import.meta.url).href, opts),
 			color: formatAssetUrl(new URL('../icons/icon/color.svg', import.meta.url).href, opts),
 			comment: formatAssetUrl(new URL('../icons/icon/comment.svg', import.meta.url).href, opts),
+			comments: formatAssetUrl(new URL('../icons/icon/comments.svg', import.meta.url).href, opts),
 			'cross-2': formatAssetUrl(new URL('../icons/icon/cross-2.svg', import.meta.url).href, opts),
 			cross: formatAssetUrl(new URL('../icons/icon/cross.svg', import.meta.url).href, opts),
 			'dash-dashed': formatAssetUrl(

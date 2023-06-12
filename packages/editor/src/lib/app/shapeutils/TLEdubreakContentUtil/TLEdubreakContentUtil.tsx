@@ -23,6 +23,8 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 
 	override defaultProps(): TLEdubreakContentShape['props'] {
 		return {
+			title: '',
+			body: '',
 			opacity: '1',
 			w: 100,
 			h: 100,

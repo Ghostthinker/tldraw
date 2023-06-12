@@ -7,6 +7,8 @@ import { TLBaseShape, createShapeValidator } from './shape-validation'
 
 /** @public */
 export type TLEdubreakContentShapeProps = {
+	title: string
+	body: string
 	opacity: TLOpacityType
 	w: number
 	h: number
@@ -23,6 +25,8 @@ export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentSha
 	createShapeValidator(
 		'edubreakContent',
 		T.object({
+			title: T.string,
+			body: T.string,
 			opacity: opacityValidator,
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,

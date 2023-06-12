@@ -1,4 +1,3 @@
-import { getNodeAsJSON } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import {
 	TLAsset,
@@ -420,20 +419,24 @@ export function createEmbedShapeAtPoint(
 }
 
 /** @public */
-export async function createEdubreakShapeAtPoint(app: App, options: any, point: Vec2dModel) {
-	const edubreakContent = await getNodeAsJSON(options)
+export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
 	switch (options.type) {
 		case 'blog':
 			app.createShapes(
 				[
 					{
 						id: createShapeId(),
-						type: 'content',
+						type: 'edubreakContent',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							opacity: '1',
+							w: 100,
+							h: 100,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
 						},
 					},
 				],
@@ -445,12 +448,17 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 				[
 					{
 						id: createShapeId(),
-						type: 'content',
+						type: 'edubreakContent',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							opacity: '1',
+							w: 100,
+							h: 100,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
 						},
 					},
 				],
@@ -466,9 +474,16 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							thumbnail: options.linkVideoThumbnail,
+							opacity: '1',
 							body: '',
-							thumbnail: edubreakContent.linkVideoThumbnail,
+							w: 100,
+							h: 100,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
+							url: options.campusURL,
 						},
 					},
 				],
@@ -484,9 +499,16 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
-							thumbnail: edubreakContent.video_comment_thumbnail_image,
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							thumbnail: options.video_comment_thumbnail_image,
+							opacity: '1',
+							w: 100,
+							h: 100,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
+							url: options.campusURL,
 						},
 					},
 				],
