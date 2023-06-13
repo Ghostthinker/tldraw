@@ -5,6 +5,9 @@
 ```ts
 
 // @public (undocumented)
+export function addToInbox(artefact: any): Promise<void>;
+
+// @public (undocumented)
 export function deleteFromInbox(nid: string): Promise<any>;
 
 // @public (undocumented)

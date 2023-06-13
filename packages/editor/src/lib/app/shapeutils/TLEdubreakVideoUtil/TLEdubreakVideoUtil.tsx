@@ -23,12 +23,14 @@ export class TLEdubreakVideoUtil extends TLBoxUtil<TLEdubreakVideoShape> {
 
 	override defaultProps(): TLEdubreakVideoShape['props'] {
 		return {
+			id: 0,
 			title: '',
 			body: '',
 			thumbnail: '',
 			opacity: '1',
 			w: 100,
 			h: 100,
+			type: '',
 			assetId: null,
 			time: 0,
 			playing: true,

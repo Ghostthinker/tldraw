@@ -7,11 +7,13 @@ import { TLBaseShape, createShapeValidator } from './shape-validation'
 
 /** @public */
 export type TLEdubreakContentShapeProps = {
+	id: number
 	title: string
 	body: string
 	opacity: TLOpacityType
 	w: number
 	h: number
+	type: string
 	assetId: TLAssetId | null
 	url: string
 }
@@ -25,11 +27,13 @@ export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentSha
 	createShapeValidator(
 		'edubreakContent',
 		T.object({
+			id: T.number,
 			title: T.string,
 			body: T.string,
 			opacity: opacityValidator,
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,
+			type: T.string,
 			assetId: assetIdValidator.nullable(),
 			url: T.string,
 		})

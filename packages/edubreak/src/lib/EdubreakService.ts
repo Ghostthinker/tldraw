@@ -75,7 +75,7 @@ export function getEdubreakAccessToken() {
 export async function getNodeAsJSON(options: any) {
 	const endpoint = await getEdubreakEndpointFromType(options)
 	const headers = { Authorization: 'Bearer ' + getEdubreakAccessToken() }
-	return await fetch(getEdubreakApiUrl() + endpoint + options.nid, { headers }).then((response) => {
+	return await fetch(getEdubreakApiUrl() + endpoint + options.id, { headers }).then((response) => {
 		return response.json()
 	})
 }
@@ -250,6 +250,32 @@ export async function getInbox() {
 		return data.data
 	} catch (e) {
 		console.warn('### EdubreakService: there is no new inbox items for this board ###', e)
+	}
+}
+
+/**
+ * @public
+ */
+export async function addToInbox(artefact: any) {
+	// Simple POST request with a JSON body using fetch
+	try {
+		const headers = {
+			Authorization: 'Bearer ' + getEdubreakAccessToken(),
+		}
+		// get the board's ID from the url
+		const boardId = getBoardIDfromURL()
+		const options = {
+			method: 'POST',
+			headers: headers,
+			body: JSON.stringify({
+				artefact_id: String(artefact.props.id),
+				artefact_type: 'content:' + artefact.props.type,
+			}),
+		}
+		await fetch(getEdubreakApiUrl() + '/svb/' + boardId + '/inbox', options)
+		console.warn('### EdubreakService: artefact was saved to inbox ###')
+	} catch (e) {
+		console.error('### EdubreakService: error while sending an artefact to the inbox ###', e)
 	}
 }
 

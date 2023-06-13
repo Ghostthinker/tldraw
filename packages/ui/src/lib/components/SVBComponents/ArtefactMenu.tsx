@@ -26,14 +26,13 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 	}
 
 	const onDeleteInboxItem = (e: any) => {
-		console.log('respone is', e)
 		const newArtefactsList = artefactsRef.current.filter((item: any) => item.id !== e.detail)
 		setArtefactsList(newArtefactsList)
 	}
 
 	const header = <div className="artefact-menu-header">{msg('artefact-menu.header')}</div>
 
-	useEffect(() => {
+	function loadArtefacts() {
 		getInbox().then((inbox) => {
 			try {
 				if (inbox !== undefined) {
@@ -50,6 +49,11 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 				setLoading(false)
 			}
 		})
+	}
+
+	useEffect(() => {
+		loadArtefacts()
+		window.addEventListener('onAddArtefactToInbox', loadArtefacts)
 	}, [])
 
 	function getArtefactMenuContent() {

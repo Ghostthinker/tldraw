@@ -12,6 +12,7 @@ import {
 	TLTextShape,
 	useApp,
 } from '@tldraw/editor'
+import { addToInbox, getInbox } from '@tldraw/edubreak'
 import { approximately, Box2d, TAU, Vec2d } from '@tldraw/primitives'
 import { compact } from '@tldraw/utils'
 import * as React from 'react'
@@ -75,6 +76,30 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 	const { cut, copy } = useMenuClipboardEvents()
 	const copyAs = useCopyAs()
 	const exportAs = useExportAs()
+
+	async function checkShapesAreInArtefactMenu(edubreakShapes: any, inbox: any) {
+		const addedArtefacts: any = []
+		let isAlreadyAdded = false
+		let isAlreadyInInbox = false
+		for (const shape of edubreakShapes) {
+			if (!inbox) {
+				isAlreadyAdded = addedArtefacts.some(
+					(artefact: any) => artefact.props.id === shape.props.id
+				)
+				if (!isAlreadyAdded) {
+					addedArtefacts.push(shape)
+					await addToInbox(shape)
+					const addArtefactToInbox = new CustomEvent('onAddArtefactToInbox')
+					window.dispatchEvent(addArtefactToInbox)
+				}
+			} else {
+				isAlreadyInInbox = inbox.some((artefact: any) => artefact.id === shape.props.id)
+				if (!isAlreadyInInbox) {
+					await addToInbox(shape)
+				}
+			}
+		}
+	}
 
 	// should this be a useMemo? looks like it doesn't actually deref any reactive values
 	const actions = React.useMemo<ActionsContextType>(() => {
@@ -673,6 +698,15 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 				readonlyOk: false,
 				onSelect() {
 					if (app.currentToolId !== 'select') return
+					const selectedShapes = app.selectedShapes
+					const edubreakShapes = selectedShapes.filter((selectedShape) => {
+						return (
+							selectedShape.type === 'edubreakContent' || selectedShape.type === 'edubreakVideo'
+						)
+					})
+					if (edubreakShapes) {
+						getInbox().then((inbox) => checkShapesAreInArtefactMenu(edubreakShapes, inbox))
+					}
 					app.mark('delete')
 					app.deleteShapes()
 				},

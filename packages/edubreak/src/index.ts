@@ -1,5 +1,6 @@
 export {
 	NodeTypeEnum,
+	addToInbox,
 	deleteFromInbox,
 	getBoardIDfromURL,
 	getEdubreakAccessToken,

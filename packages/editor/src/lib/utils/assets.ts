@@ -1,3 +1,4 @@
+import { getNodeAsJSON } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import {
 	TLAsset,
@@ -420,6 +421,10 @@ export function createEmbedShapeAtPoint(
 
 /** @public */
 export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
+	let videoContents
+	if (options.type === 'video') {
+		videoContents = await getNodeAsJSON(options)
+	}
 	switch (options.type) {
 		case 'blog':
 			app.createShapes(
@@ -430,11 +435,13 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
+							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							body: TextHelpers.normalizeTextForDom(options.body.trim()),
 							opacity: '1',
 							w: 100,
 							h: 100,
+							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
 						},
@@ -452,11 +459,13 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
+							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							body: TextHelpers.normalizeTextForDom(options.body.trim()),
 							opacity: '1',
 							w: 100,
 							h: 100,
+							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
 						},
@@ -474,12 +483,14 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
+							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							thumbnail: options.linkVideoThumbnail,
+							thumbnail: videoContents.linkVideoThumbnail,
 							opacity: '1',
 							body: '',
 							w: 100,
 							h: 100,
+							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
 							playing: false,
@@ -499,12 +510,14 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
+							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							body: TextHelpers.normalizeTextForDom(options.body.trim()),
 							thumbnail: options.video_comment_thumbnail_image,
 							opacity: '1',
 							w: 100,
 							h: 100,
+							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
 							playing: false,
