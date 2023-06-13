@@ -1663,3 +1663,60 @@ it from receiving any pointer events or affecting the cursor. */
 	font-size: 12px;
 	font-family: monospace;
 }
+
+/* --------------------- EdubreakVideoUtil --------------------- */
+
+.edubreak-video-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.edubreak-content-wrapper {
+	display: flex;
+	flex-direction: column;
+	text-align: start;
+	background-color: white;
+	color: black;
+	height: 500px;
+	max-height: 500px;
+	overflow-y: scroll;
+	padding: 2% 4% 0 4%;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.edubreak-text {
+	text-align: center;
+	font-size: 1.5rem;
+	background-color: white;
+	color: black;
+	font-weight: bold;
+	height: 50px;
+	max-height: 50px;
+	overflow-y: scroll;
+	padding: 2% 4% 0 4%;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.edubreak-content-text-title {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background-color: white;
+	color: black;
+}
+
+.edubreak-content-text {
+	text-align: start;
+	font-size: 0.8rem;
+	background-color: white;
+	color: black;
+}
+
+.edubreak-text::-webkit-scrollbar, .edubreak-content-text::-webkit-scrollbar {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	display: none;
+}
+
+/* --------------------- EdubreakContentUtil --------------------- */

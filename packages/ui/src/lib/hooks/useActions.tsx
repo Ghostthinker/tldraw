@@ -89,16 +89,16 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 				if (!isAlreadyAdded) {
 					addedArtefacts.push(shape)
 					await addToInbox(shape)
-					const addArtefactToInbox = new CustomEvent('onAddArtefactToInbox')
-					window.dispatchEvent(addArtefactToInbox)
 				}
 			} else {
-				isAlreadyInInbox = inbox.some((artefact: any) => artefact.id === shape.props.id)
+				isAlreadyInInbox = inbox.some((artefact: any) => artefact.id === String(shape.props.id))
 				if (!isAlreadyInInbox) {
 					await addToInbox(shape)
 				}
 			}
 		}
+		const addArtefactToInbox = new CustomEvent('onAddArtefactToInbox')
+		window.dispatchEvent(addArtefactToInbox)
 	}
 
 	// should this be a useMemo? looks like it doesn't actually deref any reactive values

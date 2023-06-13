@@ -33,6 +33,9 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 	const header = <div className="artefact-menu-header">{msg('artefact-menu.header')}</div>
 
 	function loadArtefacts() {
+		if (!loading) {
+			setLoading(true)
+		}
 		getInbox().then((inbox) => {
 			try {
 				if (inbox !== undefined) {
