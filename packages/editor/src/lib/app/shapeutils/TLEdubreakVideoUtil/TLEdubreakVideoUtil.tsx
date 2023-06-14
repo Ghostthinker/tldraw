@@ -175,6 +175,7 @@ const TLEdubreakVideoUtilComponent = track(function TLEdubreakVideoUtilComponent
 					height={shape.props.h - 400}
 					src={shape.props.thumbnail}
 					alt={'Thumbnail'}
+					draggable={false}
 				/>
 				<div className="edubreak-text">
 					<div>{shape.props.title}</div>

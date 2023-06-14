@@ -1669,9 +1669,11 @@ it from receiving any pointer events or affecting the cursor. */
 .edubreak-video-wrapper {
 	display: flex;
 	flex-direction: column;
+	pointer-events: all;
 }
 
 .edubreak-content-wrapper {
+	pointer-events: all;
 	display: flex;
 	flex-direction: column;
 	text-align: start;
