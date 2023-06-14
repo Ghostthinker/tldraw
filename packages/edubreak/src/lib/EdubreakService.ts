@@ -14,6 +14,13 @@ let domain = ''
 let path = ''
 
 /**
+ *
+ * @public
+ */
+export function getFlavor() {
+	return environment.APP_FLAVOR
+}
+/**
  * Gets the edubreak endpoint for a certain node type.
  *
  * @public

@@ -1693,8 +1693,8 @@ it from receiving any pointer events or affecting the cursor. */
 	background-color: white;
 	color: black;
 	font-weight: bold;
-	height: 50px;
-	max-height: 50px;
+	height: 40px;
+	max-height: 40px;
 	overflow-y: scroll;
 	padding: 2% 4% 0 4%;
 	-ms-overflow-style: none;

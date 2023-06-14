@@ -1,3 +1,4 @@
+import { getFlavor } from '@tldraw/edubreak'
 import { UiAssetUrls } from '../../assetUrls'
 import { DEFAULT_TRANSLATION } from './defaultTranslation'
 import { LANGUAGES } from './languages'
@@ -56,6 +57,10 @@ export async function fetchTranslation(
 
 	if (locale === 'en') {
 		return EN_TRANSLATION
+	}
+
+	if (getFlavor() === 'svh') {
+		locale = 'svh-' + locale
 	}
 
 	const language = LANGUAGES.find((t) => t.locale === locale)

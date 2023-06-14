@@ -171,7 +171,7 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 			<div className="edubreak-content-wrapper">
 				<div className="edubreak-content-text-title">{shape.props.title}</div>
 				<div className="edubreak-content-text">
-					{shape.props.body}
+					<div dangerouslySetInnerHTML={{ __html: shape.props.body }}></div>
 					{'url' in shape.props && shape.props.url && (
 						<HyperlinkButton url={shape.props.url} zoomLevel={edubreakContentUtil.app.zoomLevel} />
 					)}
