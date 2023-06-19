@@ -1,10 +1,10 @@
 import { createEdubreakShapeAtPoint, useApp } from '@tldraw/editor'
-import { deleteFromInbox, NodeTypeEnum } from '@tldraw/edubreak'
+import { NodeTypeEnum, deleteFromInbox } from '@tldraw/edubreak'
 import _uniqueId from 'lodash/uniqueId'
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
 import { Chip } from 'primereact/chip'
-import { memo, ReactChild, useEffect, useState } from 'react'
+import { ReactChild, memo, useEffect, useState } from 'react'
 import { useTranslation } from '../../hooks/useTranslation/useTranslation'
 import { Icon } from '../primitives/Icon'
 
@@ -43,11 +43,15 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 	}
 
 	useEffect(() => {
-		const tagElements = []
-		for (const tag of props.artefact.tags) {
-			tagElements.push(<Chip className="artefact-card-tag" key={_uniqueId('tag-')} label={tag} />)
+		if (props.artefact.tags) {
+			const tagElements = []
+			for (const tag of props.artefact.tags[0]) {
+				tagElements.push(
+					<Chip className="artefact-card-tag" key={_uniqueId('tag-')} label={tag.name} />
+				)
+			}
+			setTags(tagElements)
 		}
-		setTags(tagElements)
 	}, [props.artefact.tags])
 
 	function getTags() {

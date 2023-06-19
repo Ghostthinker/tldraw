@@ -2221,7 +2221,7 @@
 }
 
 .artefact-card-wrapper {
-	margin-bottom: 13px;
+	margin-bottom: 1rem;
 	pointer-events: all;
 	cursor: move;
 }
@@ -2298,15 +2298,16 @@
 }
 
 .p-card-content:has(.artefact-card-content) {
-	padding: 7px 0 0 0;
+	padding: 0.5rem 0 0 0;
 	display: flex;
 }
 
 .artefact-card-tag {
 	background: #F5F5F5;
 	border-radius: 6px;
-	padding: 4px;
-	margin-right: 7px;
+	padding: 0.25rem;
+	margin-right: 0.5rem;
+	white-space: nowrap;
 }
 
 .p-chip-text {
