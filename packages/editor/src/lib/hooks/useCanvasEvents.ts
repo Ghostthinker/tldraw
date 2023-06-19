@@ -1,5 +1,6 @@
+import { deleteFromInbox } from '@tldraw/edubreak'
 import React, { useMemo } from 'react'
-import { createShapesFromFiles } from '../utils/assets'
+import { createEdubreakShapeAtPoint, createShapesFromFiles } from '../utils/assets'
 import { preventDefault, releasePointerCapture, setPointerCapture } from '../utils/dom'
 import { getPointerInfo } from '../utils/svg'
 import { useApp } from './useApp'
@@ -101,13 +102,25 @@ export function useCanvasEvents() {
 
 			async function onDrop(e: React.DragEvent<Element>) {
 				preventDefault(e)
-				if (!e.dataTransfer?.files?.length) return
+				const artefact = JSON.parse(e.dataTransfer.getData('text/plain'))
+				if (artefact.campusURL) {
+					await createEdubreakShapeAtPoint(app, app.viewportPageCenter, artefact)
+					const response = await deleteFromInbox(artefact.id)
+					if (response) {
+						const deleteInboxItemEvent = new CustomEvent('onDeleteInboxItem', { detail: response })
+						window.dispatchEvent(deleteInboxItemEvent)
+					} else {
+						throw new Error('The edubreak inbox item could not be deleted properly')
+					}
+				} else {
+					if (!e.dataTransfer?.files?.length) return
 
-				const files = Array.from(e.dataTransfer.files).filter(
-					(file) => !file.name.endsWith('.tldr')
-				)
+					const files = Array.from(e.dataTransfer.files).filter(
+						(file) => !file.name.endsWith('.tldr')
+					)
 
-				await createShapesFromFiles(app, files, app.screenToPage(e.clientX, e.clientY), false)
+					await createShapesFromFiles(app, files, app.screenToPage(e.clientX, e.clientY), false)
+				}
 			}
 
 			return {

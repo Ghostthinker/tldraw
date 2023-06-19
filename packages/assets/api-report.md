@@ -23,6 +23,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'align-center-right': string;
         readonly 'align-center-vertical': string;
         readonly 'align-left': string;
+        readonly 'align-left2': string;
         readonly 'align-right': string;
         readonly 'align-top-center': string;
         readonly 'align-top-left': string;
@@ -56,6 +57,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly collab: string;
         readonly color: string;
         readonly comment: string;
+        readonly comments: string;
         readonly 'cross-2': string;
         readonly cross: string;
         readonly 'dash-dashed': string;
@@ -169,6 +171,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly ungroup: string;
         readonly 'unlock-small': string;
         readonly unlock: string;
+        readonly video: string;
         readonly visible: string;
         readonly 'warning-triangle': string;
         readonly 'zoom-in': string;

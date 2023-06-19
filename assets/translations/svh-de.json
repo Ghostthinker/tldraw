@@ -335,5 +335,6 @@
 	"file-system.shared-document-file-open-error.title": "Konnte die Datei nicht öffnen",
 	"artefact-menu.header": "SVH",
 	"artefact-menu.only-show-marked-content": "Zeige nur in Social Video Hub markierte Inhalte",
-	"artefact-menu.no-artefacts": "Leider gibt es noch keine Kommentare in Videos, die verwendet werden könnten"
+	"artefact-menu.no-artefacts": "Leider gibt es noch keine Kommentare in Videos, die verwendet werden könnten",
+	"artefact.add": "Hinzufügen"
 }

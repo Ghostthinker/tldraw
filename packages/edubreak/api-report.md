@@ -5,6 +5,9 @@
 ```ts
 
 // @public (undocumented)
+export function addToInbox(artefact: any): Promise<void>;
+
+// @public (undocumented)
 export function deleteFromInbox(nid: string): Promise<any>;
 
 // @public (undocumented)
@@ -23,7 +26,16 @@ export function getEdubreakEndpointFromType(options: any): Promise<"" | "/conten
 export function getEdubreakIds(edubreakPath: string): RegExpMatchArray[];
 
 // @public (undocumented)
+export function getFlavor(): string;
+
+// @public (undocumented)
+export function getInbox(): Promise<any>;
+
+// @public (undocumented)
 export function getNodeAsJSON(options: any): Promise<any>;
+
+// @public (undocumented)
+export function getNodeType(path: string): NodeTypeEnum | null;
 
 // @public (undocumented)
 export function getStateFromEdubreak(): Promise<any>;

@@ -983,9 +983,13 @@ export type TLEdubreakContentShape = TLBaseShape<'edubreakContent', TLEdubreakCo
 
 // @public (undocumented)
 export type TLEdubreakContentShapeProps = {
+    id: number;
+    title: string;
+    body: string;
     opacity: TLOpacityType;
     w: number;
     h: number;
+    type: string;
     assetId: null | TLAssetId;
     url: string;
 };
@@ -1005,12 +1009,17 @@ export type TLEdubreakVideoShape = TLBaseShape<'edubreakVideo', TLEdubreakVideoS
 
 // @public (undocumented)
 export type TLEdubreakVideoShapeProps = {
+    id: number;
+    title: string;
+    body: string;
+    thumbnail: string;
     opacity: TLOpacityType;
     w: number;
     h: number;
     time: number;
     playing: boolean;
     url: string;
+    type: string;
     assetId: null | TLAssetId;
 };
 

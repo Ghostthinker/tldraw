@@ -420,20 +420,30 @@ export function createEmbedShapeAtPoint(
 }
 
 /** @public */
-export async function createEdubreakShapeAtPoint(app: App, options: any, point: Vec2dModel) {
-	const edubreakContent = await getNodeAsJSON(options)
+export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
+	let videoContents
+	if (options.type === 'video') {
+		videoContents = await getNodeAsJSON(options)
+	}
 	switch (options.type) {
 		case 'blog':
 			app.createShapes(
 				[
 					{
 						id: createShapeId(),
-						type: 'content',
+						type: 'edubreakContent',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							opacity: '1',
+							w: 400,
+							h: 500,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
 						},
 					},
 				],
@@ -445,12 +455,19 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 				[
 					{
 						id: createShapeId(),
-						type: 'content',
+						type: 'edubreakContent',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							opacity: '1',
+							w: 400,
+							h: 500,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
 						},
 					},
 				],
@@ -466,9 +483,18 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							thumbnail: videoContents.linkVideoThumbnail,
+							opacity: '1',
 							body: '',
-							thumbnail: edubreakContent.linkVideoThumbnail,
+							w: 400,
+							h: 264,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
+							url: options.campusURL,
 						},
 					},
 				],
@@ -484,9 +510,18 @@ export async function createEdubreakShapeAtPoint(app: App, options: any, point: 
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
-							title: TextHelpers.normalizeTextForDom(edubreakContent.title.trim()),
-							body: TextHelpers.normalizeTextForDom(edubreakContent.body.trim()),
-							thumbnail: edubreakContent.video_comment_thumbnail_image,
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							thumbnail: options.video_comment_thumbnail_image,
+							opacity: '1',
+							w: 400,
+							h: 264,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
+							url: options.campusURL,
 						},
 					},
 				],

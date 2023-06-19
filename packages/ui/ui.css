@@ -2073,7 +2073,7 @@
 	bottom: var(--space-3);
 }
 
-.p-button {
+.p-button.p-speeddial-button {
 	background-color: var(--svb-color-button);
 	border: 1px solid var(--svb-color-button);
 }
@@ -2102,7 +2102,7 @@
 		background: var(--svb-color-button);
 	}
 
-	.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
+	.p-button.p-speeddial-button:enabled:hover, .p-button.p-speeddial-button:not(button):not(a):not(.p-disabled):hover {
 		background-color: var(--svb-color-button-hover);
 		border: 1px solid var(--svb-color-button-hover);
 	}
@@ -2121,8 +2121,9 @@
 }
 
 /*ArtefactMenu*/
+
 .artefact-menu {
-	width: 400px;
+	width: 350px;
 }
 
 .artefact-menu-header {
@@ -2133,15 +2134,21 @@
 }
 
 .p-dialog-header {
-	padding: 1rem 1rem 0.5rem 1rem !important;
+	padding: 0.5rem 0.5rem 0.5rem 1rem !important;
+}
+
+.p-dialog-header-close {
+	zoom: 0.8;
+	color: black !important;
 }
 
 .p-inputswitch {
-	zoom: 0.75;
+	zoom: 0.6;
 }
 
 .p-dialog-content {
-	padding: 0 1rem 2rem 1rem !important;
+	padding: 0 0.5rem 1.5rem 0.5rem !important;
+	max-height: 600px;
 }
 
 .artefact-menu-content-top {
@@ -2159,7 +2166,7 @@
 
 .artefact-menu-content-top-text {
 	color: #212121;
-	font-size: 0.7rem;
+	font-size: 0.65rem;
 	padding-left: 2%;
 }
 
@@ -2177,5 +2184,152 @@
 	text-align: center;
 	font-size: 0.8rem;
 	color: #023047;
+	height: 400px;
+	max-height: 400px;
+	overflow-y: scroll;
+	padding: 1% 4% 0 4%;
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.artefact-menu-content-bottom.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.artefact-menu-content-bottom::-webkit-scrollbar {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	display: none;
+}
+
+/*Artefact Card*/
+
+.artefact-spinner {
+	align-self: center;
+	height: 10%;
+	width: 10%;
+}
+
+.p-card-body {
+	padding: 0 0.5rem 0.5rem 0.5rem !important;
+}
+
+.p-card-header {
+	padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.artefact-card-wrapper {
+	margin-bottom: 1rem;
+	pointer-events: all;
+	cursor: move;
+}
+
+.p-card {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03), 0 0 2px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+	border-radius: 10px !important;
+}
+
+.artefact-card-header-top {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.artefact-card-title {
+	text-align: start;
+	font-family: Inter, sans-serif;
+	font-weight: 500 !important;
+	font-size: 0.8rem !important;
+}
+
+.artefact-card-icon {
+	color: #9E9E9E;
+	align-self: start;
+}
+
+.artefact-card-subtitle {
+	text-align: start;
+	font-size: 0.7rem !important;
+	font-weight: 500 !important;
+	color: #757575 !important;
+}
+
+.artefact-card-footer {
+	position: relative;
+	display: flex;
+	justify-content: end;
+}
+
+.artefact-card-content {
+	overflow: hidden;
+	overflow-x: scroll;
+	display: flex;
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.artefact-card-content::-webkit-scrollbar {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	display: none;
+}
+
+.artefact-card-button-add {
+	display: flex;
+	padding: 1% 5% 1% 5%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #023047;
+}
+
+.artefact-card-button-add-icon {
+	zoom: 0.9;
+}
+
+.artefact-card-button-add-label {
+	font-size: 0.8rem !important;
+	font-weight: 600 !important;
+	color: white !important;
+	margin-left: 0.5rem;
+}
+
+.p-card-content:has(.artefact-card-content) {
+	padding: 0.5rem 0 0 0;
+	display: flex;
+}
+
+.artefact-card-tag {
+	background: #F5F5F5;
+	border-radius: 6px;
+	padding: 0.25rem;
+	margin-right: 0.5rem;
+	white-space: nowrap;
+}
+
+.p-chip-text {
+	color: #757575;
+	font-family: Inter, sans-serif;
+	font-weight: 400;
+	line-height: 15px;
+	letter-spacing: 0;
+	text-align: left;
+	margin-top: 0 !important;
+	font-size: 0.7rem;
+	margin-bottom: 0!important;
+}
+
+.p-card-footer {
+	padding: 1rem 0 0 0 !important;
+}
+
+@media (hover: hover) {
+.artefact-card-button-add:hover {
+    background-color: #03466e !important;
+    transition-duration: 0s !important;
+}
 }
 

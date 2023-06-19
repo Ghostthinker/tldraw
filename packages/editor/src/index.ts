@@ -203,6 +203,7 @@ export {
 	containBoxSize,
 	createAssetShapeAtPoint,
 	createBookmarkShapeAtPoint,
+	createEdubreakShapeAtPoint,
 	createEmbedShapeAtPoint,
 	createShapesFromFiles,
 	dataUrlToFile,

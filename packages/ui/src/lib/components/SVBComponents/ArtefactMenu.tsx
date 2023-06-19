@@ -1,27 +1,63 @@
-import { memo, useState } from 'react'
-// import { useReadonly } from '../../hooks/useReadonly'
+import { getInbox } from '@tldraw/edubreak'
 import { Dialog } from 'primereact/dialog'
 import { InputSwitch } from 'primereact/inputswitch'
+import { memo, useEffect, useRef, useState } from 'react'
 import { useTranslation } from '../../hooks/useTranslation/useTranslation'
+import { Spinner } from '../Spinner'
 import { Icon } from '../primitives/Icon'
+import { Artefact } from './Artefact'
 
 export const ArtefactMenu = memo(function ArtefactMenu() {
 	const msg = useTranslation()
-	// const isReadonly = useReadonly()
+	const [loading, setLoading] = useState(true)
 	const [display, setDisplay] = useState(true)
 	const position = 'top-right'
 	const [onlyMarkedContent, setonlyMarkedContent] = useState(true)
-	const [artefactsList, setArtefactsList] = useState([])
+	const [artefactsList, _setArtefactsList] = useState<any[]>([])
+	const artefactsRef = useRef(artefactsList)
+
+	function setArtefactsList(artefactsList: any[]) {
+		artefactsRef.current = artefactsList
+		_setArtefactsList(artefactsList)
+	}
 
 	const onHide = () => {
 		setDisplay(false)
 	}
 
+	const onDeleteInboxItem = (e: any) => {
+		const newArtefactsList = artefactsRef.current.filter((item: any) => item.id !== e.detail)
+		setArtefactsList(newArtefactsList)
+	}
+
 	const header = <div className="artefact-menu-header">{msg('artefact-menu.header')}</div>
 
-	function getArtefacts() {
-		console.log('I got artefacts !!!!!!!!!!!!!!!!')
+	function loadArtefacts() {
+		if (!loading) {
+			setLoading(true)
+		}
+		getInbox().then((inbox) => {
+			try {
+				if (inbox !== undefined) {
+					const artefactElements = []
+					for (const artefact of inbox) {
+						artefactElements.push(artefact)
+					}
+					setArtefactsList(artefactElements)
+					window.addEventListener('onDeleteInboxItem', onDeleteInboxItem)
+				}
+			} catch (e) {
+				console.error('### Inbox Error: ', e)
+			} finally {
+				setLoading(false)
+			}
+		})
 	}
+
+	useEffect(() => {
+		loadArtefacts()
+		window.addEventListener('onAddArtefactToInbox', loadArtefacts)
+	}, [])
 
 	function getArtefactMenuContent() {
 		return (
@@ -30,6 +66,7 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 					<InputSwitch
 						checked={onlyMarkedContent}
 						onChange={(e) => setonlyMarkedContent(e.value!)}
+						disabled
 					/>
 					<span className="artefact-menu-content-top-text">
 						{msg('artefact-menu.only-show-marked-content')}
@@ -40,8 +77,20 @@ export const ArtefactMenu = memo(function ArtefactMenu() {
 						<Icon className="artefact-menu-content-top-icon" icon={'filter-fill'} />
 					</div>
 				</div>
-				<div className="artefact-menu-content-bottom">
-					{artefactsList.length > 0 ? getArtefacts() : msg('artefact-menu.no-artefacts')}
+				<div
+					className={
+						loading ? 'artefact-menu-content-bottom loading' : 'artefact-menu-content-bottom'
+					}
+				>
+					{loading ? (
+						<Spinner className="artefact-spinner" />
+					) : artefactsList.length > 0 ? (
+						artefactsList.map((artefact) => {
+							return <Artefact key={artefact.id} artefact={artefact} />
+						})
+					) : (
+						msg('artefact-menu.no-artefacts')
+					)}
 				</div>
 			</div>
 		)
