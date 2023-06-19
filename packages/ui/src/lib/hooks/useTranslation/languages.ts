@@ -8,6 +8,8 @@ export const LANGUAGES = [
 	{ locale: 'da', label: 'Danish' },
 	{ locale: 'de', label: 'Deutsch' },
 	{ locale: 'en', label: 'English' },
+	{ locale: 'svh-de', label: 'SVH Deutsch' },
+	{ locale: 'svh-en', label: 'SVH English' },
 	{ locale: 'es', label: 'Español' },
 	{ locale: 'fa', label: 'فارسی' },
 	{ locale: 'fi', label: 'Suomi' },

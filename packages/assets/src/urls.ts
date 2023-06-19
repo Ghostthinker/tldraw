@@ -241,6 +241,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/fill-solid.svg', import.meta.url).href,
 				opts
 			),
+			'filter-fill': formatAssetUrl(
+				new URL('../icons/icon/filter-fill.svg', import.meta.url).href,
+				opts
+			),
 			follow: formatAssetUrl(new URL('../icons/icon/follow.svg', import.meta.url).href, opts),
 			following: formatAssetUrl(new URL('../icons/icon/following.svg', import.meta.url).href, opts),
 			'font-draw': formatAssetUrl(
@@ -443,6 +447,11 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/text-align-right.svg', import.meta.url).href,
 				opts
 			),
+			'th-large': formatAssetUrl(new URL('../icons/icon/th-large.svg', import.meta.url).href, opts),
+			'times-circle': formatAssetUrl(
+				new URL('../icons/icon/times-circle.svg', import.meta.url).href,
+				opts
+			),
 			'tool-arrow': formatAssetUrl(
 				new URL('../icons/icon/tool-arrow.svg', import.meta.url).href,
 				opts
@@ -556,6 +565,8 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			ro: formatAssetUrl(new URL('../translations/ro.json', import.meta.url).href, opts),
 			ru: formatAssetUrl(new URL('../translations/ru.json', import.meta.url).href, opts),
 			sv: formatAssetUrl(new URL('../translations/sv.json', import.meta.url).href, opts),
+			'svh-de': formatAssetUrl(new URL('../translations/svh-de.json', import.meta.url).href, opts),
+			'svh-en': formatAssetUrl(new URL('../translations/svh-en.json', import.meta.url).href, opts),
 			te: formatAssetUrl(new URL('../translations/te.json', import.meta.url).href, opts),
 			th: formatAssetUrl(new URL('../translations/th.json', import.meta.url).href, opts),
 			tr: formatAssetUrl(new URL('../translations/tr.json', import.meta.url).href, opts),

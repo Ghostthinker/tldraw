@@ -77,6 +77,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'fill-pattern': string;
         readonly 'fill-semi': string;
         readonly 'fill-solid': string;
+        readonly 'filter-fill': string;
         readonly follow: string;
         readonly following: string;
         readonly 'font-draw': string;
@@ -144,6 +145,8 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'text-align-justify': string;
         readonly 'text-align-left': string;
         readonly 'text-align-right': string;
+        readonly 'th-large': string;
+        readonly 'times-circle': string;
         readonly 'tool-arrow': string;
         readonly 'tool-embed': string;
         readonly 'tool-eraser': string;
@@ -200,6 +203,8 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly ro: string;
         readonly ru: string;
         readonly sv: string;
+        readonly 'svh-de': string;
+        readonly 'svh-en': string;
         readonly te: string;
         readonly th: string;
         readonly tr: string;

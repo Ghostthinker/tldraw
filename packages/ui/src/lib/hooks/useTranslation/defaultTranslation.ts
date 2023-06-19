@@ -333,4 +333,7 @@ export const DEFAULT_TRANSLATION = {
 	'vscode.file-open.backup-saved': 'Backup saved',
 	'vscode.file-open.backup-failed': 'Backup failed: this is not a .tldr file.',
 	'vscode.file-open.dont-show-again': "Don't ask again",
+	'artefact-menu.header': 'edubreak® Content',
+	'artefact-menu.only-show-marked-content': 'Only show marked content from edubreak®',
+	'artefact-menu.no-artefacts': 'Sadly, there is no content that could be used',
 }

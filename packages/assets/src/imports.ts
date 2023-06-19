@@ -87,6 +87,7 @@ import iconsFillNone from '../icons/icon/fill-none.svg'
 import iconsFillPattern from '../icons/icon/fill-pattern.svg'
 import iconsFillSemi from '../icons/icon/fill-semi.svg'
 import iconsFillSolid from '../icons/icon/fill-solid.svg'
+import iconsFilterFill from '../icons/icon/filter-fill.svg'
 import iconsFollow from '../icons/icon/follow.svg'
 import iconsFollowing from '../icons/icon/following.svg'
 import iconsFontDraw from '../icons/icon/font-draw.svg'
@@ -154,6 +155,8 @@ import iconsTextAlignCenter from '../icons/icon/text-align-center.svg'
 import iconsTextAlignJustify from '../icons/icon/text-align-justify.svg'
 import iconsTextAlignLeft from '../icons/icon/text-align-left.svg'
 import iconsTextAlignRight from '../icons/icon/text-align-right.svg'
+import iconsThLarge from '../icons/icon/th-large.svg'
+import iconsTimesCircle from '../icons/icon/times-circle.svg'
 import iconsToolArrow from '../icons/icon/tool-arrow.svg'
 import iconsToolEmbed from '../icons/icon/tool-embed.svg'
 import iconsToolEraser from '../icons/icon/tool-eraser.svg'
@@ -208,6 +211,8 @@ import translationsPtPt from '../translations/pt-pt.json'
 import translationsRo from '../translations/ro.json'
 import translationsRu from '../translations/ru.json'
 import translationsSv from '../translations/sv.json'
+import translationsSvhDe from '../translations/svh-de.json'
+import translationsSvhEn from '../translations/svh-en.json'
 import translationsTe from '../translations/te.json'
 import translationsTh from '../translations/th.json'
 import translationsTr from '../translations/tr.json'
@@ -291,6 +296,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'fill-pattern': formatAssetUrl(iconsFillPattern, opts),
 			'fill-semi': formatAssetUrl(iconsFillSemi, opts),
 			'fill-solid': formatAssetUrl(iconsFillSolid, opts),
+			'filter-fill': formatAssetUrl(iconsFilterFill, opts),
 			follow: formatAssetUrl(iconsFollow, opts),
 			following: formatAssetUrl(iconsFollowing, opts),
 			'font-draw': formatAssetUrl(iconsFontDraw, opts),
@@ -358,6 +364,8 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'text-align-justify': formatAssetUrl(iconsTextAlignJustify, opts),
 			'text-align-left': formatAssetUrl(iconsTextAlignLeft, opts),
 			'text-align-right': formatAssetUrl(iconsTextAlignRight, opts),
+			'th-large': formatAssetUrl(iconsThLarge, opts),
+			'times-circle': formatAssetUrl(iconsTimesCircle, opts),
 			'tool-arrow': formatAssetUrl(iconsToolArrow, opts),
 			'tool-embed': formatAssetUrl(iconsToolEmbed, opts),
 			'tool-eraser': formatAssetUrl(iconsToolEraser, opts),
@@ -414,6 +422,8 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			ro: formatAssetUrl(translationsRo, opts),
 			ru: formatAssetUrl(translationsRu, opts),
 			sv: formatAssetUrl(translationsSv, opts),
+			'svh-de': formatAssetUrl(translationsSvhDe, opts),
+			'svh-en': formatAssetUrl(translationsSvhEn, opts),
 			te: formatAssetUrl(translationsTe, opts),
 			th: formatAssetUrl(translationsTh, opts),
 			tr: formatAssetUrl(translationsTr, opts),

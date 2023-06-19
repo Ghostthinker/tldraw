@@ -67,6 +67,7 @@ export type TLUiIconType =
 	| 'fill-pattern'
 	| 'fill-semi'
 	| 'fill-solid'
+	| 'filter-fill'
 	| 'follow'
 	| 'following'
 	| 'font-draw'
@@ -134,6 +135,8 @@ export type TLUiIconType =
 	| 'text-align-justify'
 	| 'text-align-left'
 	| 'text-align-right'
+	| 'th-large'
+	| 'times-circle'
 	| 'tool-arrow'
 	| 'tool-embed'
 	| 'tool-eraser'
@@ -227,6 +230,7 @@ export const TLUiIconTypes = [
 	'fill-pattern',
 	'fill-semi',
 	'fill-solid',
+	'filter-fill',
 	'follow',
 	'following',
 	'font-draw',
@@ -294,6 +298,8 @@ export const TLUiIconTypes = [
 	'text-align-justify',
 	'text-align-left',
 	'text-align-right',
+	'th-large',
+	'times-circle',
 	'tool-arrow',
 	'tool-embed',
 	'tool-eraser',

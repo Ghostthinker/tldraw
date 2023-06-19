@@ -333,7 +333,7 @@
 	"toast.error.copy-fail.title": "Kopieren fehlgeschlagen",
 	"toast.error.copy-fail.desc": "Bild kann nicht kopiert werden",
 	"file-system.shared-document-file-open-error.title": "Konnte die Datei nicht öffnen",
-	"artefact-menu.header": "edubreak® Inhalte",
-	"artefact-menu.only-show-marked-content": "Zeige nur in edubreak® markierte Inhalte",
-	"artefact-menu.no-artefacts": "Leider gibt es noch keine Inhalte, die verwendet werden könnten"
+	"artefact-menu.header": "SVH",
+	"artefact-menu.only-show-marked-content": "Zeige nur in Social Video Hub markierte Inhalte",
+	"artefact-menu.no-artefacts": "Leider gibt es noch keine Kommentare in Videos, die verwendet werden könnten"
 }

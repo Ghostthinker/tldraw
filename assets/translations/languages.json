@@ -20,6 +20,14 @@
 		"label": "English"
 	},
 	{
+		"locale": "svh-de",
+		"label": "SVH Deutsch"
+	},
+	{
+		"locale": "svh-en",
+		"label": "SVH English"
+	},
+	{
 		"locale": "es",
 		"label": "Español"
 	},
