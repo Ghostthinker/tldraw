@@ -2247,6 +2247,7 @@
 
 .artefact-card-icon {
 	color: #9E9E9E;
+	align-self: start;
 }
 
 .artefact-card-subtitle {
