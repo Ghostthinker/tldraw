@@ -7,6 +7,13 @@ export default defineConfig({
 	build: {
 		outDir: path.join(__dirname, 'dist'),
 		assetsInlineLimit: 0,
+		rollupOptions: {
+			output: {
+				entryFileNames: '[name].js',
+				chunkFileNames: '[name].js',
+				assetFileNames: 'assets/[name].[ext]',
+			},
+		},
 	},
 	server: {
 		port: 5420,

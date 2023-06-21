@@ -33,7 +33,17 @@ export const allExamples: SocialVideoBoard[] = [
 	},
 ]
 
-const router = createBrowserRouter(allExamples)
+function getBaseUrlFromMetaTag() {
+	// @ts-ignore
+	const baseUrl = document.querySelector('[itemprop~=baseUrl]')?.content
+	if (baseUrl) {
+		return baseUrl
+	} else {
+		return ''
+	}
+}
+
+const router = createBrowserRouter(allExamples, { basename: getBaseUrlFromMetaTag() })
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement!)
 
