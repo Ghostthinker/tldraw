@@ -47,7 +47,7 @@ export default function Dashboard() {
 
 	async function createPage() {
 		const boardID = await EdubreakService.createBoard(title)
-		const newPage = { path: '/svb/' + boardID, title: title }
+		const newPage = { path: '/board/' + boardID, title: title }
 		pages.push(newPage)
 		setShowInput(false)
 		setPages(pages)
