@@ -29,6 +29,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"build:eb": "vite build --base=/sites/all/modules/features/social_video_board/lib/",
 		"lint": "yarn run -T tsx ../../scripts/lint.ts"
 	},
 	"devDependencies": {
