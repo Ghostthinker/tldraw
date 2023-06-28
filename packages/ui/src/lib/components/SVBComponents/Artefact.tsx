@@ -45,12 +45,14 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 	useEffect(() => {
 		if (props.artefact.tags) {
 			const tagElements = []
-			for (const tag of props.artefact.tags[0]) {
-				tagElements.push(
-					<Chip className="artefact-card-tag" key={_uniqueId('tag-')} label={tag.name} />
-				)
+			if (props.artefact.tags.length > 0) {
+				for (const tag of props.artefact.tags) {
+					tagElements.push(
+						<Chip className="artefact-card-tag" key={_uniqueId('tag-')} label={tag.name} />
+					)
+				}
+				setTags(tagElements)
 			}
-			setTags(tagElements)
 		}
 	}, [props.artefact.tags])
 
