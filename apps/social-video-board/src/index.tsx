@@ -37,7 +37,6 @@ function getBaseUrlFromMetaTag() {
 	// @ts-ignore
 	const baseUrl = document.querySelector('[itemprop~=baseUrl]')?.content
 	if (baseUrl) {
-		console.log('basename: ', baseUrl)
 		return baseUrl
 	} else {
 		return '/'
