@@ -66,6 +66,7 @@ export class TLLocalSyncClient {
 	readonly universalPersistenceKey: string
 	readonly serializedSchema: SerializedSchema
 	private isDebugging = false
+	private prevBoard: any
 
 	initTime = Date.now()
 
@@ -300,6 +301,27 @@ export class TLLocalSyncClient {
 		}
 	}
 
+	private getShapesInBoard(board: any) {
+		const keys = JSON.stringify(Object.keys(board))
+		const regex = /shape:.{21}/gm
+		let m
+		const boardShapes: any[] = []
+
+		while ((m = regex.exec(keys)) !== null) {
+			// This is necessary to avoid infinite loops with zero-width matches
+			if (m.index === regex.lastIndex) {
+				regex.lastIndex++
+			}
+
+			// The result can be accessed through the `m`-variable.
+			m.forEach((match) => {
+				const shape = board[match]
+				boardShapes.push(shape)
+			})
+		}
+		return boardShapes
+	}
+
 	/**
 	 * Actually persist to indexeddb. If the write fails, then we'll retry with a full db write after
 	 * a short delay.
@@ -318,7 +340,21 @@ export class TLLocalSyncClient {
 		try {
 			if (this.universalPersistenceKey === 'social-video-board') {
 				// TODO - 22.05.2023 - 11:19 - MK: change api calls to diff only logic, so we do not get performance issues in the future
-				await saveStateToEdubreak(this.store.serialize())
+
+				const currentBoard = this.store.serialize()
+
+				if (this.prevBoard !== undefined) {
+					const prevShapes = this.getShapesInBoard(this.prevBoard)
+					const currentShapes = this.getShapesInBoard(currentBoard)
+
+					if (JSON.stringify(currentShapes) !== JSON.stringify(prevShapes)) {
+						await saveStateToEdubreak(currentBoard)
+						this.prevBoard = currentBoard
+					}
+				} else {
+					await saveStateToEdubreak(currentBoard)
+					this.prevBoard = currentBoard
+				}
 			} else {
 				if (this.shouldDoFullDBWrite) {
 					this.shouldDoFullDBWrite = false
