@@ -5,8 +5,8 @@ import { createAssetValidator, TLBaseAsset } from './asset-validation'
 // --- DEFINITION ---
 // TODO: figure out what is actually being used
 /** @public */
-export type TLEdubreakVideoAsset = TLBaseAsset<
-	'edubreakVideo',
+export type TLEdubreakMediaAsset = TLBaseAsset<
+	'edubreakMedia',
 	{
 		w: number
 		h: number
@@ -19,9 +19,9 @@ export type TLEdubreakVideoAsset = TLBaseAsset<
 
 // --- VALIDATION ---
 /** @public */
-export const edubreakVideoAssetTypeValidator: T.Validator<TLEdubreakVideoAsset> =
+export const edubreakMediaAssetTypeValidator: T.Validator<TLEdubreakMediaAsset> =
 	createAssetValidator(
-		'edubreakVideo',
+		'edubreakMedia',
 		T.object({
 			w: T.number,
 			h: T.number,
@@ -42,7 +42,7 @@ const Versions = {
 } as const
 
 /** @public */
-export const edubreakVideoAssetMigrations = defineMigrations({
+export const edubreakMediaAssetMigrations = defineMigrations({
 	firstVersion: Versions.Initial,
 	// STEP 2: Update the current version to point to your latest version
 	currentVersion: Versions.RenameWidthHeight,

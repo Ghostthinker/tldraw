@@ -10,7 +10,7 @@ import {
 	TLDashType,
 	TLDrawShape,
 	TLEdubreakContentShape,
-	TLEdubreakVideoShape,
+	TLEdubreakMediaShape,
 	TLFontType,
 	TLGeoShape,
 	TLImageShape,
@@ -97,7 +97,7 @@ export function buildFromV1Document(app: App, document: LegacyTldrawDocument) {
 						])
 					}
 					break
-				case TDAssetType.EdubreakVideo:
+				case TDAssetType.EdubreakMedia:
 					{
 						const assetId: TLAssetId = TLAsset.createId()
 						v1AssetIdsToV2AssetIds.set(v1Asset.id, assetId)
@@ -105,7 +105,7 @@ export function buildFromV1Document(app: App, document: LegacyTldrawDocument) {
 							{
 								id: assetId,
 								typeName: 'asset',
-								type: 'edubreakVideo',
+								type: 'edubreakMedia',
 								props: {
 									w: coerceDimension(v1Asset.size[0]),
 									h: coerceDimension(v1Asset.size[1]),
@@ -505,7 +505,7 @@ export function buildFromV1Document(app: App, document: LegacyTldrawDocument) {
 							app.createShapes([partial])
 							break
 						}
-						case TDShapeType.EdubreakVideo: {
+						case TDShapeType.EdubreakMedia: {
 							const assetId = v1AssetIdsToV2AssetIds.get(v1Shape.assetId)
 
 							if (!assetId) {
@@ -513,9 +513,9 @@ export function buildFromV1Document(app: App, document: LegacyTldrawDocument) {
 								return
 							}
 
-							const partial: TLShapePartial<TLEdubreakVideoShape> = {
+							const partial: TLShapePartial<TLEdubreakMediaShape> = {
 								...inCommon,
-								type: 'edubreakVideo',
+								type: 'edubreakMedia',
 								props: {
 									w: coerceDimension(v1Shape.size[0]),
 									h: coerceDimension(v1Shape.size[1]),
@@ -819,7 +819,7 @@ function migrate(document: LegacyTldrawDocument, newVersion: number): LegacyTldr
 					if (
 						(shape.type === TDShapeType.Image ||
 							shape.type === TDShapeType.Video ||
-							shape.type === TDShapeType.EdubreakVideo ||
+							shape.type === TDShapeType.EdubreakMedia ||
 							shape.type === TDShapeType.EdubreakContent) &&
 						shape.style.isFilled == null
 					) {
@@ -908,7 +908,7 @@ enum TDShapeType {
 	Group = 'group',
 	Image = 'image',
 	Video = 'video',
-	EdubreakVideo = 'edubreakVideo',
+	EdubreakMedia = 'edubreakMedia',
 	EdubreakContent = 'edubreakContent',
 }
 
@@ -1048,8 +1048,8 @@ interface VideoShape extends TDBaseShape {
 	currentTime: number
 }
 
-interface EdubreakVideoShape extends TDBaseShape {
-	type: TDShapeType.EdubreakVideo
+interface EdubreakMediaShape extends TDBaseShape {
+	type: TDShapeType.EdubreakMedia
 	size: number[]
 	assetId: string
 	isPlaying: boolean
@@ -1093,7 +1093,7 @@ type TDShape =
 	| StickyShape
 	| ImageShape
 	| VideoShape
-	| EdubreakVideoShape
+	| EdubreakMediaShape
 	| EdubreakContentShape
 
 type TDPage = {
@@ -1131,7 +1131,7 @@ interface TLV1PageState {
 enum TDAssetType {
 	Image = 'image',
 	Video = 'video',
-	EdubreakVideo = 'edubreakVideo',
+	EdubreakMedia = 'edubreakMedia',
 	EdubreakContent = 'edubreakContent',
 }
 
@@ -1149,8 +1149,8 @@ interface TDVideoAsset extends TLV1Asset {
 	size: number[]
 }
 
-interface TDEdubreakVideoAsset extends TLV1Asset {
-	type: TDAssetType.EdubreakVideo
+interface TDEdubreakMediaAsset extends TLV1Asset {
+	type: TDAssetType.EdubreakMedia
 	fileName: string
 	src: string
 	size: number[]
@@ -1167,7 +1167,7 @@ interface TLV1Asset {
 	type: string
 }
 
-type TDAsset = TDImageAsset | TDVideoAsset | TDEdubreakVideoAsset | TDEdubreakContentAsset
+type TDAsset = TDImageAsset | TDVideoAsset | TDEdubreakMediaAsset | TDEdubreakContentAsset
 
 type TDAssets = Record<string, TDAsset>
 

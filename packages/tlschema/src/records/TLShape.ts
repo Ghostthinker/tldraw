@@ -5,7 +5,7 @@ import { TLArrowShape } from '../shapes/TLArrowShape'
 import { TLBookmarkShape } from '../shapes/TLBookmarkShape'
 import { TLDrawShape } from '../shapes/TLDrawShape'
 import { TLEdubreakContentShape } from '../shapes/TLEdubreakContentShape'
-import { TLEdubreakVideoShape } from '../shapes/TLEdubreakVideoShape'
+import { TLEdubreakMediaShape } from '../shapes/TLEdubreakMediaShape'
 import { TLEmbedShape } from '../shapes/TLEmbedShape'
 import { TLFrameShape } from '../shapes/TLFrameShape'
 import { TLGeoShape } from '../shapes/TLGeoShape'
@@ -44,7 +44,7 @@ export type TLShape =
 	| TLNoteShape
 	| TLTextShape
 	| TLVideoShape
-	| TLEdubreakVideoShape
+	| TLEdubreakMediaShape
 	| TLEdubreakContentShape
 	| TLViewzoneShape
 	| TLUnknownShape

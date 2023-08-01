@@ -49,7 +49,7 @@ export function fixupRecord(oldRecord: TLRecord) {
 		case 'asset': {
 			switch (record.type) {
 				case 'image':
-				case 'edubreakVideo':
+				case 'edubreakMedia':
 				case 'edubreakContent':
 				case 'video': {
 					if (!record.props) {
@@ -411,7 +411,7 @@ export function fixupRecord(oldRecord: TLRecord) {
 			if (
 				record.type === 'note' ||
 				record.type === 'video' ||
-				record.type === 'edubreakVideo' ||
+				record.type === 'edubreakMedia' ||
 				record.type === 'edubreakContent' ||
 				record.type === 'image' ||
 				record.type === 'geo' ||

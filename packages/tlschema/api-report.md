@@ -136,16 +136,16 @@ export const edubreakContentShapeMigrations: Migrations;
 export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentShape>;
 
 // @public (undocumented)
-export const edubreakVideoAssetMigrations: Migrations;
+export const edubreakMediaAssetMigrations: Migrations;
 
 // @public (undocumented)
-export const edubreakVideoAssetTypeValidator: T.Validator<TLEdubreakVideoAsset>;
+export const edubreakMediaAssetTypeValidator: T.Validator<TLEdubreakMediaAsset>;
 
 // @public (undocumented)
-export const edubreakVideoShapeMigrations: Migrations;
+export const edubreakMediaShapeMigrations: Migrations;
 
 // @public (undocumented)
-export const edubreakVideoShapeTypeValidator: T.Validator<TLEdubreakVideoShape>;
+export const edubreakMediaShapeTypeValidator: T.Validator<TLEdubreakMediaShape>;
 
 // @public (undocumented)
 export const EMBED_DEFINITIONS: readonly [{
@@ -807,7 +807,7 @@ export type TLArrowTerminal = {
 export type TLArrowTerminalType = SetValue<typeof TL_ARROW_TERMINAL_TYPE>;
 
 // @public (undocumented)
-export type TLAsset = TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset;
+export type TLAsset = TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakMediaAsset | TLImageAsset | TLVideoAsset;
 
 // @public (undocumented)
 export const TLAsset: RecordType<TLAsset, "props" | "type">;
@@ -995,7 +995,7 @@ export type TLEdubreakContentShapeProps = {
 };
 
 // @public (undocumented)
-export type TLEdubreakVideoAsset = TLBaseAsset<'edubreakVideo', {
+export type TLEdubreakMediaAsset = TLBaseAsset<'edubreakMedia', {
     w: number;
     h: number;
     name: string;
@@ -1005,10 +1005,10 @@ export type TLEdubreakVideoAsset = TLBaseAsset<'edubreakVideo', {
 }>;
 
 // @public (undocumented)
-export type TLEdubreakVideoShape = TLBaseShape<'edubreakVideo', TLEdubreakVideoShapeProps>;
+export type TLEdubreakMediaShape = TLBaseShape<'edubreakMedia', TLEdubreakMediaShapeProps>;
 
 // @public (undocumented)
-export type TLEdubreakVideoShapeProps = {
+export type TLEdubreakMediaShapeProps = {
     id: number;
     title: string;
     body: string;
@@ -1442,7 +1442,7 @@ export type TLScribble = {
 };
 
 // @public
-export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEdubreakContentShape | TLEdubreakVideoShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLPresentShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
+export type TLShape = TLArrowShape | TLBookmarkShape | TLDrawShape | TLEdubreakContentShape | TLEdubreakMediaShape | TLEmbedShape | TLFrameShape | TLGeoShape | TLGroupShape | TLIconShape | TLImageShape | TLLineShape | TLNoteShape | TLPresentShape | TLTextShape | TLUnknownShape | TLVideoShape | TLViewzoneShape;
 
 // @public (undocumented)
 export type TLShapeId = ID<TLBaseShape<any, any>>;

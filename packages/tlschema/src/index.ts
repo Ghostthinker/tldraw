@@ -19,10 +19,10 @@ export {
 	type TLEdubreakContentAsset,
 } from './assets/TLEdubreakContentAsset'
 export {
-	edubreakVideoAssetMigrations,
-	edubreakVideoAssetTypeValidator,
-	type TLEdubreakVideoAsset,
-} from './assets/TLEdubreakVideoAsset'
+	edubreakMediaAssetMigrations,
+	edubreakMediaAssetTypeValidator,
+	type TLEdubreakMediaAsset,
+} from './assets/TLEdubreakMediaAsset'
 export {
 	imageAssetMigrations,
 	imageAssetTypeValidator,
@@ -133,11 +133,11 @@ export {
 	type TLEdubreakContentShapeProps,
 } from './shapes/TLEdubreakContentShape'
 export {
-	edubreakVideoShapeMigrations,
-	edubreakVideoShapeTypeValidator,
-	type TLEdubreakVideoShape,
-	type TLEdubreakVideoShapeProps,
-} from './shapes/TLEdubreakVideoShape'
+	edubreakMediaShapeMigrations,
+	edubreakMediaShapeTypeValidator,
+	type TLEdubreakMediaShape,
+	type TLEdubreakMediaShapeProps,
+} from './shapes/TLEdubreakMediaShape'
 export {
 	EMBED_DEFINITIONS,
 	embedShapeMigrations,

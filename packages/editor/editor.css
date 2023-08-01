@@ -1664,7 +1664,7 @@ it from receiving any pointer events or affecting the cursor. */
 	font-family: monospace;
 }
 
-/* --------------------- EdubreakVideoUtil --------------------- */
+/* --------------------- EdubreakMediaUtil --------------------- */
 
 .edubreak-video-wrapper {
 	display: flex;

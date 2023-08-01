@@ -6,7 +6,7 @@ import {
 	TLAssetShape,
 	TLBookmarkAsset,
 	TLEdubreakContentShape,
-	TLEdubreakVideoShape,
+	TLEdubreakMediaShape,
 	TLImageShape,
 	TLShape,
 	TLShapePartial,
@@ -290,7 +290,7 @@ export async function createShapesFromFiles(
 
 				newAssetsForFiles.set(file, asset)
 
-				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape> = {
+				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakMediaShape> = {
 					id: createShapeId(),
 					type: asset.type,
 					x: pagePoint.x + i,
@@ -334,7 +334,7 @@ export async function createShapesFromFiles(
 	const shapeUpdates = await Promise.all(
 		files.map(async (file, i) => {
 			const shape = results[i] as TLShapePartial<
-				TLImageShape | TLVideoShape | TLEdubreakVideoShape | TLEdubreakContentShape
+				TLImageShape | TLVideoShape | TLEdubreakMediaShape | TLEdubreakContentShape
 			>
 			if (!shape) return
 
@@ -479,7 +479,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				[
 					{
 						id: createShapeId(),
-						type: 'edubreakVideo',
+						type: 'edubreakMedia',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
@@ -506,7 +506,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				[
 					{
 						id: createShapeId(),
-						type: 'edubreakVideo',
+						type: 'edubreakMedia',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {

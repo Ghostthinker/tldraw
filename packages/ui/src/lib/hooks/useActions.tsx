@@ -701,7 +701,7 @@ export function ActionsProvider({ overrides, children }: ActionsProviderProps) {
 					const selectedShapes = app.selectedShapes
 					const edubreakShapes = selectedShapes.filter((selectedShape) => {
 						return (
-							selectedShape.type === 'edubreakContent' || selectedShape.type === 'edubreakVideo'
+							selectedShape.type === 'edubreakContent' || selectedShape.type === 'edubreakMedia'
 						)
 					})
 					if (edubreakShapes) {

@@ -160,7 +160,7 @@ export class Idle extends StateNode {
 				// Allow video playing
 				if (
 					(shape.type !== 'video' && this.app.isReadOnly) ||
-					(shape.type !== 'edubreakVideo' && this.app.isReadOnly)
+					(shape.type !== 'edubreakMedia' && this.app.isReadOnly)
 				)
 					break
 
