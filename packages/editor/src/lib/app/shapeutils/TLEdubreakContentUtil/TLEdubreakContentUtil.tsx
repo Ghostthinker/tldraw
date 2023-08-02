@@ -5,9 +5,9 @@ import {
 	edubreakContentShapeTypeValidator,
 } from '@tldraw/tlschema'
 import { track } from 'signia-react'
+import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
 import { TLBoxUtil } from '../TLBoxUtil'
-import { HyperlinkButton } from '../shared/HyperlinkButton'
 
 /** @public */
 export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
@@ -19,12 +19,15 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 	override defaultProps(): TLEdubreakContentShape['props'] {
 		return {
 			id: 0,
-			title: '',
-			body: '',
-			opacity: '1',
-			w: 100,
-			h: 100,
 			type: '',
+			title: '',
+			name: '',
+			date: '',
+			assignment: '',
+			tags: [],
+			opacity: '1',
+			w: 425,
+			h: 150,
 			assetId: null,
 			url: '',
 		}
@@ -64,118 +67,28 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 	shape: TLEdubreakContentShape
 	edubreakContentUtil: TLEdubreakContentUtil
 }) {
-	// const { Spinner } = useEditorComponents()
-	const { shape, edubreakContentUtil } = props
-	// const [isLoaded, setIsLoaded] = React.useState(false)
-	// const showControls =
-	// 	edubreakContentUtil.app.getBounds(shape).w * edubreakContentUtil.app.zoomLevel >= 110
-	// const asset = shape.props.assetId ? edubreakContentUtil.app.getAssetById(shape.props.assetId) : null
-	// const { w, h, time, playing } = shape.props
-	// const isEditing = useIsEditing(shape.id)
-	// const prefersReducedMotion = usePrefersReducedMotion()
-	//
-	// const rVideo = React.useRef<HTMLVideoElement>(null!)
+	const { shape } = props
 
-	// const handlePlay = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		edubreakContentUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakContent',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: true,
-	// 					time: video.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakContentUtil.app]
-	// )
-
-	// const handlePause = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		edubreakContentUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakContent',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: false,
-	// 					time: video.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakContentUtil.app]
-	// )
-
-	// const handleSetCurrentTime = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		if (isEditing) {
-	// 			edubreakContentUtil.app.updateShapes([
-	// 				{
-	// 					type: 'edubreakContent',
-	// 					id: shape.id,
-	// 					props: {
-	// 						time: video.currentTime,
-	// 					},
-	// 				},
-	// 			])
-	// 		}
-	// 	},
-	// 	[isEditing, shape.id, edubreakContentUtil.app]
-	// )
-
-	// const handleLoadedData = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	// 		if (time !== video.currentTime) {
-	// 			video.currentTime = time
-	// 		}
-	//
-	// 		if (!playing) {
-	// 			video.pause()
-	// 		}
-	//
-	// 		setIsLoaded(true)
-	// 	},
-	// 	[playing, time]
-	// )
-
-	// If the current time changes and we're not editing the edubreakContent, update the edubreakContent time
-	// React.useEffect(() => {
-	// 	const video = rVideo.current
-	//
-	// 	if (!video) return
-	//
-	// 	if (isLoaded && !isEditing && time !== video.currentTime) {
-	// 		video.currentTime = time
-	// 	}
-	// }, [isEditing, isLoaded, time])
-	//
-	// React.useEffect(() => {
-	// 	if (prefersReducedMotion) {
-	// 		const video = rVideo.current
-	// 		video.pause()
-	// 		video.currentTime = 0
-	// 	}
-	// }, [rVideo, prefersReducedMotion])
+	function openContentDetails() {
+		alert('expand')
+	}
 
 	return (
 		<>
-			<div className="edubreak-content-wrapper">
-				<div className="edubreak-content-text-title">{shape.props.title}</div>
-				<div className="edubreak-content-text">
-					<div dangerouslySetInnerHTML={{ __html: shape.props.body }}></div>
-					{'url' in shape.props && shape.props.url && (
-						<HyperlinkButton url={shape.props.url} zoomLevel={edubreakContentUtil.app.zoomLevel} />
+			<div className="edubreak-content">
+				<div onClick={() => openContentDetails()} className="edubreak-content-card-detail-icon">
+					{shape.props.type === 'cmap' && <Icon icon="expand-content" />}
+					{shape.props.type === 'extern' && <Icon icon="external-link" />}
+				</div>
+				<div className="icon-container">
+					{shape.props.type === 'cmap' && (
+						<Icon className="edubreak-content-icon-document" icon="file" />
+					)}
+					{shape.props.type === 'extern' && (
+						<Icon className="edubreak-content-icon-external-link" icon="external-link" />
 					)}
 				</div>
+				{/*<div className="edubreak-content-text-title">{shape.props.title}</div>*/}
 			</div>
 		</>
 	)

@@ -985,7 +985,10 @@ export type TLEdubreakContentShape = TLBaseShape<'edubreakContent', TLEdubreakCo
 export type TLEdubreakContentShapeProps = {
     id: number;
     title: string;
-    body: string;
+    name: string;
+    date: string;
+    assignment: string;
+    tags: string[];
     opacity: TLOpacityType;
     w: number;
     h: number;

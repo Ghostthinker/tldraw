@@ -73,8 +73,6 @@
 	--color-primary: #2f80ed;
 	--color-warn: #d10b0b;
 	--color-text: #000000;
-	--svb-color-button: #023047;
-	--svb-color-button-hover: #03466e;
 	--palette-black: #1d1d1d;
 	--palette-blue: #4263eb;
 	--palette-green: #099268;
@@ -125,6 +123,11 @@
 		inset 0px 0px 0px 1px var(--color-panel-contrast);
 	--shadow-4: 0px 0px 3px rgba(0, 0, 0, 0.16), 0px 5px 4px rgba(0, 0, 0, 0.16),
 		0px 2px 16px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px var(--color-panel-contrast);
+
+	--svb-primary: #022639;
+	--svb-color-button: #023047;
+	--svb-color-button-hover: #03466e;
+
 }
 
 .tl-theme__dark {
@@ -1672,21 +1675,6 @@ it from receiving any pointer events or affecting the cursor. */
 	pointer-events: all;
 }
 
-.edubreak-content-wrapper {
-	pointer-events: all;
-	display: flex;
-	flex-direction: column;
-	text-align: start;
-	background-color: white;
-	color: black;
-	height: 500px;
-	max-height: 500px;
-	overflow-y: scroll;
-	padding: 2% 4% 0 4%;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-}
-
 .edubreak-text {
 	text-align: center;
 	font-size: 1.5rem;
@@ -1722,3 +1710,50 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 /* --------------------- EdubreakContentUtil --------------------- */
+
+.edubreak-content {
+	pointer-events: all;
+	display: flex;
+	border-radius: 10px;
+	/*flex-direction: column;*/
+	background-color: white;
+	width: 425px;
+	height: 150px;
+	padding: 4%;
+	align-items: center;
+	/*overflow-y: scroll;*/
+	/*-ms-overflow-style: none;*/
+	/*scrollbar-width: none;*/
+	box-shadow: var(--shadow-1);
+
+}
+
+.icon-container {
+	display: flex;
+	width: 100px;
+	height: 100px;
+	background-color: var(--svb-primary);
+	border-radius: 5px;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+}
+
+.edubreak-content-icon-document, .edubreak-content-icon-external-link {
+	color: white;
+	zoom: 3;
+}
+
+.edubreak-content-card-detail-icon {
+	position: absolute;
+	display: block;
+	pointer-events: bounding-box;
+	cursor: pointer;
+	top: 0.5rem;
+	right: 0.5rem;
+	z-index: var(--layer-canvas);
+}
+
+.edubreak-content-card-detail-icon:hover {
+	color: #5d5d5d;
+}

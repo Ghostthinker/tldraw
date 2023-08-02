@@ -29,6 +29,7 @@ export type TLUiIconType =
 	| 'arrowhead-triangle-inverted'
 	| 'arrowhead-triangle'
 	| 'aspect-ratio'
+	| 'assignment'
 	| 'avatar'
 	| 'blob'
 	| 'bring-forward'
@@ -63,6 +64,7 @@ export type TLUiIconType =
 	| 'drag-handle-dots'
 	| 'duplicate'
 	| 'edit'
+	| 'expand-content'
 	| 'external-link'
 	| 'file'
 	| 'fill-none'
@@ -195,6 +197,7 @@ export const TLUiIconTypes = [
 	'arrowhead-triangle-inverted',
 	'arrowhead-triangle',
 	'aspect-ratio',
+	'assignment',
 	'avatar',
 	'blob',
 	'bring-forward',
@@ -229,6 +232,7 @@ export const TLUiIconTypes = [
 	'drag-handle-dots',
 	'duplicate',
 	'edit',
+	'expand-content',
 	'external-link',
 	'file',
 	'fill-none',

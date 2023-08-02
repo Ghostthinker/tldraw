@@ -131,6 +131,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/aspect-ratio.svg', import.meta.url).href,
 				opts
 			),
+			assignment: formatAssetUrl(
+				new URL('../icons/icon/assignment.svg', import.meta.url).href,
+				opts
+			),
 			avatar: formatAssetUrl(new URL('../icons/icon/avatar.svg', import.meta.url).href, opts),
 			blob: formatAssetUrl(new URL('../icons/icon/blob.svg', import.meta.url).href, opts),
 			'bring-forward': formatAssetUrl(
@@ -225,6 +229,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			),
 			duplicate: formatAssetUrl(new URL('../icons/icon/duplicate.svg', import.meta.url).href, opts),
 			edit: formatAssetUrl(new URL('../icons/icon/edit.svg', import.meta.url).href, opts),
+			'expand-content': formatAssetUrl(
+				new URL('../icons/icon/expand-content.svg', import.meta.url).href,
+				opts
+			),
 			'external-link': formatAssetUrl(
 				new URL('../icons/icon/external-link.svg', import.meta.url).href,
 				opts

@@ -93,6 +93,11 @@ async function copyIcons() {
 		iconTypeFile
 	)
 
+	await writeTypescriptFile(
+		join(BUBLIC_ROOT, 'packages', 'editor', 'src', 'lib', 'icon-types.ts'),
+		iconTypeFile
+	)
+
 	// add to the asset declaration file
 	for (const icon of icons) {
 		const name = icon.replace('.svg', '')

@@ -39,6 +39,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'arrowhead-triangle-inverted': string;
         readonly 'arrowhead-triangle': string;
         readonly 'aspect-ratio': string;
+        readonly assignment: string;
         readonly avatar: string;
         readonly blob: string;
         readonly 'bring-forward': string;
@@ -73,6 +74,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly 'drag-handle-dots': string;
         readonly duplicate: string;
         readonly edit: string;
+        readonly 'expand-content': string;
         readonly 'external-link': string;
         readonly file: string;
         readonly 'fill-none': string;

@@ -49,6 +49,7 @@ import iconsArrowheadSquare from '../icons/icon/arrowhead-square.svg'
 import iconsArrowheadTriangleInverted from '../icons/icon/arrowhead-triangle-inverted.svg'
 import iconsArrowheadTriangle from '../icons/icon/arrowhead-triangle.svg'
 import iconsAspectRatio from '../icons/icon/aspect-ratio.svg'
+import iconsAssignment from '../icons/icon/assignment.svg'
 import iconsAvatar from '../icons/icon/avatar.svg'
 import iconsBlob from '../icons/icon/blob.svg'
 import iconsBringForward from '../icons/icon/bring-forward.svg'
@@ -83,6 +84,7 @@ import iconsDotsVertical from '../icons/icon/dots-vertical.svg'
 import iconsDragHandleDots from '../icons/icon/drag-handle-dots.svg'
 import iconsDuplicate from '../icons/icon/duplicate.svg'
 import iconsEdit from '../icons/icon/edit.svg'
+import iconsExpandContent from '../icons/icon/expand-content.svg'
 import iconsExternalLink from '../icons/icon/external-link.svg'
 import iconsFile from '../icons/icon/file.svg'
 import iconsFillNone from '../icons/icon/fill-none.svg'
@@ -261,6 +263,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'arrowhead-triangle-inverted': formatAssetUrl(iconsArrowheadTriangleInverted, opts),
 			'arrowhead-triangle': formatAssetUrl(iconsArrowheadTriangle, opts),
 			'aspect-ratio': formatAssetUrl(iconsAspectRatio, opts),
+			assignment: formatAssetUrl(iconsAssignment, opts),
 			avatar: formatAssetUrl(iconsAvatar, opts),
 			blob: formatAssetUrl(iconsBlob, opts),
 			'bring-forward': formatAssetUrl(iconsBringForward, opts),
@@ -295,6 +298,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'drag-handle-dots': formatAssetUrl(iconsDragHandleDots, opts),
 			duplicate: formatAssetUrl(iconsDuplicate, opts),
 			edit: formatAssetUrl(iconsEdit, opts),
+			'expand-content': formatAssetUrl(iconsExpandContent, opts),
 			'external-link': formatAssetUrl(iconsExternalLink, opts),
 			file: formatAssetUrl(iconsFile, opts),
 			'fill-none': formatAssetUrl(iconsFillNone, opts),

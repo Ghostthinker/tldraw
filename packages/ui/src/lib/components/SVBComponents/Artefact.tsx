@@ -71,7 +71,8 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 	)
 
 	async function addArtefactToCanvas() {
-		createEdubreakShapeAtPoint(app, app.viewportPageCenter, props.artefact)
+		props.artefact.formatedDate = formatedDate
+		await createEdubreakShapeAtPoint(app, app.viewportPageCenter, props.artefact)
 		const response = await deleteFromInbox(props.artefact.id)
 		if (response) {
 			const deleteInboxItemEvent = new CustomEvent('onDeleteInboxItem', { detail: response })
@@ -96,6 +97,7 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 	)
 
 	const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+		props.artefact.formatedDate = formatedDate
 		event.dataTransfer.setData('text/plain', JSON.stringify(props.artefact))
 	}
 

@@ -450,30 +450,6 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				true
 			)
 			break
-		case 'cmap':
-			app.createShapes(
-				[
-					{
-						id: createShapeId(),
-						type: 'edubreakContent',
-						x: point.x - 450 / 2,
-						y: point.y - 450 / 2,
-						props: {
-							id: Number(options.id),
-							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
-							opacity: '1',
-							w: 400,
-							h: 500,
-							type: options.type,
-							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
-							url: options.campusURL,
-						},
-					},
-				],
-				true
-			)
-			break
 		case 'video':
 			app.createShapes(
 				[
@@ -521,6 +497,57 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
 							playing: false,
+							url: options.campusURL,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'cmap':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakContent',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							id: Number(options.id),
+							type: options.type,
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || undefined,
+							tags: options.tags || [],
+							opacity: '1',
+							w: 425,
+							h: 150,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'external':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakContent',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							opacity: '1',
+							w: 400,
+							h: 500,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
 						},
 					},

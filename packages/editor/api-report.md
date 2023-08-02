@@ -662,6 +662,7 @@ export type EditorAssetUrls = {
         sansSerif: string;
         draw: string;
     };
+    icons: Record<TLUiIconType, string>;
 };
 
 // @public (undocumented)
