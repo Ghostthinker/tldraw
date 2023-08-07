@@ -328,3 +328,4 @@ export type TLTranslationKey =
 	| 'artefact-menu.only-show-marked-content'
 	| 'artefact-menu.no-artefacts'
 	| 'artefact.add'
+	| 'shape.content-no-assignment'

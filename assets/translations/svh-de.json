@@ -336,5 +336,6 @@
 	"artefact-menu.header": "SVH",
 	"artefact-menu.only-show-marked-content": "Zeige nur in Social Video Hub markierte Inhalte",
 	"artefact-menu.no-artefacts": "Leider gibt es noch keine Kommentare in Videos, die verwendet werden könnten",
-	"artefact.add": "Hinzufügen"
+	"artefact.add": "Hinzufügen",
+	"shape.content-no-assignment": "Keine Aufgabe"
 }

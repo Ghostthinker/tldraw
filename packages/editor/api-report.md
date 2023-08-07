@@ -1943,7 +1943,11 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
     // (undocumented)
     canEdit: () => boolean;
     // (undocumented)
+    canScroll: () => boolean;
+    // (undocumented)
     defaultProps(): TLEdubreakContentShape['props'];
+    // (undocumented)
+    hideResizeHandles: () => boolean;
     // (undocumented)
     indicator(shape: TLEdubreakContentShape): JSX.Element;
     // (undocumented)

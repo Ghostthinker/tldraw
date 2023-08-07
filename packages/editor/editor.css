@@ -125,8 +125,11 @@
 		0px 2px 16px rgba(0, 0, 0, 0.06), inset 0px 0px 0px 1px var(--color-panel-contrast);
 
 	--svb-primary: #022639;
+	--svb-grey: #555555;
 	--svb-color-button: #023047;
 	--svb-color-button-hover: #03466e;
+	--svb-primary-weight: 600;
+	--svb-secondary-weight: 400;
 
 }
 
@@ -1690,11 +1693,7 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 .edubreak-content-text-title {
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: bold;
-	background-color: white;
-	color: black;
+	font-size: 1rem;
 }
 
 .edubreak-content-text {
@@ -1720,21 +1719,19 @@ it from receiving any pointer events or affecting the cursor. */
 	width: 425px;
 	height: 150px;
 	padding: 4%;
-	align-items: center;
+	align-content: start;
 	/*overflow-y: scroll;*/
 	/*-ms-overflow-style: none;*/
 	/*scrollbar-width: none;*/
 	box-shadow: var(--shadow-1);
-
 }
 
 .icon-container {
 	display: flex;
-	width: 100px;
-	height: 100px;
+	aspect-ratio : 1 / 1;
+	height: 100%;
 	background-color: var(--svb-primary);
 	border-radius: 5px;
-	position: fixed;
 	justify-content: center;
 	align-items: center;
 }
@@ -1746,14 +1743,95 @@ it from receiving any pointer events or affecting the cursor. */
 
 .edubreak-content-card-detail-icon {
 	position: absolute;
-	display: block;
-	pointer-events: bounding-box;
+	pointer-events: all;
 	cursor: pointer;
 	top: 0.5rem;
 	right: 0.5rem;
+	zoom: 0.9;
 	z-index: var(--layer-canvas);
 }
 
 .edubreak-content-card-detail-icon:hover {
 	color: #5d5d5d;
+}
+
+.edubreak-content-text-wrapper {
+	margin-left: 1rem;
+	margin-right: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	white-space: nowrap;
+}
+
+.edubreak-content-text-title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1.3rem;
+	font-weight: var(--svb-primary-weight);
+	color: var(--svb-primary);
+}
+
+.edubreak-content-text-subtitle {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 0.8rem;
+	font-weight: var(--svb-secondary-weight);
+	color: var(--svb-grey);
+	margin-top: 0.5rem;
+}
+
+.edubreak-content-assignment {
+	height: 1.5rem;
+	padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+	margin-top: 0.6rem;
+	background: var(--svb-primary);
+}
+
+.edubreak-content-assignment-icon {
+	color: white;
+}
+
+.edubreak-content-assignment .p-chip-text {
+	color: white !important;
+	font-weight: var(--svb-secondary-weight);
+	margin-left: 0.25rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.edubreak-content-tags {
+	height: 1.5rem;
+	overflow: hidden;
+	overflow-x: scroll;
+	display: flex;
+	margin-top: 0.6rem;
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+
+.edubreak-content-tags::-webkit-scrollbar {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	display: none;
+}
+
+.edubreak-content-tag {
+	background: #EBEAEB;
+	padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+	margin-right: 0.5rem !important;
+}
+
+.edubreak-content-tag .p-chip-text {
+	color: var(--svb-grey) !important;
+	font-family: Inter, sans-serif;
+	font-weight: 400;
+	line-height: 15px;
+	letter-spacing: 0;
+	text-align: left;
+	margin-top: 0 !important;
+	font-size: 0.7rem;
+	margin-bottom: 0 !important;
 }

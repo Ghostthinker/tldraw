@@ -437,8 +437,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
-							opacity: '1',
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
 							w: 400,
 							h: 500,
 							type: options.type,
