@@ -1970,6 +1970,8 @@ export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
     // (undocumented)
     defaultProps(): TLEdubreakMediaShape['props'];
     // (undocumented)
+    hideResizeHandles: () => boolean;
+    // (undocumented)
     indicator(shape: TLEdubreakMediaShape): JSX.Element;
     // (undocumented)
     isAspectRatioLocked: () => boolean;

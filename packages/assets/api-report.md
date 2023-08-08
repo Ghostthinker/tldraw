@@ -42,6 +42,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly assignment: string;
         readonly avatar: string;
         readonly blob: string;
+        readonly blog: string;
         readonly 'bring-forward': string;
         readonly 'bring-to-front': string;
         readonly check: string;

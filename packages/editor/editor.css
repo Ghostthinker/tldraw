@@ -1671,41 +1671,139 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 /* --------------------- EdubreakMediaUtil --------------------- */
+:root {
+	--media-height: 450px;
+}
 
-.edubreak-video-wrapper {
+.edubreak-media {
 	display: flex;
-	flex-direction: column;
+	width: 425px;
+	height: var(--media-height);
+	border-radius: 10px;
+	box-shadow: var(--shadow-1);
+	background-color: white;
 	pointer-events: all;
 }
 
-.edubreak-text {
-	text-align: center;
-	font-size: 1.5rem;
-	background-color: white;
-	color: black;
-	font-weight: bold;
-	height: 40px;
-	max-height: 40px;
-	overflow-y: scroll;
-	padding: 2% 4% 0 4%;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+.edubreak-media .p-card {
+	padding: 4%;
+	width: 100%;
+	font-family: 'Inter', sans-serif;
 }
 
-.edubreak-content-text-title {
-	font-size: 1rem;
+.edubreak-media .p-card-header {
+	margin-bottom: 0.5rem;
 }
 
-.edubreak-content-text {
-	text-align: start;
-	font-size: 0.8rem;
-	background-color: white;
-	color: black;
+.edubreak-media-thumbnail-container {
+	position: relative;
 }
 
-.edubreak-text::-webkit-scrollbar, .edubreak-content-text::-webkit-scrollbar {
-	/* Hide scrollbar for Chrome, Safari and Opera */
-	display: none;
+.edubreak-media-thumbnail {
+	display: block;
+	aspect-ratio: 16 / 9;
+	margin-top: 1%;
+	border-radius: 5px;
+	pointer-events: none;
+}
+
+.edubreak-media-overlay {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: var(--svb-primary);
+	border-radius: 5px 0 5px 0;
+	width: 12%;
+	aspect-ratio: 1 / 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.edubreak-media-icon {
+	color: white;
+	width: 1.5rem !important;
+	height: 1.5rem !important;
+}
+
+.edubreak-media .p-card-body {
+	height: 35%;
+}
+
+.edubreak-media .p-card-title {
+	color: var(--svb-primary);
+	font-weight: var(--svb-primary-weight);
+	margin-bottom: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.edubreak-media-details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.9rem !important;
+	color: var(--svb-grey);
+	font-weight: var(--svb-secondary-weight);
+}
+
+.edubreak-media .p-card-subtitle {
+	margin-top: 0.5rem;
+}
+
+.edubreak-media-assignment {
+	max-width: 40%;
+}
+
+.text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.edubreak-media .p-card-content {
+	color: var(--svb-grey);
+	font-size: 0.9rem !important;
+	font-weight: var(--svb-secondary-weight);
+	padding: 0 !important;
+	height: 2rem;
+}
+
+.edubreak-media .p-card-content p {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* --------------------- AssignmentChip --------------------- */
+.edubreak-assignment-chip {
+	height: 1.5rem;
+	padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+	background: var(--svb-primary);
+}
+
+.edubreak-assignment-chip-icon {
+	color: white;
+}
+
+.edubreak-assignment-chip .p-chip-text {
+	color: white !important;
+	font-weight: var(--svb-secondary-weight);
+	margin-left: 0.25rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.edubreak-media .p-card-footer {
+	padding: 0 !important;
+	margin-top: 0.8rem;
+	position: absolute;
+	bottom: 4%;
+}
+
+.edubreak-media-tags {
+	margin-top: 0.5rem;
 }
 
 /* --------------------- EdubreakContentUtil --------------------- */
@@ -1714,15 +1812,12 @@ it from receiving any pointer events or affecting the cursor. */
 	pointer-events: all;
 	display: flex;
 	border-radius: 10px;
-	/*flex-direction: column;*/
+	font-family: 'Inter', sans-serif;
 	background-color: white;
 	width: 425px;
 	height: 150px;
 	padding: 4%;
 	align-content: start;
-	/*overflow-y: scroll;*/
-	/*-ms-overflow-style: none;*/
-	/*scrollbar-width: none;*/
 	box-shadow: var(--shadow-1);
 }
 
@@ -1784,47 +1879,37 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 .edubreak-content-assignment {
-	height: 1.5rem;
-	padding: 0.1rem 0.5rem 0.1rem 0.5rem;
-	margin-top: 0.6rem;
-	background: var(--svb-primary);
-}
-
-.edubreak-content-assignment-icon {
-	color: white;
-}
-
-.edubreak-content-assignment .p-chip-text {
-	color: white !important;
-	font-weight: var(--svb-secondary-weight);
-	margin-left: 0.25rem;
-	text-overflow: ellipsis;
-	overflow: hidden;
+	margin-top: 0.6rem !important;
 }
 
 .edubreak-content-tags {
+	margin-top: 0.6rem;
+}
+
+/* --------------------- TagList --------------------- */
+
+.edubreak-tags {
 	height: 1.5rem;
 	overflow: hidden;
 	overflow-x: scroll;
 	display: flex;
-	margin-top: 0.6rem;
 	/* Hide scrollbar for IE, Edge and Firefox */
 	-ms-overflow-style: none;  /* IE and Edge */
 	scrollbar-width: none;  /* Firefox */
 }
 
-.edubreak-content-tags::-webkit-scrollbar {
+.edubreak-tags::-webkit-scrollbar {
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	display: none;
 }
 
-.edubreak-content-tag {
+.edubreak-tag {
 	background: #EBEAEB;
 	padding: 0.1rem 0.5rem 0.1rem 0.5rem;
 	margin-right: 0.5rem !important;
 }
 
-.edubreak-content-tag .p-chip-text {
+.edubreak-tag .p-chip-text {
 	color: var(--svb-grey) !important;
 	font-family: Inter, sans-serif;
 	font-weight: 400;

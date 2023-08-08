@@ -137,6 +137,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			),
 			avatar: formatAssetUrl(new URL('../icons/icon/avatar.svg', import.meta.url).href, opts),
 			blob: formatAssetUrl(new URL('../icons/icon/blob.svg', import.meta.url).href, opts),
+			blog: formatAssetUrl(new URL('../icons/icon/blog.svg', import.meta.url).href, opts),
 			'bring-forward': formatAssetUrl(
 				new URL('../icons/icon/bring-forward.svg', import.meta.url).href,
 				opts

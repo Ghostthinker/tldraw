@@ -1017,6 +1017,10 @@ export type TLEdubreakMediaShapeProps = {
     body: string;
     thumbnail: string;
     opacity: TLOpacityType;
+    name: string;
+    date: string;
+    assignment: string;
+    tags: string[];
     w: number;
     h: number;
     time: number;

@@ -419,6 +419,17 @@ export function createEmbedShapeAtPoint(
 	)
 }
 
+function getEdubreakMediaHeight(options: any, defaultHeight: number) {
+	let height = defaultHeight
+	if (options.tags.length === 0) {
+		height = height - 25
+	}
+	if (!options.body) {
+		height = height - 70
+	}
+	return height
+}
+
 /** @public */
 export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
 	let videoContents
@@ -431,15 +442,19 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				[
 					{
 						id: createShapeId(),
-						type: 'edubreakContent',
+						type: 'edubreakMedia',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
-							w: 400,
-							h: 500,
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: getEdubreakMediaHeight(options, 430),
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
@@ -460,11 +475,15 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
 							thumbnail: videoContents.linkVideoThumbnail,
 							opacity: '1',
-							body: '',
-							w: 400,
-							h: 264,
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: getEdubreakMediaHeight(options, 430),
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
@@ -487,11 +506,15 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
 							thumbnail: options.video_comment_thumbnail_image,
 							opacity: '1',
-							w: 400,
-							h: 264,
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: getEdubreakMediaHeight(options, 430),
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
@@ -517,7 +540,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							name: options.author.name.firstname + ' ' + options.author.name.lastname,
 							date: options.formatedDate,
-							assignment: options.assignment?.title || undefined,
+							assignment: options.assignment?.title || '',
 							tags: options.tags || [],
 							opacity: '1',
 							w: 425,
@@ -530,7 +553,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				true
 			)
 			break
-		case 'external':
+		case 'external_content':
 			app.createShapes(
 				[
 					{
@@ -541,10 +564,10 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
 							opacity: '1',
-							w: 400,
-							h: 500,
+							w: 425,
+							h: 150,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,

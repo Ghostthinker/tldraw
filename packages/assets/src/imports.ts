@@ -52,6 +52,7 @@ import iconsAspectRatio from '../icons/icon/aspect-ratio.svg'
 import iconsAssignment from '../icons/icon/assignment.svg'
 import iconsAvatar from '../icons/icon/avatar.svg'
 import iconsBlob from '../icons/icon/blob.svg'
+import iconsBlog from '../icons/icon/blog.svg'
 import iconsBringForward from '../icons/icon/bring-forward.svg'
 import iconsBringToFront from '../icons/icon/bring-to-front.svg'
 import iconsCheck from '../icons/icon/check.svg'
@@ -266,6 +267,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			assignment: formatAssetUrl(iconsAssignment, opts),
 			avatar: formatAssetUrl(iconsAvatar, opts),
 			blob: formatAssetUrl(iconsBlob, opts),
+			blog: formatAssetUrl(iconsBlog, opts),
 			'bring-forward': formatAssetUrl(iconsBringForward, opts),
 			'bring-to-front': formatAssetUrl(iconsBringToFront, opts),
 			check: formatAssetUrl(iconsCheck, opts),

@@ -12,6 +12,10 @@ export type TLEdubreakMediaShapeProps = {
 	body: string
 	thumbnail: string
 	opacity: TLOpacityType
+	name: string
+	date: string
+	assignment: string
+	tags: string[]
 	w: number
 	h: number
 	time: number
@@ -35,6 +39,10 @@ export const edubreakMediaShapeTypeValidator: T.Validator<TLEdubreakMediaShape> 
 			body: T.string,
 			thumbnail: T.string,
 			opacity: opacityValidator,
+			name: T.string,
+			date: T.string,
+			assignment: T.string,
+			tags: T.arrayOf(T.string),
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,
 			time: T.number,

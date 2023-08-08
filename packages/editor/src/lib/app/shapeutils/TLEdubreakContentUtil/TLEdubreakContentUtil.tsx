@@ -4,13 +4,12 @@ import {
 	edubreakContentShapeMigrations,
 	edubreakContentShapeTypeValidator,
 } from '@tldraw/tlschema'
-import _uniqueId from 'lodash/uniqueId'
-import { Chip } from 'primereact/chip'
-import { ReactChild, useEffect, useState } from 'react'
 import { track } from 'signia-react'
 import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
 import { TLBoxUtil } from '../TLBoxUtil'
+import { AssignmentChip } from '../shared/AssignmentChip'
+import { TagList } from '../shared/TagList'
 
 /** @public */
 export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
@@ -49,7 +48,6 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 	toSvg(shape: TLEdubreakContentShape) {
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
-		// image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', shape.props.thumbnail)
 		image.setAttribute('width', shape.props.w.toString())
 		image.setAttribute('height', shape.props.h.toString())
 		g.appendChild(image)
@@ -73,25 +71,6 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 	edubreakContentUtil: TLEdubreakContentUtil
 }) {
 	const { shape } = props
-	const [tags, setTags] = useState<ReactChild[]>([])
-
-	useEffect(() => {
-		if (shape.props.tags) {
-			const tagElements = []
-			if (shape.props.tags.length > 0) {
-				for (const tag of shape.props.tags) {
-					tagElements.push(
-						<Chip className="edubreak-content-tag" key={_uniqueId('tag-')} label={tag} />
-					)
-				}
-				setTags(tagElements)
-			}
-		}
-	}, [])
-
-	function getTags() {
-		return tags
-	}
 
 	function openContentDetails() {
 		alert('expand')
@@ -117,19 +96,8 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 					<div className="edubreak-content-text-subtitle">
 						{shape.props.name} | {shape.props.date}
 					</div>
-					<Chip
-						className="edubreak-content-assignment"
-						key={_uniqueId('content-assignment-')}
-						label={shape.props.assignment ? shape.props.assignment : '-'}
-						icon={
-							<Icon
-								className="edubreak-content-assignment-icon"
-								key={_uniqueId('content-assignment-icon-')}
-								icon={'assignment'}
-							/>
-						}
-					/>
-					<div className="edubreak-content-tags">{tags.length > 0 ? getTags() : undefined}</div>
+					<AssignmentChip className="edubreak-content-assignment" shape={shape} />
+					<TagList className="edubreak-content-tags" edubreakTags={shape.props.tags} />
 				</div>
 			</div>
 		</>

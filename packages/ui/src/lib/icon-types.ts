@@ -32,6 +32,7 @@ export type TLUiIconType =
 	| 'assignment'
 	| 'avatar'
 	| 'blob'
+	| 'blog'
 	| 'bring-forward'
 	| 'bring-to-front'
 	| 'check'
@@ -200,6 +201,7 @@ export const TLUiIconTypes = [
 	'assignment',
 	'avatar',
 	'blob',
+	'blog',
 	'bring-forward',
 	'bring-to-front',
 	'check',
