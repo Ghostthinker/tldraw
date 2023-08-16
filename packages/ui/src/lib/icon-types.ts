@@ -110,6 +110,7 @@ export type TLUiIconType =
 	| 'mixed'
 	| 'pack'
 	| 'page'
+	| 'playhead'
 	| 'plus'
 	| 'question-mark-circle'
 	| 'question-mark'
@@ -279,6 +280,7 @@ export const TLUiIconTypes = [
 	'mixed',
 	'pack',
 	'page',
+	'playhead',
 	'plus',
 	'question-mark-circle',
 	'question-mark',

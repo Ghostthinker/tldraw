@@ -120,6 +120,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions): {
         readonly mixed: string;
         readonly pack: string;
         readonly page: string;
+        readonly playhead: string;
         readonly plus: string;
         readonly 'question-mark-circle': string;
         readonly 'question-mark': string;

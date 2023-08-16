@@ -130,6 +130,7 @@ import iconsMinus from '../icons/icon/minus.svg'
 import iconsMixed from '../icons/icon/mixed.svg'
 import iconsPack from '../icons/icon/pack.svg'
 import iconsPage from '../icons/icon/page.svg'
+import iconsPlayhead from '../icons/icon/playhead.svg'
 import iconsPlus from '../icons/icon/plus.svg'
 import iconsQuestionMarkCircle from '../icons/icon/question-mark-circle.svg'
 import iconsQuestionMark from '../icons/icon/question-mark.svg'
@@ -345,6 +346,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			mixed: formatAssetUrl(iconsMixed, opts),
 			pack: formatAssetUrl(iconsPack, opts),
 			page: formatAssetUrl(iconsPage, opts),
+			playhead: formatAssetUrl(iconsPlayhead, opts),
 			plus: formatAssetUrl(iconsPlus, opts),
 			'question-mark-circle': formatAssetUrl(iconsQuestionMarkCircle, opts),
 			'question-mark': formatAssetUrl(iconsQuestionMark, opts),

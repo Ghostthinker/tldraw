@@ -5,20 +5,21 @@ import {
 	edubreakMediaShapeTypeValidator,
 } from '@tldraw/tlschema'
 import { Card } from 'primereact/card'
+import * as React from 'react'
 import { useEffect } from 'react'
 import { track } from 'signia-react'
 import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
-import { usePrefersReducedMotion } from '../../../utils/dom'
 import { TLBoxUtil } from '../TLBoxUtil'
 import { AssignmentChip } from '../shared/AssignmentChip'
 import { TagList } from '../shared/TagList'
+import { BlogPicture } from './assets/BlogPicture'
 
 /** @public */
 export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
 	static type = 'edubreakMedia'
 
-	override canEdit = () => true
+	override canEdit = () => false
 	override isAspectRatioLocked = () => true
 	override hideResizeHandles = () => true
 
@@ -38,7 +39,7 @@ export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
 			type: '',
 			assetId: null,
 			time: 0,
-			playing: true,
+			playing: false,
 			url: '',
 		}
 	}
@@ -76,133 +77,131 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 	edubreakMediaUtil: TLEdubreakMediaUtil
 }) {
 	const { shape, edubreakMediaUtil } = props
-	//TODO: implement
-	// const showControls =
-	// 	edubreakMediaUtil.app.getBounds(shape).w * edubreakMediaUtil.app.zoomLevel >= 110
+	const showVideoElement =
+		edubreakMediaUtil.app.zoomLevel * 100 >= 110 &&
+		edubreakMediaUtil.app.isShapeInViewport(shape.id)
 
-	const asset = shape.props.assetId ? edubreakMediaUtil.app.getAssetById(shape.props.assetId) : null
-	const { w, h, time, playing } = shape.props
-	const prefersReducedMotion = usePrefersReducedMotion()
+	const { h } = shape.props
+	const rVideo = React.useRef<HTMLVideoElement>(null!)
+	const [showVideoControls, setShowVideoControls] = React.useState(false)
 
 	useEffect(() => {
 		document.documentElement.style.setProperty(`--media-height`, `${h}px`)
+		/**
+		 * TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
+		 * @param e
+		 */
+		window.addEventListener('onCardButtonClick', async (e) => {
+			// @ts-ignoree
+			if (e.detail === 'mediaDetails-' + shape.id) {
+				openMediaDetails()
+			}
+			// @ts-ignore
+			if (e.detail === 'playButton-' + shape.id) {
+				await rVideo.current.play()
+			}
+		})
 	}, [])
-	// const rMedia = React.useRef<HTMLMediaElement>(null!)
 
-	// const handlePlay = React.useCallback<React.ReactEventHandler<HTMLMediaElement>>(
-	// 	(e) => {
-	// 		const media = e.currentTarget
-	//
-	// 		edubreakMediaUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakMedia',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: true,
-	// 					time: media.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakMediaUtil.app]
-	// )
+	useEffect(() => {
+		// reset video element -> playing = false and time = 0
+		if (!showVideoElement) {
+			setShowVideoControls(false)
+			edubreakMediaUtil.app.updateShapes([
+				{
+					type: 'edubreakMedia',
+					id: shape.id,
+					props: {
+						playing: false,
+						time: 0,
+					},
+				},
+			])
+		}
+	}, [showVideoElement])
 
-	// const handlePause = React.useCallback<React.ReactEventHandler<HTMLMediaElement>>(
-	// 	(e) => {
-	// 		const media = e.currentTarget
-	//
-	// 		edubreakMediaUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakMedia',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: false,
-	// 					time: media.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakMediaUtil.app]
-	// )
+	const handlePause = React.useCallback<React.ReactEventHandler<HTMLMediaElement>>(
+		(e) => {
+			const media = e.currentTarget
 
-	// const handleSetCurrentTime = React.useCallback<React.ReactEventHandler<HTMLMediaElement>>(
-	// 	(e) => {
-	// 		const media = e.currentTarget
-	//
-	// 		if (isEditing) {
-	// 			edubreakMediaUtil.app.updateShapes([
-	// 				{
-	// 					type: 'edubreakMedia',
-	// 					id: shape.id,
-	// 					props: {
-	// 						time: media.currentTime,
-	// 					},
-	// 				},
-	// 			])
-	// 		}
-	// 	},
-	// 	[isEditing, shape.id, edubreakMediaUtil.app]
-	// )
+			edubreakMediaUtil.app.updateShapes([
+				{
+					type: 'edubreakMedia',
+					id: shape.id,
+					props: {
+						playing: false,
+						time: media.currentTime,
+					},
+				},
+			])
+		},
+		[shape.id, edubreakMediaUtil.app]
+	)
 
-	// const handleLoadedData = React.useCallback<React.ReactEventHandler<HTMLMediaElement>>(
-	// 	(e) => {
-	// 		const media = e.currentTarget
-	// 		if (time !== media.currentTime) {
-	// 			media.currentTime = time
-	// 		}
-	//
-	// 		if (!playing) {
-	// 			media.pause()
-	// 		}
-	//
-	// 		setIsLoaded(true)
-	// 	},
-	// 	[playing, time]
-	// )
-
-	// If the current time changes and we're not editing the edubreakMedia, update the edubreakMedia time
-	// React.useEffect(() => {
-	// 	const media = rMedia.current
-	//
-	// 	if (!media) return
-	//
-	// 	if (isLoaded && !isEditing && time !== media.currentTime) {
-	// 		media.currentTime = time
-	// 	}
-	// }, [isEditing, isLoaded, time])
-	//
-	// React.useEffect(() => {
-	// 	if (prefersReducedMotion) {
-	// 		const media = rMedia.current
-	// 		media.pause()
-	// 		media.currentTime = 0
-	// 	}
-	// }, [rMedia, prefersReducedMotion])
+	async function handlePlay() {
+		await rVideo.current.play()
+		setShowVideoControls(true)
+		edubreakMediaUtil.app.updateShapes([
+			{
+				type: 'edubreakMedia',
+				id: shape.id,
+				props: {
+					playing: true,
+					time: rVideo.current.currentTime,
+				},
+			},
+		])
+	}
 
 	function openMediaDetails() {
-		alert('expand')
+		alert('expand Media')
 	}
 
 	function header() {
 		if (shape.props.thumbnail) {
 			return (
 				<div className="edubreak-media-thumbnail-container">
-					<img className="edubreak-media-thumbnail" src={shape.props.thumbnail} />
-					<div className="edubreak-media-overlay">
-						{shape.props.type === 'video' && <Icon className="edubreak-media-icon" icon="video" />}
-						{shape.props.type === 'videocomment' && (
-							<Icon className="edubreak-media-icon" icon="comments" />
-						)}
-					</div>
+					{!showVideoElement ? (
+						<>
+							<img className="edubreak-media-thumbnail" src={shape.props.thumbnail} />
+							<div className="edubreak-media-overlay">
+								{shape.props.type === 'video' && (
+									<Icon className="edubreak-media-icon" icon="video" />
+								)}
+								{shape.props.type === 'videocomment' && (
+									<Icon className="edubreak-media-icon" icon="comments" />
+								)}
+							</div>
+						</>
+					) : (
+						<>
+							<video
+								ref={rVideo}
+								id={'video-' + shape.id}
+								onPause={handlePause}
+								onPlay={handlePlay}
+								className="edubreak-media-video"
+								controls={showVideoControls}
+							>
+								<source src="http://media.w3.org/2010/05/sintel/trailer.mp4" />
+							</video>
+							{!shape.props.playing && !showVideoControls && (
+								<div
+									onClick={handlePlay}
+									className="edubreak-media-video-overlay"
+									aria-details={'playButton-' + shape.id}
+								>
+									<Icon className="edubreak-media-video-icon" icon="playhead" />
+								</div>
+							)}
+						</>
+					)}
 				</div>
 			)
 		} else {
 			return (
 				<div className="edubreak-media-thumbnail-container">
-					<img
-						className="edubreak-media-thumbnail"
-						src="packages/editor/src/lib/app/shapeutils/TLEdubreakMediaUtil/assets/blog_dummy_picture.jpg"
-					/>
+					<BlogPicture className="edubreak-media-thumbnail" />
 					<div className="edubreak-media-overlay">
 						<Icon className="edubreak-media-icon" icon="blog" />
 					</div>
@@ -235,7 +234,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 	return (
 		<>
 			<div className="edubreak-media">
-				<div onClick={() => openMediaDetails()} className="edubreak-content-card-detail-icon">
+				<div className="edubreak-media-card-detail-icon" aria-details={'mediaDetails-' + shape.id}>
 					<Icon icon="expand-content" />
 				</div>
 				<Card

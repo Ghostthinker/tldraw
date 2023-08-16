@@ -98,6 +98,26 @@ export const Canvas = track(function Canvas({
 		rCanvas.current?.focus()
 	}, [])
 
+	/**
+	 * TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
+	 * @param e
+	 */
+	window.onclick = async (e) => {
+		const allClickedElements = document.elementsFromPoint(e.pageX, e.pageY)
+		const edubreakCardButton = Array.from(allClickedElements).find(
+			(element) =>
+				element.classList.contains('edubreak-content-card-detail-icon') ||
+				element.classList.contains('edubreak-media-card-detail-icon') ||
+				element.classList.contains('edubreak-media-video-overlay')
+		)
+		if (edubreakCardButton) {
+			const onCardButtonClick = new CustomEvent('onCardButtonClick', {
+				detail: edubreakCardButton.getAttribute('aria-details'),
+			})
+			window.dispatchEvent(onCardButtonClick)
+		}
+	}
+
 	return (
 		<div ref={rCanvas} draggable={false} className="tl-canvas" data-wd="canvas" {...events}>
 			{Background && <Background />}

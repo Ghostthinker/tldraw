@@ -359,6 +359,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			mixed: formatAssetUrl(new URL('../icons/icon/mixed.svg', import.meta.url).href, opts),
 			pack: formatAssetUrl(new URL('../icons/icon/pack.svg', import.meta.url).href, opts),
 			page: formatAssetUrl(new URL('../icons/icon/page.svg', import.meta.url).href, opts),
+			playhead: formatAssetUrl(new URL('../icons/icon/playhead.svg', import.meta.url).href, opts),
 			plus: formatAssetUrl(new URL('../icons/icon/plus.svg', import.meta.url).href, opts),
 			'question-mark-circle': formatAssetUrl(
 				new URL('../icons/icon/question-mark-circle.svg', import.meta.url).href,

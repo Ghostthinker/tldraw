@@ -1707,6 +1707,15 @@ it from receiving any pointer events or affecting the cursor. */
 	pointer-events: none;
 }
 
+.edubreak-media-video {
+	display: block;
+	aspect-ratio: 16 / 9;
+	margin-top: 1%;
+	border-radius: 5px;
+	width: 100%;
+	pointer-events: all;
+}
+
 .edubreak-media-overlay {
 	position: absolute;
 	bottom: 0;
@@ -1725,6 +1734,42 @@ it from receiving any pointer events or affecting the cursor. */
 	width: 1.5rem !important;
 	height: 1.5rem !important;
 }
+
+.edubreak-media-video-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	width: 30%;
+	background: rgba(2, 38, 57, 0.5);
+	aspect-ratio: 1 / 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	z-index: 2147483647;
+}
+
+.edubreak-media-video-icon {
+	color: white;
+	opacity: 1 !important;
+	width: 4rem !important;
+	height: 4rem !important;
+	transform: translate(10%, 0);
+}
+
+.edubreak-media-video-overlay:hover {
+	background: rgba(3, 38, 57, 0.8);
+	transition: 0.3s ease;
+}
+
+.edubreak-media-video-overlay:hover .edubreak-media-video-icon {
+	color: rgba(255, 255, 255, 0.9);
+	transition: 0.3s ease;
+}
+
+
 
 .edubreak-media .p-card-body {
 	height: 35%;
@@ -1775,6 +1820,17 @@ it from receiving any pointer events or affecting the cursor. */
 	overflow: hidden;
 }
 
+.edubreak-media .p-card-footer {
+	padding: 0 !important;
+	margin-top: 0.8rem;
+	position: absolute;
+	bottom: 4%;
+}
+
+.edubreak-media-tags {
+	margin-top: 0.5rem;
+}
+
 /* --------------------- AssignmentChip --------------------- */
 .edubreak-assignment-chip {
 	height: 1.5rem;
@@ -1793,17 +1849,6 @@ it from receiving any pointer events or affecting the cursor. */
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-}
-
-.edubreak-media .p-card-footer {
-	padding: 0 !important;
-	margin-top: 0.8rem;
-	position: absolute;
-	bottom: 4%;
-}
-
-.edubreak-media-tags {
-	margin-top: 0.5rem;
 }
 
 /* --------------------- EdubreakContentUtil --------------------- */
@@ -1836,7 +1881,7 @@ it from receiving any pointer events or affecting the cursor. */
 	zoom: 3;
 }
 
-.edubreak-content-card-detail-icon {
+.edubreak-media-card-detail-icon, .edubreak-content-card-detail-icon {
 	position: absolute;
 	pointer-events: all;
 	cursor: pointer;
@@ -1846,7 +1891,7 @@ it from receiving any pointer events or affecting the cursor. */
 	z-index: var(--layer-canvas);
 }
 
-.edubreak-content-card-detail-icon:hover {
+.edubreak-media-card-detail-icon:hover, .edubreak-content-card-detail-icon:hover {
 	color: #5d5d5d;
 }
 

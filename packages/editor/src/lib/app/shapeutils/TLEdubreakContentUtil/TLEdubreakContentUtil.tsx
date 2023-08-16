@@ -4,6 +4,7 @@ import {
 	edubreakContentShapeMigrations,
 	edubreakContentShapeTypeValidator,
 } from '@tldraw/tlschema'
+import { useEffect } from 'react'
 import { track } from 'signia-react'
 import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
@@ -73,13 +74,28 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 	const { shape } = props
 
 	function openContentDetails() {
-		alert('expand')
+		alert('expand Content')
 	}
 
+	/**
+	 * TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
+	 * @param e
+	 */
+	useEffect(() => {
+		window.addEventListener('onCardButtonClick', async (e) => {
+			// @ts-ignoree
+			if (e.detail === 'contentDetails-' + shape.id) {
+				openContentDetails()
+			}
+		})
+	}, [])
 	return (
 		<>
 			<div className="edubreak-content">
-				<div onClick={() => openContentDetails()} className="edubreak-content-card-detail-icon">
+				<div
+					className="edubreak-content-card-detail-icon"
+					aria-details={'contentDetails-' + shape.id}
+				>
 					{shape.props.type === 'cmap' && <Icon icon="expand-content" />}
 					{shape.props.type === 'extern' && <Icon icon="external-link" />}
 				</div>
