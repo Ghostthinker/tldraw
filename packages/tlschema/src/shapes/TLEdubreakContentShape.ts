@@ -12,7 +12,7 @@ export type TLEdubreakContentShapeProps = {
 	name: string
 	date: string
 	assignment: string
-	tags: string[]
+	tags: any[]
 	opacity: TLOpacityType
 	w: number
 	h: number
@@ -35,7 +35,7 @@ export const edubreakContentShapeTypeValidator: T.Validator<TLEdubreakContentSha
 			name: T.string,
 			date: T.string,
 			assignment: T.string,
-			tags: T.arrayOf(T.string),
+			tags: T.arrayOf(T.any),
 			opacity: opacityValidator,
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,

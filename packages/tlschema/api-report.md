@@ -988,7 +988,7 @@ export type TLEdubreakContentShapeProps = {
     name: string;
     date: string;
     assignment: string;
-    tags: string[];
+    tags: any[];
     opacity: TLOpacityType;
     w: number;
     h: number;
@@ -1020,7 +1020,7 @@ export type TLEdubreakMediaShapeProps = {
     name: string;
     date: string;
     assignment: string;
-    tags: string[];
+    tags: any[];
     w: number;
     h: number;
     time: number;

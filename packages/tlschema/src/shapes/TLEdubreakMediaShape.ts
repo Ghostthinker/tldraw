@@ -15,7 +15,7 @@ export type TLEdubreakMediaShapeProps = {
 	name: string
 	date: string
 	assignment: string
-	tags: string[]
+	tags: any[]
 	w: number
 	h: number
 	time: number
@@ -42,7 +42,7 @@ export const edubreakMediaShapeTypeValidator: T.Validator<TLEdubreakMediaShape> 
 			name: T.string,
 			date: T.string,
 			assignment: T.string,
-			tags: T.arrayOf(T.string),
+			tags: T.arrayOf(T.any),
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,
 			time: T.number,

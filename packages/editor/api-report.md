@@ -1964,13 +1964,25 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 export const TLEdubreakMediaShapeDef: TLShapeDef<TLEdubreakMediaShape, TLEdubreakMediaUtil>;
 
 // @public (undocumented)
-export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
+export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
     // (undocumented)
     canEdit: () => boolean;
     // (undocumented)
     defaultProps(): TLEdubreakMediaShape['props'];
     // (undocumented)
+    getBounds(shape: TLEdubreakMediaShape): Box2d;
+    // (undocumented)
+    getCenter(_shape: TLEdubreakMediaShape): Vec2d;
+    // (undocumented)
+    getHeight(shape: TLEdubreakMediaShape): number;
+    // (undocumented)
+    getOutline(shape: TLEdubreakMediaShape): Vec2d[];
+    // (undocumented)
     hideResizeHandles: () => boolean;
+    // (undocumented)
+    hideSelectionBoundsBg: () => boolean;
+    // (undocumented)
+    hideSelectionBoundsFg: () => boolean;
     // (undocumented)
     indicator(shape: TLEdubreakMediaShape): JSX.Element;
     // (undocumented)

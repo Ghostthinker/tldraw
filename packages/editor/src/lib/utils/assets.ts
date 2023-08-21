@@ -419,17 +419,6 @@ export function createEmbedShapeAtPoint(
 	)
 }
 
-function getEdubreakMediaHeight(options: any, defaultHeight: number) {
-	let height = defaultHeight
-	if (options.tags.length === 0) {
-		height = height - 25
-	}
-	if (!options.body) {
-		height = height - 70
-	}
-	return height
-}
-
 /** @public */
 export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
 	let videoContents
@@ -454,7 +443,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							assignment: options.assignment?.title || '',
 							tags: options.tags || [],
 							w: 425,
-							h: getEdubreakMediaHeight(options, 430),
+							h: 335,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
@@ -483,7 +472,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							assignment: options.assignment?.title || '',
 							tags: options.tags || [],
 							w: 425,
-							h: getEdubreakMediaHeight(options, 430),
+							h: 335,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,
@@ -514,7 +503,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							assignment: options.assignment?.title || '',
 							tags: options.tags || [],
 							w: 425,
-							h: getEdubreakMediaHeight(options, 430),
+							h: 335,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							time: 0,

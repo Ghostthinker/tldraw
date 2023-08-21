@@ -1,8 +1,8 @@
-import { toDomPrecision } from '@tldraw/primitives'
+import { Box2d, toDomPrecision, Vec2d } from '@tldraw/primitives'
 import {
-	TLEdubreakMediaShape,
 	edubreakMediaShapeMigrations,
 	edubreakMediaShapeTypeValidator,
+	TLEdubreakMediaShape,
 } from '@tldraw/tlschema'
 import { Card } from 'primereact/card'
 import * as React from 'react'
@@ -10,18 +10,22 @@ import { useEffect } from 'react'
 import { track } from 'signia-react'
 import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
-import { TLBoxUtil } from '../TLBoxUtil'
 import { AssignmentChip } from '../shared/AssignmentChip'
 import { TagList } from '../shared/TagList'
+import { TLShapeUtil } from '../TLShapeUtil'
 import { BlogPicture } from './assets/BlogPicture'
 
+const MEDIA_SIZE = 425
+
 /** @public */
-export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
+export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
 	static type = 'edubreakMedia'
 
 	override canEdit = () => false
 	override isAspectRatioLocked = () => true
 	override hideResizeHandles = () => true
+	override hideSelectionBoundsFg = () => true
+	override hideSelectionBoundsBg = () => true
 
 	override defaultProps(): TLEdubreakMediaShape['props'] {
 		return {
@@ -44,20 +48,58 @@ export class TLEdubreakMediaUtil extends TLBoxUtil<TLEdubreakMediaShape> {
 		}
 	}
 
+	getHeight(shape: TLEdubreakMediaShape) {
+		let height = shape.props.h
+		if (shape.props.tags.length > 0) {
+			height = height + 25
+		}
+		if (shape.props.body) {
+			height = height + 70
+		}
+		return height
+	}
+
+	getBounds(shape: TLEdubreakMediaShape) {
+		const height = this.getHeight(shape)
+		return new Box2d(0, 0, MEDIA_SIZE, height)
+	}
+
+	getOutline(shape: TLEdubreakMediaShape) {
+		return this.bounds(shape).corners
+	}
+
+	getCenter(_shape: TLEdubreakMediaShape) {
+		return new Vec2d(MEDIA_SIZE / 2, this.getHeight(_shape) / 2)
+	}
+
 	render(shape: TLEdubreakMediaShape) {
-		return <TLEdubreakMediaUtilComponent shape={shape} edubreakMediaUtil={this} />
+		return (
+			<div
+				style={{
+					position: 'absolute',
+					width: MEDIA_SIZE,
+					height: this.getHeight(shape),
+				}}
+			>
+				<TLEdubreakMediaUtilComponent shape={shape} edubreakMediaUtil={this} />
+			</div>
+		)
 	}
 
 	indicator(shape: TLEdubreakMediaShape) {
-		return <rect width={toDomPrecision(shape.props.w)} height={toDomPrecision(shape.props.h)} />
+		return (
+			<rect width={toDomPrecision(MEDIA_SIZE)} height={toDomPrecision(this.getHeight(shape))} />
+		)
 	}
 
 	toSvg(shape: TLEdubreakMediaShape) {
+		const bounds = this.bounds(shape)
+
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
 		image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', shape.props.thumbnail)
-		image.setAttribute('width', shape.props.w.toString())
-		image.setAttribute('height', shape.props.h.toString())
+		image.setAttribute('width', MEDIA_SIZE.toString())
+		image.setAttribute('height', bounds.height.toString())
 		g.appendChild(image)
 
 		return g
@@ -81,16 +123,11 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 		edubreakMediaUtil.app.zoomLevel * 100 >= 110 &&
 		edubreakMediaUtil.app.isShapeInViewport(shape.id)
 
-	const { h } = shape.props
 	const rVideo = React.useRef<HTMLVideoElement>(null!)
 	const [showVideoControls, setShowVideoControls] = React.useState(false)
 
 	useEffect(() => {
-		document.documentElement.style.setProperty(`--media-height`, `${h}px`)
-		/**
-		 * TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
-		 * @param e
-		 */
+		// TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
 		window.addEventListener('onCardButtonClick', async (e) => {
 			// @ts-ignoree
 			if (e.detail === 'mediaDetails-' + shape.id) {

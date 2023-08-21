@@ -1671,14 +1671,11 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 /* --------------------- EdubreakMediaUtil --------------------- */
-:root {
-	--media-height: 450px;
-}
 
 .edubreak-media {
 	display: flex;
-	width: 425px;
-	height: var(--media-height);
+	width: 100%;
+	height: 100%;
 	border-radius: 10px;
 	box-shadow: var(--shadow-1);
 	background-color: white;
