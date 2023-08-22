@@ -1968,6 +1968,8 @@ export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
     // (undocumented)
     canEdit: () => boolean;
     // (undocumented)
+    canScroll: () => boolean;
+    // (undocumented)
     defaultProps(): TLEdubreakMediaShape['props'];
     // (undocumented)
     getBounds(shape: TLEdubreakMediaShape): Box2d;
@@ -1979,10 +1981,6 @@ export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
     getOutline(shape: TLEdubreakMediaShape): Vec2d[];
     // (undocumented)
     hideResizeHandles: () => boolean;
-    // (undocumented)
-    hideSelectionBoundsBg: () => boolean;
-    // (undocumented)
-    hideSelectionBoundsFg: () => boolean;
     // (undocumented)
     indicator(shape: TLEdubreakMediaShape): JSX.Element;
     // (undocumented)

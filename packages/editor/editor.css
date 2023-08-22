@@ -1826,7 +1826,6 @@ it from receiving any pointer events or affecting the cursor. */
 .edubreak-media .p-card-footer {
 	padding: 0 !important;
 	margin-top: 0.8rem;
-	position: absolute;
 	bottom: 4%;
 }
 

@@ -21,11 +21,10 @@ const MEDIA_SIZE = 425
 export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
 	static type = 'edubreakMedia'
 
-	override canEdit = () => false
+	override canEdit = () => true
 	override isAspectRatioLocked = () => true
 	override hideResizeHandles = () => true
-	override hideSelectionBoundsFg = () => true
-	override hideSelectionBoundsBg = () => true
+	override canScroll = () => true
 
 	override defaultProps(): TLEdubreakMediaShape['props'] {
 		return {
