@@ -1732,6 +1732,12 @@ it from receiving any pointer events or affecting the cursor. */
 	height: 1.5rem !important;
 }
 
+.edubreak-media-icon-blog {
+	color: white;
+	width: 1.2rem !important;
+	height: 1.5rem !important;
+}
+
 .edubreak-media-video-overlay {
 	position: absolute;
 	top: 50%;

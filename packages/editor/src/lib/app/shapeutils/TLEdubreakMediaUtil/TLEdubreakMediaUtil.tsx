@@ -240,7 +240,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 				<div className="edubreak-media-thumbnail-container">
 					<BlogPicture className="edubreak-media-thumbnail" />
 					<div className="edubreak-media-overlay">
-						<Icon className="edubreak-media-icon" icon="blog" />
+						<Icon className="edubreak-media-icon-blog" icon="blog" />
 					</div>
 				</div>
 			)
