@@ -46,6 +46,8 @@
 		"lint": "yarn run -T tsx ../../scripts/lint.ts"
 	},
 	"dependencies": {
+		"@liveblocks/client": "^1.2.2",
+		"@liveblocks/react": "^1.2.2",
 		"@tldraw/edubreak": "workspace:*",
 		"@tldraw/primitives": "workspace:*",
 		"@tldraw/tlschema": "workspace:*",

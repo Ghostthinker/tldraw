@@ -4,6 +4,7 @@ import { dedupe, modulate } from '@tldraw/utils'
 import * as React from 'react'
 import { react } from 'signia'
 import { track, useValue } from 'signia-react'
+import { useOthers } from '../../liveblocks.config'
 import { useApp } from '../hooks/useApp'
 import { useCanvasEvents } from '../hooks/useCanvasEvents'
 import { useCoarsePointer } from '../hooks/useCoarsePointer'
@@ -41,6 +42,7 @@ export const Canvas = track(function Canvas({
 	useScreenBounds()
 	useDocumentEvents()
 	useCoarsePointer()
+	const others = useOthers()
 
 	useGestureEvents(rCanvas)
 	useFixSafariDoubleTapZoomPencilEvents(rCanvas)
@@ -95,6 +97,9 @@ export const Canvas = track(function Canvas({
 	}, [app, patternIsReady])
 
 	React.useEffect(() => {
+		const userCount = others.length
+		console.log('others: ', others)
+		console.log('others count: ', userCount)
 		rCanvas.current?.focus()
 	}, [])
 

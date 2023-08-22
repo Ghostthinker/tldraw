@@ -2759,6 +2759,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@liveblocks/client@npm:1.2.2, @liveblocks/client@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@liveblocks/client@npm:1.2.2"
+  dependencies:
+    "@liveblocks/core": 1.2.2
+  checksum: 2c3c855aff03636b281a78d3bf50efaedf692403729da33b07a6dcfa9439ed1681d16cceb00d426e683473f498462dfbcca622693daa15ff7088f5644b855ca1
+  languageName: node
+  linkType: hard
+
+"@liveblocks/core@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@liveblocks/core@npm:1.2.2"
+  checksum: 8d6d2aaf33d98382ac45ad15fb46b4ff6592e9fef66a420a19e0c5de34b85f9a26d12b12a1f431f1c6cc780a3c65bbc1e56ca2c784c6722c30f33ac65fdce58b
+  languageName: node
+  linkType: hard
+
+"@liveblocks/react@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@liveblocks/react@npm:1.2.2"
+  dependencies:
+    "@liveblocks/client": 1.2.2
+    "@liveblocks/core": 1.2.2
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    react: ^16.14.0 || ^17 || ^18
+  checksum: 70959cc94135970ef0732f57399d08eeb65e17bbacbff7380bffa79ab826f94b1862e37341f048b1688a06ca20cd5de8efabd3257e3e0c830b05f20bc57f8bca
+  languageName: node
+  linkType: hard
+
 "@mapbox/node-pre-gyp@npm:^1.0.5":
   version: 1.0.10
   resolution: "@mapbox/node-pre-gyp@npm:1.0.10"
@@ -4411,6 +4440,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@tldraw/editor@workspace:packages/editor"
   dependencies:
+    "@liveblocks/client": ^1.2.2
+    "@liveblocks/react": ^1.2.2
     "@peculiar/webcrypto": ^1.4.0
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
@@ -18688,6 +18719,15 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 925d1922f9853e516eaad526b6fed1be38008073067274f0ecc3f56b17bb8ab63480140dd7c271f94150027c996cea4efe83d3e3525e8f3eda22055f6a39220b
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
   languageName: node
   linkType: hard
 

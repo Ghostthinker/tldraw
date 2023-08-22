@@ -9,6 +9,8 @@ import { OptionalErrorBoundary } from './components/ErrorBoundary'
 import { SyncedStore } from './config/SyncedStore'
 import { TldrawEditorConfig } from './config/TldrawEditorConfig'
 
+import { ClientSideSuspense } from '@liveblocks/react'
+import { RoomProvider } from '../liveblocks.config'
 import { DefaultErrorFallback } from './components/DefaultErrorFallback'
 import { AppContext } from './hooks/useApp'
 import { AssetUrlsProvider } from './hooks/useAssetUrls'
@@ -116,22 +118,35 @@ export function TldrawEditor(props: TldrawEditorProps) {
 		components?.ErrorFallback === undefined ? DefaultErrorFallback : components?.ErrorFallback
 
 	return (
-		<div ref={setContainer} draggable={false} className="tl-container tl-theme__light" tabIndex={0}>
-			<OptionalErrorBoundary
-				fallback={ErrorFallback ? (error) => <ErrorFallback error={error} /> : null}
-				onError={(error) => annotateError(error, { tags: { origin: 'react.tldraw-before-app' } })}
-			>
-				<AssetUrlsProvider assetUrls={props.assetUrls ?? defaultEditorAssetUrls}>
-					{container && (
-						<ContainerProvider container={container}>
-							<EditorComponentsProvider overrides={components}>
-								<TldrawEditorBeforeLoading {...rest} />
-							</EditorComponentsProvider>
-						</ContainerProvider>
-					)}
-				</AssetUrlsProvider>
-			</OptionalErrorBoundary>
-		</div>
+		<RoomProvider id="my-room" initialPresence={{}}>
+			<ClientSideSuspense fallback={<div>Loading…</div>}>
+				{() => (
+					<div
+						ref={setContainer}
+						draggable={false}
+						className="tl-container tl-theme__light"
+						tabIndex={0}
+					>
+						<OptionalErrorBoundary
+							fallback={ErrorFallback ? (error) => <ErrorFallback error={error} /> : null}
+							onError={(error) =>
+								annotateError(error, { tags: { origin: 'react.tldraw-before-app' } })
+							}
+						>
+							<AssetUrlsProvider assetUrls={props.assetUrls ?? defaultEditorAssetUrls}>
+								{container && (
+									<ContainerProvider container={container}>
+										<EditorComponentsProvider overrides={components}>
+											<TldrawEditorBeforeLoading {...rest} />
+										</EditorComponentsProvider>
+									</ContainerProvider>
+								)}
+							</AssetUrlsProvider>
+						</OptionalErrorBoundary>
+					</div>
+				)}
+			</ClientSideSuspense>
+		</RoomProvider>
 	)
 }
 

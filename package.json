@@ -39,6 +39,7 @@
 		"build-docs": "lazy build-docs",
 		"dev": "lazy run dev --filter='{,bublic/}apps/examples' --filter='{,bublic/}packages/tldraw'",
 		"dev:svb": "yarn run build && lazy run dev --filter='{,bublic/}apps/social-video-board' --filter='{,bublic/}packages/tldraw'",
+		"dev:svb:network": "yarn run build && lazy run dev --filter='{,bublic/}apps/social-video-board' --filter='{,bublic/}packages/tldraw' --host",
 		"dev-docs": "lazy run dev-docs",
 		"dev-vscode": "code ./apps/vscode/extension && lazy run dev --filter='{,bublic/}apps/vscode/{extension,editor}'",
 		"build-types": "lazy inherit",
