@@ -1827,6 +1827,7 @@ it from receiving any pointer events or affecting the cursor. */
 	padding: 0 !important;
 	margin-top: 0.8rem;
 	bottom: 4%;
+	position: absolute;
 }
 
 .edubreak-media-tags {
@@ -1940,6 +1941,7 @@ it from receiving any pointer events or affecting the cursor. */
 	overflow: hidden;
 	overflow-x: scroll;
 	display: flex;
+	width: 375px;
 	/* Hide scrollbar for IE, Edge and Firefox */
 	-ms-overflow-style: none;  /* IE and Edge */
 	scrollbar-width: none;  /* Firefox */
