@@ -6,12 +6,16 @@ import { assetIdValidator, opacityValidator } from '../validation'
 import { TLBaseShape, createShapeValidator } from './shape-validation'
 
 /** @public */
-export type TLEdubreakVideoShapeProps = {
+export type TLEdubreakMediaShapeProps = {
 	id: number
 	title: string
 	body: string
 	thumbnail: string
 	opacity: TLOpacityType
+	name: string
+	date: string
+	assignment: string
+	tags: any[]
 	w: number
 	h: number
 	time: number
@@ -22,19 +26,23 @@ export type TLEdubreakVideoShapeProps = {
 }
 
 /** @public */
-export type TLEdubreakVideoShape = TLBaseShape<'edubreakVideo', TLEdubreakVideoShapeProps>
+export type TLEdubreakMediaShape = TLBaseShape<'edubreakMedia', TLEdubreakMediaShapeProps>
 
 // --- VALIDATION ---
 /** @public */
-export const edubreakVideoShapeTypeValidator: T.Validator<TLEdubreakVideoShape> =
+export const edubreakMediaShapeTypeValidator: T.Validator<TLEdubreakMediaShape> =
 	createShapeValidator(
-		'edubreakVideo',
+		'edubreakMedia',
 		T.object({
 			id: T.number,
 			title: T.string,
 			body: T.string,
 			thumbnail: T.string,
 			opacity: opacityValidator,
+			name: T.string,
+			date: T.string,
+			assignment: T.string,
+			tags: T.arrayOf(T.any),
 			w: T.nonZeroNumber,
 			h: T.nonZeroNumber,
 			time: T.number,
@@ -54,7 +62,7 @@ const Versions = {
 } as const
 
 /** @public */
-export const edubreakVideoShapeMigrations = defineMigrations({
+export const edubreakMediaShapeMigrations = defineMigrations({
 	// STEP 2: Update the current version to point to your latest version
 	firstVersion: Versions.Initial,
 	currentVersion: Versions.AddUrlProp,

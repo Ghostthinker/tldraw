@@ -2,5 +2,6 @@
 	"artefact-menu.header": "SVH",
 	"artefact-menu.only-show-marked-content": "Only show marked content from Social Video Hub",
 	"artefact-menu.no-artefacts": "Sadly, there is no comments in videos that could be used",
-	"artefact.add": "Add"
+	"artefact.add": "Add",
+	"shape.content-no-assignment": "No Assignment"
 }

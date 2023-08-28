@@ -36,7 +36,7 @@ import { TLArrowShapeDef } from '../app/shapeutils/TLArrowUtil/TLArrowUtil'
 import { TLBookmarkShapeDef } from '../app/shapeutils/TLBookmarkUtil/TLBookmarkUtil'
 import { TLDrawShapeDef } from '../app/shapeutils/TLDrawUtil/TLDrawUtil'
 import { TLEdubreakContentShapeDef } from '../app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
-import { TLEdubreakVideoShapeDef } from '../app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
+import { TLEdubreakMediaShapeDef } from '../app/shapeutils/TLEdubreakMediaUtil/TLEdubreakMediaUtil'
 import { TLEmbedShapeDef } from '../app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 import { TLFrameShapeDef } from '../app/shapeutils/TLFrameUtil/TLFrameUtil'
 import { TLGeoShapeDef } from '../app/shapeutils/TLGeoUtil/TLGeoUtil'
@@ -60,7 +60,7 @@ const CORE_SHAPE_DEFS = () =>
 		TLArrowShapeDef,
 		TLImageShapeDef,
 		TLVideoShapeDef,
-		TLEdubreakVideoShapeDef,
+		TLEdubreakMediaShapeDef,
 		TLEdubreakContentShapeDef,
 		TLGeoShapeDef,
 		TLNoteShapeDef,

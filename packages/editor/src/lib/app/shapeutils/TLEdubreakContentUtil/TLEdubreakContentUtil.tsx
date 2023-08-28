@@ -4,27 +4,35 @@ import {
 	edubreakContentShapeMigrations,
 	edubreakContentShapeTypeValidator,
 } from '@tldraw/tlschema'
+import { useEffect } from 'react'
 import { track } from 'signia-react'
+import { Icon } from '../../../components/primitives/Icon'
 import { defineShape } from '../../../config/TLShapeDefinition'
 import { TLBoxUtil } from '../TLBoxUtil'
-import { HyperlinkButton } from '../shared/HyperlinkButton'
+import { AssignmentChip } from '../shared/AssignmentChip'
+import { TagList } from '../shared/TagList'
 
 /** @public */
 export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 	static type = 'edubreakContent'
 
 	override canEdit = () => true
+	override canScroll = () => true
 	override isAspectRatioLocked = () => true
+	override hideResizeHandles = () => true
 
 	override defaultProps(): TLEdubreakContentShape['props'] {
 		return {
 			id: 0,
-			title: '',
-			body: '',
-			opacity: '1',
-			w: 100,
-			h: 100,
 			type: '',
+			title: '',
+			name: '',
+			date: '',
+			assignment: '',
+			tags: [],
+			opacity: '1',
+			w: 425,
+			h: 150,
 			assetId: null,
 			url: '',
 		}
@@ -41,7 +49,6 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 	toSvg(shape: TLEdubreakContentShape) {
 		const g = document.createElementNS('http://www.w3.org/2000/svg', 'g')
 		const image = document.createElementNS('http://www.w3.org/2000/svg', 'image')
-		// image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', shape.props.thumbnail)
 		image.setAttribute('width', shape.props.w.toString())
 		image.setAttribute('height', shape.props.h.toString())
 		g.appendChild(image)
@@ -64,117 +71,49 @@ const TLEdubreakContentUtilComponent = track(function TLEdubreakContentUtilCompo
 	shape: TLEdubreakContentShape
 	edubreakContentUtil: TLEdubreakContentUtil
 }) {
-	// const { Spinner } = useEditorComponents()
-	const { shape, edubreakContentUtil } = props
-	// const [isLoaded, setIsLoaded] = React.useState(false)
-	// const showControls =
-	// 	edubreakContentUtil.app.getBounds(shape).w * edubreakContentUtil.app.zoomLevel >= 110
-	// const asset = shape.props.assetId ? edubreakContentUtil.app.getAssetById(shape.props.assetId) : null
-	// const { w, h, time, playing } = shape.props
-	// const isEditing = useIsEditing(shape.id)
-	// const prefersReducedMotion = usePrefersReducedMotion()
-	//
-	// const rVideo = React.useRef<HTMLVideoElement>(null!)
+	const { shape } = props
 
-	// const handlePlay = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		edubreakContentUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakContent',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: true,
-	// 					time: video.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakContentUtil.app]
-	// )
+	function openContentDetails() {
+		alert('expand Content')
+	}
 
-	// const handlePause = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		edubreakContentUtil.app.updateShapes([
-	// 			{
-	// 				type: 'edubreakContent',
-	// 				id: shape.id,
-	// 				props: {
-	// 					playing: false,
-	// 					time: video.currentTime,
-	// 				},
-	// 			},
-	// 		])
-	// 	},
-	// 	[shape.id, edubreakContentUtil.app]
-	// )
-
-	// const handleSetCurrentTime = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	//
-	// 		if (isEditing) {
-	// 			edubreakContentUtil.app.updateShapes([
-	// 				{
-	// 					type: 'edubreakContent',
-	// 					id: shape.id,
-	// 					props: {
-	// 						time: video.currentTime,
-	// 					},
-	// 				},
-	// 			])
-	// 		}
-	// 	},
-	// 	[isEditing, shape.id, edubreakContentUtil.app]
-	// )
-
-	// const handleLoadedData = React.useCallback<React.ReactEventHandler<HTMLVideoElement>>(
-	// 	(e) => {
-	// 		const video = e.currentTarget
-	// 		if (time !== video.currentTime) {
-	// 			video.currentTime = time
-	// 		}
-	//
-	// 		if (!playing) {
-	// 			video.pause()
-	// 		}
-	//
-	// 		setIsLoaded(true)
-	// 	},
-	// 	[playing, time]
-	// )
-
-	// If the current time changes and we're not editing the edubreakContent, update the edubreakContent time
-	// React.useEffect(() => {
-	// 	const video = rVideo.current
-	//
-	// 	if (!video) return
-	//
-	// 	if (isLoaded && !isEditing && time !== video.currentTime) {
-	// 		video.currentTime = time
-	// 	}
-	// }, [isEditing, isLoaded, time])
-	//
-	// React.useEffect(() => {
-	// 	if (prefersReducedMotion) {
-	// 		const video = rVideo.current
-	// 		video.pause()
-	// 		video.currentTime = 0
-	// 	}
-	// }, [rVideo, prefersReducedMotion])
-
+	/**
+	 * TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
+	 * @param e
+	 */
+	useEffect(() => {
+		window.addEventListener('onCardButtonClick', async (e) => {
+			// @ts-ignoree
+			if (e.detail === 'contentDetails-' + shape.id) {
+				openContentDetails()
+			}
+		})
+	}, [])
 	return (
 		<>
-			<div className="edubreak-content-wrapper">
-				<div className="edubreak-content-text-title">{shape.props.title}</div>
-				<div className="edubreak-content-text">
-					<div dangerouslySetInnerHTML={{ __html: shape.props.body }}></div>
-					{'url' in shape.props && shape.props.url && (
-						<HyperlinkButton url={shape.props.url} zoomLevel={edubreakContentUtil.app.zoomLevel} />
+			<div className="edubreak-content">
+				<div
+					className="edubreak-content-card-detail-icon"
+					aria-details={'contentDetails-' + shape.id}
+				>
+					{shape.props.type === 'cmap' && <Icon icon="expand-content" />}
+					{shape.props.type === 'extern' && <Icon icon="external-link" />}
+				</div>
+				<div className="icon-container">
+					{shape.props.type === 'cmap' && (
+						<Icon className="edubreak-content-icon-document" icon="file" />
 					)}
+					{shape.props.type === 'external-link' && (
+						<Icon className="edubreak-content-icon-external-link" icon="external-link" />
+					)}
+				</div>
+				<div className="edubreak-content-text-wrapper">
+					<div className="edubreak-content-text-title">{shape.props.title}</div>
+					<div className="edubreak-content-text-subtitle">
+						{shape.props.name} | {shape.props.date}
+					</div>
+					<AssignmentChip className="edubreak-content-assignment" shape={shape} />
+					<TagList className="edubreak-content-tags" edubreakTags={shape.props.tags} />
 				</div>
 			</div>
 		</>

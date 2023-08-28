@@ -11,6 +11,7 @@ import { TldrawEditorConfig } from './config/TldrawEditorConfig'
 
 import { DefaultErrorFallback } from './components/DefaultErrorFallback'
 import { AppContext } from './hooks/useApp'
+import { AssetUrlsProvider } from './hooks/useAssetUrls'
 import { ContainerProvider, useContainer } from './hooks/useContainer'
 import { useCursor } from './hooks/useCursor'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -120,13 +121,15 @@ export function TldrawEditor(props: TldrawEditorProps) {
 				fallback={ErrorFallback ? (error) => <ErrorFallback error={error} /> : null}
 				onError={(error) => annotateError(error, { tags: { origin: 'react.tldraw-before-app' } })}
 			>
-				{container && (
-					<ContainerProvider container={container}>
-						<EditorComponentsProvider overrides={components}>
-							<TldrawEditorBeforeLoading {...rest} />
-						</EditorComponentsProvider>
-					</ContainerProvider>
-				)}
+				<AssetUrlsProvider assetUrls={props.assetUrls ?? defaultEditorAssetUrls}>
+					{container && (
+						<ContainerProvider container={container}>
+							<EditorComponentsProvider overrides={components}>
+								<TldrawEditorBeforeLoading {...rest} />
+							</EditorComponentsProvider>
+						</ContainerProvider>
+					)}
+				</AssetUrlsProvider>
 			</OptionalErrorBoundary>
 		</div>
 	)

@@ -30,9 +30,9 @@ export {
 	TLEdubreakContentUtil,
 } from './lib/app/shapeutils/TLEdubreakContentUtil/TLEdubreakContentUtil'
 export {
-	TLEdubreakVideoShapeDef,
-	TLEdubreakVideoUtil,
-} from './lib/app/shapeutils/TLEdubreakVideoUtil/TLEdubreakVideoUtil'
+	TLEdubreakMediaShapeDef,
+	TLEdubreakMediaUtil,
+} from './lib/app/shapeutils/TLEdubreakMediaUtil/TLEdubreakMediaUtil'
 export { TLEmbedShapeDef, TLEmbedUtil } from './lib/app/shapeutils/TLEmbedUtil/TLEmbedUtil'
 export { TLFrameShapeDef, TLFrameUtil } from './lib/app/shapeutils/TLFrameUtil/TLFrameUtil'
 export { TLGeoShapeDef, TLGeoUtil } from './lib/app/shapeutils/TLGeoUtil/TLGeoUtil'

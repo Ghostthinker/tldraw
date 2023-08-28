@@ -12,10 +12,10 @@ import {
 	TLEdubreakContentAsset,
 } from '../assets/TLEdubreakContentAsset'
 import {
-	edubreakVideoAssetMigrations,
-	edubreakVideoAssetTypeValidator,
-	TLEdubreakVideoAsset,
-} from '../assets/TLEdubreakVideoAsset'
+	edubreakMediaAssetMigrations,
+	edubreakMediaAssetTypeValidator,
+	TLEdubreakMediaAsset,
+} from '../assets/TLEdubreakMediaAsset'
 import { imageAssetMigrations, imageAssetTypeValidator, TLImageAsset } from '../assets/TLImageAsset'
 import { TLVideoAsset, videoAssetMigrations, videoAssetTypeValidator } from '../assets/TLVideoAsset'
 import { TLShape } from './TLShape'
@@ -25,7 +25,7 @@ import { TLShape } from './TLShape'
 export type TLAsset =
 	| TLImageAsset
 	| TLVideoAsset
-	| TLEdubreakVideoAsset
+	| TLEdubreakMediaAsset
 	| TLEdubreakContentAsset
 	| TLBookmarkAsset
 
@@ -36,7 +36,7 @@ export const assetTypeValidator: T.Validator<TLAsset> = T.model(
 	T.union('type', {
 		image: imageAssetTypeValidator,
 		video: videoAssetTypeValidator,
-		edubreakVideo: edubreakVideoAssetTypeValidator,
+		edubreakMedia: edubreakMediaAssetTypeValidator,
 		edubreakContent: edubreakContentAssetTypeValidator,
 		bookmark: bookmarkAssetTypeValidator,
 	})
@@ -60,7 +60,7 @@ export const assetTypeMigrations = defineMigrations({
 	subTypeMigrations: {
 		image: imageAssetMigrations,
 		video: videoAssetMigrations,
-		edubreakVideo: edubreakVideoAssetMigrations,
+		edubreakMedia: edubreakMediaAssetMigrations,
 		edubreakContent: edubreakContentAssetMigrations,
 		bookmark: bookmarkAssetMigrations,
 	},

@@ -6,7 +6,7 @@ import {
 	TLAssetShape,
 	TLBookmarkAsset,
 	TLEdubreakContentShape,
-	TLEdubreakVideoShape,
+	TLEdubreakMediaShape,
 	TLImageShape,
 	TLShape,
 	TLShapePartial,
@@ -290,7 +290,7 @@ export async function createShapesFromFiles(
 
 				newAssetsForFiles.set(file, asset)
 
-				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakVideoShape> = {
+				const shapePartial: TLShapePartial<TLImageShape | TLVideoShape | TLEdubreakMediaShape> = {
 					id: createShapeId(),
 					type: asset.type,
 					x: pagePoint.x + i,
@@ -334,7 +334,7 @@ export async function createShapesFromFiles(
 	const shapeUpdates = await Promise.all(
 		files.map(async (file, i) => {
 			const shape = results[i] as TLShapePartial<
-				TLImageShape | TLVideoShape | TLEdubreakVideoShape | TLEdubreakContentShape
+				TLImageShape | TLVideoShape | TLEdubreakMediaShape | TLEdubreakContentShape
 			>
 			if (!shape) return
 
@@ -431,18 +431,83 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				[
 					{
 						id: createShapeId(),
-						type: 'edubreakContent',
+						type: 'edubreakMedia',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
-							opacity: '1',
-							w: 400,
-							h: 500,
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: 335,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							url: options.campusURL,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'video':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakMedia',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
+							thumbnail: videoContents.linkVideoThumbnail,
+							opacity: '1',
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: 335,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
+							url: options.campusURL,
+						},
+					},
+				],
+				true
+			)
+			break
+		case 'videocomment':
+			app.createShapes(
+				[
+					{
+						id: createShapeId(),
+						type: 'edubreakMedia',
+						x: point.x - 450 / 2,
+						y: point.y - 450 / 2,
+						props: {
+							id: Number(options.id),
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
+							thumbnail: options.video_comment_thumbnail_image,
+							opacity: '1',
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							w: 425,
+							h: 335,
+							type: options.type,
+							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
+							time: 0,
+							playing: false,
 							url: options.campusURL,
 						},
 					},
@@ -460,12 +525,15 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						y: point.y - 450 / 2,
 						props: {
 							id: Number(options.id),
-							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
-							opacity: '1',
-							w: 400,
-							h: 500,
 							type: options.type,
+							title: TextHelpers.normalizeTextForDom(options.title.trim()),
+							name: options.author.name.firstname + ' ' + options.author.name.lastname,
+							date: options.formatedDate,
+							assignment: options.assignment?.title || '',
+							tags: options.tags || [],
+							opacity: '1',
+							w: 425,
+							h: 150,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
 							url: options.campusURL,
 						},
@@ -474,53 +542,23 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 				true
 			)
 			break
-		case 'video':
+		case 'external_content':
 			app.createShapes(
 				[
 					{
 						id: createShapeId(),
-						type: 'edubreakVideo',
+						type: 'edubreakContent',
 						x: point.x - 450 / 2,
 						y: point.y - 450 / 2,
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							thumbnail: videoContents.linkVideoThumbnail,
+							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
 							opacity: '1',
-							body: '',
-							w: 400,
-							h: 264,
+							w: 425,
+							h: 150,
 							type: options.type,
 							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
-							time: 0,
-							playing: false,
-							url: options.campusURL,
-						},
-					},
-				],
-				true
-			)
-			break
-		case 'videocomment':
-			app.createShapes(
-				[
-					{
-						id: createShapeId(),
-						type: 'edubreakVideo',
-						x: point.x - 450 / 2,
-						y: point.y - 450 / 2,
-						props: {
-							id: Number(options.id),
-							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: TextHelpers.normalizeTextForDom(options.body.trim()),
-							thumbnail: options.video_comment_thumbnail_image,
-							opacity: '1',
-							w: 400,
-							h: 264,
-							type: options.type,
-							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
-							time: 0,
-							playing: false,
 							url: options.campusURL,
 						},
 					},

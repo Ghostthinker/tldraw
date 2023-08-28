@@ -49,8 +49,10 @@ import iconsArrowheadSquare from '../icons/icon/arrowhead-square.svg'
 import iconsArrowheadTriangleInverted from '../icons/icon/arrowhead-triangle-inverted.svg'
 import iconsArrowheadTriangle from '../icons/icon/arrowhead-triangle.svg'
 import iconsAspectRatio from '../icons/icon/aspect-ratio.svg'
+import iconsAssignment from '../icons/icon/assignment.svg'
 import iconsAvatar from '../icons/icon/avatar.svg'
 import iconsBlob from '../icons/icon/blob.svg'
+import iconsBlog from '../icons/icon/blog.svg'
 import iconsBringForward from '../icons/icon/bring-forward.svg'
 import iconsBringToFront from '../icons/icon/bring-to-front.svg'
 import iconsCheck from '../icons/icon/check.svg'
@@ -83,6 +85,7 @@ import iconsDotsVertical from '../icons/icon/dots-vertical.svg'
 import iconsDragHandleDots from '../icons/icon/drag-handle-dots.svg'
 import iconsDuplicate from '../icons/icon/duplicate.svg'
 import iconsEdit from '../icons/icon/edit.svg'
+import iconsExpandContent from '../icons/icon/expand-content.svg'
 import iconsExternalLink from '../icons/icon/external-link.svg'
 import iconsFile from '../icons/icon/file.svg'
 import iconsFillNone from '../icons/icon/fill-none.svg'
@@ -127,6 +130,7 @@ import iconsMinus from '../icons/icon/minus.svg'
 import iconsMixed from '../icons/icon/mixed.svg'
 import iconsPack from '../icons/icon/pack.svg'
 import iconsPage from '../icons/icon/page.svg'
+import iconsPlayhead from '../icons/icon/playhead.svg'
 import iconsPlus from '../icons/icon/plus.svg'
 import iconsQuestionMarkCircle from '../icons/icon/question-mark-circle.svg'
 import iconsQuestionMark from '../icons/icon/question-mark.svg'
@@ -261,8 +265,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'arrowhead-triangle-inverted': formatAssetUrl(iconsArrowheadTriangleInverted, opts),
 			'arrowhead-triangle': formatAssetUrl(iconsArrowheadTriangle, opts),
 			'aspect-ratio': formatAssetUrl(iconsAspectRatio, opts),
+			assignment: formatAssetUrl(iconsAssignment, opts),
 			avatar: formatAssetUrl(iconsAvatar, opts),
 			blob: formatAssetUrl(iconsBlob, opts),
+			blog: formatAssetUrl(iconsBlog, opts),
 			'bring-forward': formatAssetUrl(iconsBringForward, opts),
 			'bring-to-front': formatAssetUrl(iconsBringToFront, opts),
 			check: formatAssetUrl(iconsCheck, opts),
@@ -295,6 +301,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			'drag-handle-dots': formatAssetUrl(iconsDragHandleDots, opts),
 			duplicate: formatAssetUrl(iconsDuplicate, opts),
 			edit: formatAssetUrl(iconsEdit, opts),
+			'expand-content': formatAssetUrl(iconsExpandContent, opts),
 			'external-link': formatAssetUrl(iconsExternalLink, opts),
 			file: formatAssetUrl(iconsFile, opts),
 			'fill-none': formatAssetUrl(iconsFillNone, opts),
@@ -339,6 +346,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			mixed: formatAssetUrl(iconsMixed, opts),
 			pack: formatAssetUrl(iconsPack, opts),
 			page: formatAssetUrl(iconsPage, opts),
+			playhead: formatAssetUrl(iconsPlayhead, opts),
 			plus: formatAssetUrl(iconsPlus, opts),
 			'question-mark-circle': formatAssetUrl(iconsQuestionMarkCircle, opts),
 			'question-mark': formatAssetUrl(iconsQuestionMark, opts),

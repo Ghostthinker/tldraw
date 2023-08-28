@@ -55,8 +55,8 @@ import { TLDrawShape } from '@tldraw/tlschema';
 import { TLDrawShapeSegment } from '@tldraw/tlschema';
 import { TLEdubreakContentAsset } from '@tldraw/tlschema';
 import { TLEdubreakContentShape } from '@tldraw/tlschema';
-import { TLEdubreakVideoAsset } from '@tldraw/tlschema';
-import { TLEdubreakVideoShape } from '@tldraw/tlschema';
+import { TLEdubreakMediaAsset } from '@tldraw/tlschema';
+import { TLEdubreakMediaShape } from '@tldraw/tlschema';
 import { TLEmbedShape } from '@tldraw/tlschema';
 import { TLFontType } from '@tldraw/tlschema';
 import { TLFrameShape } from '@tldraw/tlschema';
@@ -145,7 +145,7 @@ export class App extends EventEmitter {
         tags?: Record<string, boolean | number | string>;
         extras?: Record<string, unknown>;
     }): void;
-    get assets(): (TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset)[];
+    get assets(): (TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakMediaAsset | TLImageAsset | TLVideoAsset)[];
     bail(): this;
     bailToMark(id: string): this;
     batch(fn: () => void): this;
@@ -233,7 +233,7 @@ export class App extends EventEmitter {
         handleId: "end" | "start";
     }[];
     getAssetById(id: TLAssetId): TLAsset | undefined;
-    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakVideoAsset | TLImageAsset | TLVideoAsset | undefined;
+    getAssetBySrc(src: string): TLBookmarkAsset | TLEdubreakContentAsset | TLEdubreakMediaAsset | TLImageAsset | TLVideoAsset | undefined;
     getBounds(shape: TLShape): Box2d;
     getBoundsById(id: TLShapeId): Box2d | undefined;
     getClipPathById(id: TLShapeId): string | undefined;
@@ -662,6 +662,7 @@ export type EditorAssetUrls = {
         sansSerif: string;
         draw: string;
     };
+    icons: Record<TLUiIconType, string>;
 };
 
 // @public (undocumented)
@@ -1942,7 +1943,11 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
     // (undocumented)
     canEdit: () => boolean;
     // (undocumented)
+    canScroll: () => boolean;
+    // (undocumented)
     defaultProps(): TLEdubreakContentShape['props'];
+    // (undocumented)
+    hideResizeHandles: () => boolean;
     // (undocumented)
     indicator(shape: TLEdubreakContentShape): JSX.Element;
     // (undocumented)
@@ -1956,22 +1961,34 @@ export class TLEdubreakContentUtil extends TLBoxUtil<TLEdubreakContentShape> {
 }
 
 // @public (undocumented)
-export const TLEdubreakVideoShapeDef: TLShapeDef<TLEdubreakVideoShape, TLEdubreakVideoUtil>;
+export const TLEdubreakMediaShapeDef: TLShapeDef<TLEdubreakMediaShape, TLEdubreakMediaUtil>;
 
 // @public (undocumented)
-export class TLEdubreakVideoUtil extends TLBoxUtil<TLEdubreakVideoShape> {
+export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
     // (undocumented)
     canEdit: () => boolean;
     // (undocumented)
-    defaultProps(): TLEdubreakVideoShape['props'];
+    canScroll: () => boolean;
     // (undocumented)
-    indicator(shape: TLEdubreakVideoShape): JSX.Element;
+    defaultProps(): TLEdubreakMediaShape['props'];
+    // (undocumented)
+    getBounds(shape: TLEdubreakMediaShape): Box2d;
+    // (undocumented)
+    getCenter(_shape: TLEdubreakMediaShape): Vec2d;
+    // (undocumented)
+    getHeight(shape: TLEdubreakMediaShape): number;
+    // (undocumented)
+    getOutline(shape: TLEdubreakMediaShape): Vec2d[];
+    // (undocumented)
+    hideResizeHandles: () => boolean;
+    // (undocumented)
+    indicator(shape: TLEdubreakMediaShape): JSX.Element;
     // (undocumented)
     isAspectRatioLocked: () => boolean;
     // (undocumented)
-    render(shape: TLEdubreakVideoShape): JSX.Element;
+    render(shape: TLEdubreakMediaShape): JSX.Element;
     // (undocumented)
-    toSvg(shape: TLEdubreakVideoShape): SVGGElement;
+    toSvg(shape: TLEdubreakMediaShape): SVGGElement;
     // (undocumented)
     static type: string;
 }

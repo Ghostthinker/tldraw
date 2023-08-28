@@ -131,8 +131,13 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 				new URL('../icons/icon/aspect-ratio.svg', import.meta.url).href,
 				opts
 			),
+			assignment: formatAssetUrl(
+				new URL('../icons/icon/assignment.svg', import.meta.url).href,
+				opts
+			),
 			avatar: formatAssetUrl(new URL('../icons/icon/avatar.svg', import.meta.url).href, opts),
 			blob: formatAssetUrl(new URL('../icons/icon/blob.svg', import.meta.url).href, opts),
+			blog: formatAssetUrl(new URL('../icons/icon/blog.svg', import.meta.url).href, opts),
 			'bring-forward': formatAssetUrl(
 				new URL('../icons/icon/bring-forward.svg', import.meta.url).href,
 				opts
@@ -225,6 +230,10 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			),
 			duplicate: formatAssetUrl(new URL('../icons/icon/duplicate.svg', import.meta.url).href, opts),
 			edit: formatAssetUrl(new URL('../icons/icon/edit.svg', import.meta.url).href, opts),
+			'expand-content': formatAssetUrl(
+				new URL('../icons/icon/expand-content.svg', import.meta.url).href,
+				opts
+			),
 			'external-link': formatAssetUrl(
 				new URL('../icons/icon/external-link.svg', import.meta.url).href,
 				opts
@@ -350,6 +359,7 @@ export function getBundlerAssetUrls(opts?: AssetUrlOptions) {
 			mixed: formatAssetUrl(new URL('../icons/icon/mixed.svg', import.meta.url).href, opts),
 			pack: formatAssetUrl(new URL('../icons/icon/pack.svg', import.meta.url).href, opts),
 			page: formatAssetUrl(new URL('../icons/icon/page.svg', import.meta.url).href, opts),
+			playhead: formatAssetUrl(new URL('../icons/icon/playhead.svg', import.meta.url).href, opts),
 			plus: formatAssetUrl(new URL('../icons/icon/plus.svg', import.meta.url).href, opts),
 			'question-mark-circle': formatAssetUrl(
 				new URL('../icons/icon/question-mark-circle.svg', import.meta.url).href,
