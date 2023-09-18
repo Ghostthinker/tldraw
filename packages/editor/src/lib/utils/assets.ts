@@ -421,9 +421,12 @@ export function createEmbedShapeAtPoint(
 
 /** @public */
 export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
-	let videoContents
+	let videoContents, blogBody
 	if (options.type === 'video') {
 		videoContents = await getNodeAsJSON(options)
+	}
+	if (options.type === 'blog') {
+		blogBody = options.body_full.replace(/<\/?[^>]+(>|$)/g, '')
 	}
 	switch (options.type) {
 		case 'blog':
@@ -437,7 +440,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 						props: {
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
-							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
+							body: blogBody ? TextHelpers.normalizeTextForDom(blogBody.trim()) : '',
 							name: options.author.name.firstname + ' ' + options.author.name.lastname,
 							date: options.formatedDate,
 							assignment: options.assignment?.title || '',
