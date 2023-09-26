@@ -41,7 +41,7 @@ export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
 			h: 450,
 			type: '',
 			assetId: null,
-			time: 0,
+			timestamp: 0,
 			playing: false,
 			url: '',
 		}
@@ -124,13 +124,18 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 
 	const rVideo = React.useRef<HTMLVideoElement>(null!)
 	const [showVideoControls, setShowVideoControls] = React.useState(false)
+	const commentTimestamp = shape.props.timestamp ? shape.props.timestamp : 0
 
 	useEffect(() => {
 		// TODO: 16.08.2023 - MK: workaround for click handling of buttons inside shapes. Think of a better solution later ¯\_(ツ)_/¯
 		window.addEventListener('onCardButtonClick', async (e) => {
 			// @ts-ignoree
 			if (e.detail === 'mediaDetails-' + shape.id) {
-				openMediaDetails()
+				if (commentTimestamp) {
+					openMediaDetails(shape.id, commentTimestamp)
+				} else {
+					openMediaDetails(shape.id)
+				}
 			}
 			// @ts-ignore
 			if (e.detail === 'playButton-' + shape.id) {
@@ -149,7 +154,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 					id: shape.id,
 					props: {
 						playing: false,
-						time: 0,
+						timestamp: 0,
 					},
 				},
 			])
@@ -166,7 +171,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 					id: shape.id,
 					props: {
 						playing: false,
-						time: media.currentTime,
+						timestamp: media.currentTime,
 					},
 				},
 			])
@@ -183,14 +188,22 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 				id: shape.id,
 				props: {
 					playing: true,
-					time: rVideo.current.currentTime,
+					timestamp: rVideo.current.currentTime,
 				},
 			},
 		])
 	}
 
-	function openMediaDetails() {
-		alert('expand Media')
+	function openMediaDetails(id: any, timestamp?: number) {
+		const playerURL = shape.props.url
+		const onExpandMedia = new CustomEvent('onExpandMedia', {
+			detail: {
+				id,
+				timestamp,
+				playerURL,
+			},
+		})
+		window.dispatchEvent(onExpandMedia)
 	}
 
 	function header() {
@@ -219,7 +232,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 								className="edubreak-media-video"
 								controls={showVideoControls}
 							>
-								<source src="http://media.w3.org/2010/05/sintel/trailer.mp4" />
+								<source src={shape.props.url} />
 							</video>
 							{!shape.props.playing && !showVideoControls && (
 								<div

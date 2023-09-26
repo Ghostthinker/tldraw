@@ -1,7 +1,7 @@
 import { ToastProvider } from '@radix-ui/react-toast'
 import { useApp } from '@tldraw/editor'
 import classNames from 'classnames'
-import React, { ReactChild, ReactNode, useState } from 'react'
+import React, { ReactChild, ReactNode, useEffect, useState } from 'react'
 import { useValue } from 'signia-react'
 import { TldrawUiContextProvider, TldrawUiContextProviderProps } from './TldrawUiContextProvider'
 import { BackToContent } from './components/BackToContent'
@@ -14,6 +14,7 @@ import { ExitPenMode } from './components/PenModeToggle'
 import { ArtefactMenu } from './components/SVBComponents/ArtefactMenu'
 import { SVBSpeedDial } from './components/SVBComponents/SVBSpeedDial'
 import { SVBToolbar } from './components/SVBComponents/SVBToolbar'
+import { SVPContainer } from './components/SVBComponents/SVPContainer'
 import { StopFollowing } from './components/StopFollowing'
 import { StylePanel } from './components/StylePanel/StylePanel'
 import { ToastViewport, Toasts } from './components/Toasts'
@@ -102,6 +103,8 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 	const { 'toggle-focus-mode': toggleFocus } = useActions()
 
 	const [artefactMenus, setArtefactMenus] = useState<ReactChild[]>([])
+	const [showSVP, setShowSVP] = useState<boolean>(false)
+	const [SVPOptions, setSVPOptions] = useState<any>(null)
 
 	const onAddFromEdubreak = () => {
 		setArtefactMenus([
@@ -109,6 +112,18 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 			<ArtefactMenu key={'artefactMenu-' + artefactMenus.length} />,
 		])
 	}
+
+	useEffect(() => {
+		window.addEventListener('onExpandMedia', (e) => {
+			setShowSVP(true)
+			const options = (e as CustomEvent).detail
+			console.log('options for SVP: ', options)
+			setSVPOptions(options)
+		})
+		window.addEventListener('onCloseExpandedMedia', () => {
+			setShowSVP(false)
+		})
+	}, [])
 
 	return (
 		<ToastProvider>
@@ -165,6 +180,9 @@ export const TldrawUiContent = React.memo(function TldrawUI({
 				<Toasts />
 				<Dialogs />
 				<ToastViewport />
+				{showSVP && (
+					<SVPContainer options={SVPOptions} key={'SVPContainer-' + SVPOptions.id}></SVPContainer>
+				)}
 				{artefactMenus}
 			</main>
 		</ToastProvider>

@@ -17,11 +17,8 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 	const msg = useTranslation()
 	const app = useApp()
 	const [tags, setTags] = useState<ReactChild[]>([])
-	const formatedDate = new Date(props.artefact.created).toLocaleString('de-DE', {
-		day: '2-digit',
-		month: '2-digit',
-		year: 'numeric',
-	})
+	const formatedDate = getFormatedDate()
+
 	const subTitle =
 		props.artefact.author.name.firstname +
 		' ' +
@@ -29,14 +26,28 @@ export const Artefact = memo(function Artefact(props: ArtefactProps) {
 		' | ' +
 		formatedDate
 
+	function getFormatedDate() {
+		if (props.artefact.creationTimeStamp) {
+			return props.artefact.creationTimeStamp
+		} else {
+			return new Date(props.artefact.created).toLocaleString('de-DE', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+			})
+		}
+	}
+
 	function getIconFromType() {
+		if (!props.artefact.type) {
+			return <Icon className="artefact-card-icon" icon={'video'} />
+		}
+
 		switch (props.artefact.type) {
 			case NodeTypeEnum.BLOG:
 				return <Icon className="artefact-card-icon" icon={'align-left2'} />
 			case NodeTypeEnum.DOCUMENT:
 				return <Icon className="artefact-card-icon" icon={'file'} />
-			case NodeTypeEnum.VIDEO:
-				return <Icon className="artefact-card-icon" icon={'video'} />
 			case NodeTypeEnum.VIDEOCOMMENT:
 				return <Icon className="artefact-card-icon" icon={'comments'} />
 		}

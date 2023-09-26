@@ -1,4 +1,3 @@
-import { getNodeAsJSON } from '@tldraw/edubreak'
 import { Box2d, Vec2d, VecLike } from '@tldraw/primitives'
 import {
 	TLAsset,
@@ -421,9 +420,9 @@ export function createEmbedShapeAtPoint(
 
 /** @public */
 export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, options?: any) {
-	let videoContents, blogBody
-	if (options.type === 'video') {
-		videoContents = await getNodeAsJSON(options)
+	let blogBody
+	if (options.creationTimeStamp) {
+		options.type = 'video'
 	}
 	if (options.type === 'blog') {
 		blogBody = options.body_full.replace(/<\/?[^>]+(>|$)/g, '')
@@ -468,7 +467,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							id: Number(options.id),
 							title: TextHelpers.normalizeTextForDom(options.title.trim()),
 							body: options.body ? TextHelpers.normalizeTextForDom(options.body.trim()) : '',
-							thumbnail: videoContents.linkVideoThumbnail,
+							thumbnail: options.linkVideoThumbnail,
 							opacity: '1',
 							name: options.author.name.firstname + ' ' + options.author.name.lastname,
 							date: options.formatedDate,
@@ -477,10 +476,10 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							w: 425,
 							h: 335,
 							type: options.type,
-							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
-							time: 0,
+							assetId: TLAsset.createCustomId(getHashForString(options.playerURL)),
+							timestamp: 0,
 							playing: false,
-							url: options.campusURL,
+							url: options.playerURL,
 						},
 					},
 				],
@@ -508,10 +507,10 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							w: 425,
 							h: 335,
 							type: options.type,
-							assetId: TLAsset.createCustomId(getHashForString(options.campusURL)),
-							time: 0,
+							assetId: TLAsset.createCustomId(getHashForString(options.playerURL)),
+							timestamp: Number(options.video_comment_time_stamp),
 							playing: false,
-							url: options.campusURL,
+							url: options.playerURL,
 						},
 					},
 				],

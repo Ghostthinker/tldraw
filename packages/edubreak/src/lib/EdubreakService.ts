@@ -177,7 +177,7 @@ export function parseEdubreakLink(text: string) {
  * @public
  */
 export async function saveStateToEdubreak(state: any) {
-	// Simple POST request with a JSON body using fetch
+	// Simple PUT request with a JSON body using fetch
 	const headers = {
 		Authorization: 'Bearer ' + getEdubreakAccessToken(),
 	}

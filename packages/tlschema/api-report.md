@@ -1023,7 +1023,7 @@ export type TLEdubreakMediaShapeProps = {
     tags: any[];
     w: number;
     h: number;
-    time: number;
+    timestamp: number;
     playing: boolean;
     url: string;
     type: string;
