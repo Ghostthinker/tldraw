@@ -22,7 +22,7 @@ export const SVPContainer = memo(function SVPContainer(props: SVPContainerProps)
 	function getSVPContainerContent() {
 		return (
 			<div className="svp-container-content">
-				<iframe className="svp-container-iframe" src={props.options.playerURL} allowFullScreen />
+				<iframe className="svp-container-iframe" src={props.options.svpURL} allowFullScreen />
 			</div>
 		)
 	}

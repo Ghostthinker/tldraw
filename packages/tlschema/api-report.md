@@ -1026,6 +1026,7 @@ export type TLEdubreakMediaShapeProps = {
     timestamp: number;
     playing: boolean;
     url: string;
+    svpURL: string;
     type: string;
     assetId: null | TLAssetId;
 };

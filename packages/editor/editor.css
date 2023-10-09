@@ -1986,7 +1986,7 @@ it from receiving any pointer events or affecting the cursor. */
 }
 
 .svp-container-iframe {
-	width: 960px;
+	width: 100%;
 	height: 100%;
 	border: none;
 }

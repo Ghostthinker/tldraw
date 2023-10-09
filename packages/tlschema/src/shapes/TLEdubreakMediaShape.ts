@@ -21,6 +21,7 @@ export type TLEdubreakMediaShapeProps = {
 	timestamp: number
 	playing: boolean
 	url: string
+	svpURL: string
 	type: string
 	assetId: TLAssetId | null
 }
@@ -48,6 +49,7 @@ export const edubreakMediaShapeTypeValidator: T.Validator<TLEdubreakMediaShape> 
 			timestamp: T.number,
 			playing: T.boolean,
 			url: T.string,
+			svpURL: T.string,
 			type: T.string,
 			assetId: assetIdValidator.nullable(),
 		})

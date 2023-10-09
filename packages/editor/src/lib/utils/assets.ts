@@ -480,6 +480,7 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							timestamp: 0,
 							playing: false,
 							url: options.playerURL,
+							svpURL: options.svpURL,
 						},
 					},
 				],
@@ -511,6 +512,9 @@ export async function createEdubreakShapeAtPoint(app: App, point: Vec2dModel, op
 							timestamp: Number(options.video_comment_time_stamp),
 							playing: false,
 							url: options.playerURL,
+							svpURL: '',
+							// TODO: put in after svpURL is set for videocomments in the api
+							// svpURL: options.svpURL,
 						},
 					},
 				],

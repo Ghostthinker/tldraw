@@ -44,6 +44,7 @@ export class TLEdubreakMediaUtil extends TLShapeUtil<TLEdubreakMediaShape> {
 			timestamp: 0,
 			playing: false,
 			url: '',
+			svpURL: '',
 		}
 	}
 
@@ -195,12 +196,12 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 	}
 
 	function openMediaDetails(id: any, timestamp?: number) {
-		const playerURL = shape.props.url
+		const svpURL = shape.props.svpURL
 		const onExpandMedia = new CustomEvent('onExpandMedia', {
 			detail: {
 				id,
 				timestamp,
-				playerURL,
+				svpURL: svpURL,
 			},
 		})
 		window.dispatchEvent(onExpandMedia)
@@ -232,7 +233,7 @@ const TLEdubreakMediaUtilComponent = track(function TLEdubreakMediaUtilComponent
 								className="edubreak-media-video"
 								controls={showVideoControls}
 							>
-								<source src={shape.props.url} />
+								<source src={shape.props.svpURL} />
 							</video>
 							{!shape.props.playing && !showVideoControls && (
 								<div
