@@ -17,7 +17,7 @@ export function getBoardIDfromURL(): string;
 export function getEdubreakAccessToken(): any;
 
 // @public (undocumented)
-export function getEdubreakApiUrl(): any;
+export function getEdubreakApiUrl(): string;
 
 // @public
 export function getEdubreakEndpointFromType(options: any): Promise<"" | "/content/" | "/videos/">;

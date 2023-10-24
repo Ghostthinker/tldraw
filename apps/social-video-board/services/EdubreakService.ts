@@ -7,11 +7,11 @@ const EdubreakService = {
 			// @ts-ignore
 			if (metaTag['content']! !== null || metaTag['content'].length > 0) {
 				// @ts-ignore
-				return metaTag['content']
+				return metaTag['content'] + '/api'
 			}
 		}
 		if (environment.API_URL.length > 0) {
-			return environment.API_URL
+			return environment.API_URL + '/api'
 		}
 		// eslint-disable-next-line no-throw-literal
 		throw 'Edubreak API URL not set'

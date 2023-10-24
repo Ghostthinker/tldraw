@@ -49,11 +49,11 @@ export function getEdubreakApiUrl() {
 		// @ts-ignore
 		if (metaTag['content']! !== null || metaTag['content'].length > 0) {
 			// @ts-ignore
-			return metaTag['content']
+			return metaTag['content'] + '/api'
 		}
 	}
 	if (environment.API_URL.length > 0) {
-		return environment.API_URL
+		return environment.API_URL + '/api'
 	}
 	throw Object.assign(new Error('Edubreak API URL not set'))
 }
